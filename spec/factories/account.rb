@@ -1,7 +1,11 @@
 FactoryBot.define do
-  factory :account do
-    user  nil
-    token 'MyString'
-    balance 1
+  factory :source_account do
+    account_id SecureRandom.hex(30)
+    balance 0.0
+  end
+
+  factory :invest_account do
+    account_id SecureRandom.hex(30)
+    balance 0.0
   end
 end

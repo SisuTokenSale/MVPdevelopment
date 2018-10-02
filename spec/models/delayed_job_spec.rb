@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-class DelayedJob < ActiveRecord::Base; end;
+class DelayedJob < ApplicationRecord; end
 
 describe DelayedJob, type: :model do
   describe 'database' do
@@ -15,6 +15,6 @@ describe DelayedJob, type: :model do
     it { is_expected.to have_db_column(:queue).of_type(:string) }
     it { is_expected.to have_db_column(:created_at).of_type(:datetime) }
     it { is_expected.to have_db_column(:updated_at).of_type(:datetime) }
-    it { is_expected.to have_db_index([:priority, :run_at]) }
+    it { is_expected.to have_db_index(%i[priority run_at]) }
   end
 end

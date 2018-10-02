@@ -1,6 +1,6 @@
-require "active_job/logging"
+require 'active_job/logging'
 
-ActiveSupport::Notifications.unsubscribe("enqueue.active_job")
+ActiveSupport::Notifications.unsubscribe('enqueue.active_job')
 
 module ActiveJob
   module Logging

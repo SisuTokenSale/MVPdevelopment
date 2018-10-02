@@ -14,4 +14,4 @@ if defined? RSpec
   end
 end
 
-task default: "bundle:audit"
+task default: 'bundle:audit'
