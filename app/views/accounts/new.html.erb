@@ -1,0 +1,23 @@
+<section class="d-flex">
+  <div class="container my-auto">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+
+        <%= simple_form_for account, url: user_accounts_path do |f| %>
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+          <div class="form-inputs">
+            <%= f.input :account_id, collection: accounts, label_method: :official_name, value_method: :account_id, as: :radio_buttons %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Add #{params[:type]} account" %>
+          </div>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</section>
