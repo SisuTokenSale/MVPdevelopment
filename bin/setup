@@ -9,7 +9,6 @@ set -e
 # Set up Ruby dependencies via Bundler
 gem install bundler --conservative
 bundle check || bundle install
-cp .env.local .env
 
 # Set up database and add any development seed data
 bin/rails dev:prime

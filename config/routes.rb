@@ -3,10 +3,10 @@ Rails.application.routes.draw do
 
   get 'welcome/show'
 
-  resource :user, only: [:show, :edit, :update] do
-    post 'get_token'
+  resource :user, only: %i[show edit update] do
     resources :accounts
   end
+  post 'plaid/apply_token', to: 'plaid#apply_token'
 
   root to: 'welcome#index'
 end

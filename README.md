@@ -1,53 +1,88 @@
-# Sisu-poc
+# SISU
 
 ## Getting Started
+- **Clone:**
+```bash
+git clone git@github.com:SisuTokenSale/MVPdevelopment.git \
+&& cd MVPdevelopment
+```
 
-After you have cloned this repo, run this setup script to set up your machine
-with the necessary dependencies to run and test this app:
+- **Configuring:**
+```bash
+cat > .env << EOF
+PORT=3000
+DB_POOL=5
+DB_REAPING_FREQUENCY=10
+MAX_THREADS=5
+#DATABASE_URL=localhost
+REDIS_URL=redis://localhost:6379/1
+EMAIL_RECIPIENTS=dmitriy.bielorusov@syndicode.com
+SECRET_KEY_BASE=c9af93d4128fb7cb3caa27610d1b889fe2e3b85018323c5dd101ea6e4b62d38847beb8948d823de24f674c2fec096825504adb2d1ee6b8d3039d859c6b59512d
+APPLICATION_HOST=localhost
+SMTP_ADDRESS=smtp.mailtrap.io
+SMTP_AUTH=cram_md5
+SMTP_DOMAIN=smtp.mailtrap.io
+SMTP_PASSWORD=605f232a15d3ba
+SMTP_USERNAME=52de78f2a6c277
+WEB_CONCURRENCY=2
+MAX_THREADS=2
+RACK_ENV=development
+DWOLLA_APP_KEY=LLxv509vkpvZEcDM4swbO5De4yVGvrkYq1KoPYo0487OUNeCV7
+DWOLLA_APP_SECRET=o6AlyWTrDd9Jgoe9st35zE2A6LHHwk6WtMXFvXuZrijKzHD6aQ
+PLAID_CLIENT_ID=5bab5d496ae04e00139959c6
+PLAID_SECRET=9a1a79c362bed984829b882260a313
+PLAID_PUBLIC_KEY=521f8b04497f105c07843610261809
+PLAID_ENV=sandbox
+EOF
+```
 
-    % ./bin/setup
+- **Setup:**
+```bash
+./bin/setup
+```
 
-It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
-your machine with [this script].
+- **Reload Spring:**
+```
+bin/spring stop
+```
 
-[this script]: https://github.com/thoughtbot/laptop
-
-After setting up, you can run the application using [Heroku Local]:
-
-    % heroku local
-
-[Heroku Local]: https://devcenter.heroku.com/articles/heroku-local
-
-## Guidelines
-
-Use the following guides for getting things done, programming well, and
-programming in style.
-
-* [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
-* [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
-* [Style](http://github.com/thoughtbot/guides/blob/master/style)
+- **Run app:**
+**
+```bash
+heroku local
+```
 
 ## Deploying
-
 If you have previously run the `./bin/setup` script,
 you can deploy to staging and production with:
 
-    % ./bin/deploy staging
-    % ./bin/deploy production
+```bash
+./bin/deploy staging
+./bin/deploy production
+```
+
+## Testing
+
+```bash
+RAILS_ENV=test rake db:environment:set db:drop db:create db:migrate && rspec
+rubocop --auto-correct
+```
+
+### Manual deployment
 
 ## Add Heroku staging and production
-```
-git remote add heroku-staging https://git.heroku.com/sisu-staging.git
-git remote add heroku-prod https://git.heroku.com/sisu-prod.git    
+```bash
+git remote add staging https://git.heroku.com/sisu-staging.git
+git remote add production https://git.heroku.com/sisu-prod.git    
 ```
 
 ## Deploy 
 - **Staging:**
-```
-git push -f heroku-staging current-branch-name:master
+```bash
+git push -f staging current-branch-name:master
 ```
 
 - **Production:**
-```
-git push -f heroku-prod current-branch-name:master
+```bash
+git push -f production current-branch-name:master
 ```

@@ -9,11 +9,7 @@
       </div>
     </div>
     <% unless user.access_token %>
-      <div class="row">
-        <div class="col-lg-12">
-          <button id="link-btn">Link PLAID Account</button>
-        </div>
-      </div>
+      <%= render 'widgets/plaid_token' %>
     <% else %>
       <div class="row my-3">
         <div class="col-sm-12">
@@ -47,27 +43,3 @@
     <% end %>
   </div>
 </header>
-
-<% content_for :javascript do %>
-  <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
-  <script>
-  (function($) {
-      var handler = Plaid.create({
-          apiVersion: 'v2',
-          clientName: 'SISU Test App',
-          env: '<%= ENV["PLAID_ENV"] %>',
-          product: ['transactions'],
-          key: '<%= ENV["PLAID_PUBLIC_KEY"] %>',
-          onSuccess: function(public_token) {
-            $.post('/users/get_token', { public_token: public_token }, function() {
-                location.reload();
-            });
-          },
-      });
-
-      $('#link-btn').on('click', function(e) {
-          handler.open();
-      });
-  })(jQuery);
-  </script>
-<% end %>
