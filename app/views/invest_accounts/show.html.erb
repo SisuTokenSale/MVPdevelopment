@@ -1,0 +1,36 @@
+<div class="card invest-block">
+  <div class="card-header text-center">
+    <small>Invest Account</small>
+  </div>
+  <div class="card-body">
+    <p class="card-text js-invest-container">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <small>
+            <strong>Name:&nbsp;</strong><%= @invest_account.name %>
+          </small>
+        </li>
+        <li class="list-group-item">
+          <small>
+            <strong>Institution:&nbsp;</strong><%= @invest_account.institution %>
+          </small>
+        </li>
+        <li class="list-group-item">
+          <small>
+            <strong>Balance:&nbsp;</strong><%= @invest_account.balance %> <%= @invest_account.iso_currency_code %>
+          </small>
+        </li>
+        <li class="list-group-item">
+          <small>
+            <strong>Type:&nbsp;</strong><%= @invest_account.account_type %>
+          </small>
+        </li>
+      </ul>
+    </p>
+  </div>
+  <div class="card-footer bg-white text-center js-invest-btn-area">
+    <button type="button" class="btn btn-primary js-invest-change-btn">
+      CHANGE ACCOUNT
+    </button>
+  </div>
+</div>

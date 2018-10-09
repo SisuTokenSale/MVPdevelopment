@@ -2,6 +2,7 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require_relative 'config/application'
+require_relative 'config/environment'
 
 Rails.application.load_tasks
 task(:default).clear
@@ -13,5 +14,3 @@ if defined? RSpec
     t.verbose = false
   end
 end
-
-task default: "bundle:audit"

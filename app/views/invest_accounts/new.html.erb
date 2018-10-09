@@ -1,0 +1,17 @@
+<%= form_for :invest_account, url: '/invest_accounts', method: :post, remote: true, html: { id: 'js-invest-create' } do |f| %>
+  <%= render 'invest_accounts/form'%>
+  <div class="card invest-block">
+    <div class="card-header text-center">
+      <small>Add Investment Account</small>
+    </div>
+    <div class="card-body">
+      <p class="card-text js-invest-container">
+      </p>
+    </div>
+    <div class="card-footer bg-white js-invest-btn-area text-center">
+      <button type="button" id="invest-add-btn" class="btn btn-outline-primary width-40 js-invest-create-btn">
+        ADD
+      </button>
+    </div>
+  </div>
+<% end %>

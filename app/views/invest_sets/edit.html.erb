@@ -1,0 +1,15 @@
+<%= form_for :invest_set, url: "/invest_sets/#{@invest_set.id}", method: :put do |f| %>
+  <div class="card invest-block">
+    <div class="card-header text-center">
+      <small>Edit Investment Frequency</small>
+    </div>
+      <div class="card-body">
+        <%= render 'invest_sets/form' %>
+      </div>
+      <div class="card-footer bg-white">
+        <button type="submit" class="btn btn-outline-primary btn-block js-invest_set-update-btn">UPDATE</button>
+      </div>
+  </div>
+<% end %>
+
+<%= render 'invest_sets/learn_more' %>

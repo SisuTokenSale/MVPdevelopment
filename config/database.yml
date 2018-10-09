@@ -1,6 +1,6 @@
 development: &default
   adapter: postgresql
-  database: sisu-poc_development
+  database: sisu-development
   encoding: utf8
   min_messages: warning
   pool: <%= Integer(ENV.fetch("DB_POOL", 5)) %>
@@ -9,7 +9,7 @@ development: &default
 
 test:
   <<: *default
-  database: sisu-poc_test
+  database: sisu-test
 
 production: &deploy
   encoding: utf8

@@ -1,0 +1,57 @@
+<div class="card invest-block">
+  <div class="card-header text-center">
+    <small>Selected investment frequency</small>
+  </div>
+    <div class="card-body">
+      <p class="card-text">
+        <div class="row">
+          <div class="col-sm">
+            <small>
+              <%= @invest_set.frequency.camelize %> amount - $<%= @invest_set.amount %>
+            </small>
+          </div>
+          <div class="col-sm">
+            <small>
+              <a href="#"> Cancel selected investments</a>
+            </small>
+          </div>
+        </div>
+        <p/>
+        <div class="row">
+          <div class="col-sm text-center">
+            <button type="button" class="btn btn-primary half-width width-40">CHANGE</button>
+          </div>
+        </div>
+        <hr/>
+        <div class="row">
+          <div class="col-sm text-center">
+            <small>
+              <strong>One time investment</strong>
+            </small>
+          </div>
+        </div>
+        <p />
+        <%= form_for :invest_set, url: '/invest_sets', method: :post do |f| %>
+          <div class="row">
+            <div class="col-sm">
+              <div class="form-row">
+                <div class="form-check">
+                  <small>Make one time transfer:&nbsp;$&nbsp;</small>
+                </div>
+                <div class="form-input">
+                  <input type="text" class="form-control form-control-sm" name="invest_set[amount]" style="width: 150px;" value="100.00">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm text-center">
+              <div class="bg-white">
+                <button type="button" class="btn btn-outline-success width-40">SAVE</button>
+              </div>
+            </div>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>

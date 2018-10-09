@@ -10,42 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_01_125434) do
+ActiveRecord::Schema.define(version: 2018_10_18_142221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
 
   create_table "accounts", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
+    t.string "plaid_token", null: false
+    t.string "uid"
+    t.string "dwolla_token"
     t.string "type"
-    t.string "account_id", null: false
     t.decimal "balance", precision: 15, scale: 10, default: "0.0", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "name"
+    t.string "institution"
+    t.string "account_type"
+    t.string "iso_currency_code"
+    t.index ["plaid_token", "uid", "dwolla_token"], name: "index_accounts_on_plaid_token_and_uid_and_dwolla_token", unique: true
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
-  create_table "delayed_jobs", force: :cascade do |t|
-    t.integer "priority", default: 0, null: false
-    t.integer "attempts", default: 0, null: false
-    t.text "handler", null: false
-    t.text "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string "locked_by"
-    t.string "queue"
+  create_table "invest_sets", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "source_account_id", null: false
+    t.bigint "invest_account_id", null: false
+    t.string "strategy"
+    t.string "frequency", default: "once", null: false
+    t.integer "lowest"
+    t.decimal "amount", precision: 15, scale: 10, default: "0.0", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+    t.index ["invest_account_id"], name: "index_invest_sets_on_invest_account_id"
+    t.index ["source_account_id"], name: "index_invest_sets_on_source_account_id"
+    t.index ["user_id"], name: "index_invest_sets_on_user_id"
   end
 
-  create_table "spatial_ref_sys", primary_key: "srid", id: :integer, default: nil, force: :cascade do |t|
-    t.string "auth_name", limit: 256
-    t.integer "auth_srid"
-    t.string "srtext", limit: 2048
-    t.string "proj4text", limit: 2048
+  create_table "invest_transactions", force: :cascade do |t|
+    t.bigint "invest_set_id", null: false
+    t.bigint "source_account_id", null: false
+    t.bigint "invest_account_id", null: false
+    t.string "status", default: "planned", null: false
+    t.decimal "amount", precision: 15, scale: 10, default: "0.0", null: false
+    t.string "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["invest_account_id"], name: "index_invest_transactions_on_invest_account_id"
+    t.index ["invest_set_id"], name: "index_invest_transactions_on_invest_set_id"
+    t.index ["source_account_id"], name: "index_invest_transactions_on_source_account_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,15 +73,18 @@ ActiveRecord::Schema.define(version: 2018_10_01_125434) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "access_token"
-    t.string "processor_token"
-    t.string "dwolla_customer_url"
-    t.string "strategy"
+    t.string "role", default: "user"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "invest_sets", "users"
+  add_foreign_key "invest_transactions", "invest_sets"
 end

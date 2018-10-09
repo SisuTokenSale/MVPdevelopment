@@ -1,7 +1,13 @@
 FactoryBot.define do
-  factory :account do
-    user  nil
-    token 'MyString'
-    balance 1
+  factory :source_account do
+    uid { SecureRandom.hex(30) }
+    current_balance { 0.0 }
+    available_balance { 0.0 }
+  end
+
+  factory :invest_account do
+    uid { SecureRandom.hex(30) }
+    current_balance { 0.0 }
+    available_balance { 0.0 }
   end
 end

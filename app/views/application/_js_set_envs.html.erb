@@ -1,0 +1,8 @@
+<% content_for :javascript do %>
+  <script>
+    $(document).ready(function(){
+      App.plaid.env = '<%= ENV["PLAID_ENV"] %>';
+      App.plaid.publicKey = '<%= ENV["PLAID_PUBLIC_KEY"] %>';
+    });
+  </script>
+<% end  if user_signed_in? %>

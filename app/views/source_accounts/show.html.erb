@@ -1,0 +1,36 @@
+<div class="card invest-block">
+  <div class="card-header text-center">
+    <small>Source Account</small>
+  </div>
+  <div class="card-body">
+    <p class="card-text js-source-container">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <small>
+            <strong>Name:&nbsp;</strong><%= @source_account.name %>
+          </small>
+        </li>
+        <li class="list-group-item">
+          <small>
+            <strong>Institution:&nbsp;</strong><%= @source_account.institution %>
+          </small>
+        </li>
+        <li class="list-group-item">
+          <small>
+            <strong>Balance:&nbsp;</strong><%= @source_account.balance %> <%= @source_account.iso_currency_code %>
+          </small>
+        </li>
+        <li class="list-group-item">
+          <small>
+            <strong>Type:&nbsp;</strong><%= @source_account.account_type %>
+          </small>
+        </li>
+      </ul>
+    </p>
+  </div>
+  <div class="card-footer bg-white text-center js-source-btn-area">
+    <button type="button" class="btn btn-primary js-source-change-btn">
+      CHANGE ACCOUNT
+    </button>
+  </div>
+</div>
