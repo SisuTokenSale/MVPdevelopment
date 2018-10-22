@@ -1,0 +1,11 @@
+---
+:concurrency: 2
+production:
+  :concurrency: 2
+:queues:
+  - dwolla_fetch_tokens
+  - plaid_fetch_transactions
+:schedule:
+  fetch_plaid_transactions:
+    cron: '0 */15 * * * *'
+    class: PlaidFetchTransactionsJob

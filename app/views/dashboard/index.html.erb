@@ -1,0 +1,16 @@
+<% content_for :javascript do %>
+  <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+<% end %>
+<div class="container">
+  <div class="row" style="margin-top: 2rem;">
+    <div class="col-sm-4 js-source-content">
+      <%= render template: 'source_accounts/index' %>
+    </div>
+    <div class="col-sm-4 js-invest-content">
+      <%= render template: 'invest_accounts/index' %>
+    </div>
+    <div class="col-sm-4 js-set-content">
+      <%= render template: 'invest_sets/index' %>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,11 @@
 <div class="container">
+  <% if user_signed_in? && !current_user.confirmed? %>
+     <div class="alert alert-warning error alert-dismissable fade show">
+       <b>Please verify your email address to access all of Quickrail's features.</b> <br/>
+       An email containing verification instructions was sent to <%= current_user.email %>.
+       <button class="close" data-dismiss="alert">x</button>
+     </div>
+  <% end %>
   <% user_facing_flashes.each do |type, msg| %>
     <div class="alert <%= bootstrap_class_for_flash(type) %> alert-dismissable fade show">
       <%= msg %>

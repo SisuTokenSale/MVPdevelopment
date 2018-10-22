@@ -1,0 +1,146 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://sandbox.plaid.com/auth/get
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"PLAID_ACCESS_TOKEN","options":{},"client_id":"PLAID_CLIENT_ID","secret":"PLAID_SECRET"}'
+    headers:
+      User-Agent:
+      - Plaid Ruby v5.0.0
+      Content-Type:
+      - application/json
+      Plaid-Version:
+      - '2018-05-22'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      server:
+      - nginx
+      date:
+      - Tue, 22 May 2018 06:21:58 GMT
+      content-type:
+      - application/json
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      plaid-version:
+      - '2018-05-22'
+      strict-transport-security:
+      - max-age=31536000; includeSubDomains; preload
+      x-frame-options:
+      - DENY
+      x-content-type-options:
+      - nosniff
+      x-xss-protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "accounts": [
+            {
+              "account_id": "zLVz3PyjXgFn81x4X4jpfKE71NeEjNtoVdjj8",
+              "balances": {
+                "available": 100,
+                "current": 110,
+                "iso_currency_code": "USD",
+                "limit": null,
+                "unofficial_currency_code": null
+              },
+              "mask": "0000",
+              "name": "Plaid Checking",
+              "official_name": "Plaid Gold Standard 0% Interest Checking",
+              "subtype": "checking",
+              "type": "depository"
+            },
+            {
+              "account_id": "rP1wbz8Bnec1QpdM7MbNUX8ZvLb8zLulQbmmN",
+              "balances": {
+                "available": 200,
+                "current": 210,
+                "iso_currency_code": "USD",
+                "limit": null,
+                "unofficial_currency_code": null
+              },
+              "mask": "1111",
+              "name": "Plaid Saving",
+              "official_name": "Plaid Silver Standard 0.1% Interest Saving",
+              "subtype": "savings",
+              "type": "depository"
+            },
+            {
+              "account_id": "BXAk7GeVbaiKWky545vxHg6lprB6ErIwBvaa6",
+              "balances": {
+                "available": null,
+                "current": 1000,
+                "iso_currency_code": "USD",
+                "limit": null,
+                "unofficial_currency_code": null
+              },
+              "mask": "2222",
+              "name": "Plaid CD",
+              "official_name": "Plaid Bronze Standard 0.2% Interest CD",
+              "subtype": "cd",
+              "type": "depository"
+            },
+            {
+              "account_id": "35oJmjl8A6Imwl4W8WzJSkGg8K3GVKHqAgXX7",
+              "balances": {
+                "available": null,
+                "current": 410,
+                "iso_currency_code": "USD",
+                "limit": 2000,
+                "unofficial_currency_code": null
+              },
+              "mask": "3333",
+              "name": "Plaid Credit Card",
+              "official_name": "Plaid Diamond 12.5% APR Interest Credit Card",
+              "subtype": "credit card",
+              "type": "credit"
+            }
+          ],
+          "item": {
+            "available_products": [
+              "balance",
+              "credit_details",
+              "identity",
+              "income",
+              "transactions"
+            ],
+            "billed_products": [
+              "auth"
+            ],
+            "error": null,
+            "institution_id": "ins_109508",
+            "item_id": "NX6PWzk4DpiKevPmomGlHXmZzgEl84iW3VqAl",
+            "webhook": ""
+          },
+          "numbers": {
+            "ach": [
+              {
+                "account": "1111222233330000",
+                "account_id": "zLVz3PyjXgFn81x4X4jpfKE71NeEjNtoVdjj8",
+                "routing": "011401533",
+                "wire_routing": "021000021"
+              },
+              {
+                "account": "1111222233331111",
+                "account_id": "rP1wbz8Bnec1QpdM7MbNUX8ZvLb8zLulQbmmN",
+                "routing": "011401533",
+                "wire_routing": "021000021"
+              }
+            ],
+            "eft": []
+          },
+          "request_id": "a8xiB"
+        }
+    http_version:
+  recorded_at: Tue, 22 May 2018 06:21:58 GMT
+
+
+

@@ -1,15 +1,22 @@
 class User < ApplicationRecord
-  INVEST_STRATEGIES = {
-    daily: 1.day,
-    weekly: 7.days,
-    montly: 1.month
-  }
+  enum role: { user: 'user', admin: 'admin' }
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :source_account, dependent: :destroy
-  has_one :invest_account, dependent: :destroy
+  has_many :source_accounts, dependent: :destroy
+  has_many :invest_accounts, dependent: :destroy
+  has_many :invest_sets,     dependent: :destroy
 
-  validates :strategy, inclusion: { in: INVEST_STRATEGIES.keys.map(&:to_s) }, allow_nil: true
+  def current_invest_set
+    invest_sets&.last
+  end
+
+  def last_source_account
+    source_accounts&.last
+  end
+
+  def last_invest_account
+    invest_accounts&.last
+  end
 end

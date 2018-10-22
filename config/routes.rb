@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users
+  # devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    passwords: 'users/passwords',
+    confirmations: 'users/confirmations'
+  }
 
-  get 'welcome/show'
+  root to: redirect('/users/sign_in')
+  resources :dashboard, only: %i[index]
 
-  resource :user, only: [:show, :edit, :update] do
-    post 'get_token'
-    resources :accounts
-  end
+  resources :plaid, only: %i[create]
+  # match 'plaid/:type',         to: 'plaid#create', via: :post
 
-  root to: 'welcome#index'
+  resources :invest_sets, only: %i[new create]
+  resources :source_accounts, only: %i[new create]
+  resources :invest_accounts, only: %i[new create]
 end
