@@ -1,33 +1,55 @@
 // Typography
-$base-font-family: $font-stack-system;
-$heading-font-family: $base-font-family;
+$font-default: 'Roboto', sans-serif;
+$font-icomoon: 'icomoon';
+$heading-font-family: $font-default;
 
 // Line height
 $base-line-height: 1.5;
 $heading-line-height: 1.2;
 
 // Other Sizes
-$base-border-radius: 3px;
+$base-border-radius: 5px;
 $base-spacing: 1.5em;
 $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
 // Colors
-$blue: #1565c0;
-$dark-gray: #333;
-$medium-gray: #999;
-$light-gray: #ddd;
+$color-white: #fff;
+$color-black: #000;
+$color-dark: #272727;
+$color-dark2: #171717;
+$color-blue: #1565c0;
+$color-red: #EB5555;
+$color-red-light: #EC7171;
+$color-red-dark: #BC322C;
+$color-pink: #F3A6A6;
+$color-pink2: #FFB8B8;
+$color-pink-light: #E9C8C8;
+$color-orange: #C67A11;
+$color-orange-light: #E8DCC8;
+$color-green: #449726;
+$color-green-light: #D9E5D4;
+$color-grey: #B2B2B2;
+$color-grey2: #ECECEF;
+$color-grey3: #A8A8A8;
+$color-dark-grey: #CFCFD6;
+$color-medium-grey: #E7E7EB;
+$color-light-grey: #F7F7F8;
+$color-purple: #5B8EFF;
+$color-purple-dark: #3D3A58;
+$color-purple-dark2: #575472;
+$color-purple-light: #D8D7E2;
 
 // Font Colors
-$base-font-color: $dark-gray;
-$action-color: $blue;
+$base-font-color: $color-dark-grey;
+$action-color: $color-blue;
 
 // Border
-$base-border-color: $light-gray;
+$base-border-color: $color-light-grey;
 $base-border: 1px solid $base-border-color;
 
 // Background Colors
-$viewport-background-color: #fff;
+$viewport-background-color: $color-white;
 
 // Focus
 $focus-outline-color: transparentize($action-color, 0.4);

@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="ROBOTS" content="NOODP" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <title>Sisu</title>
    <%= stylesheet_link_tag :application, media: "all" %>
    <%= csrf_meta_tags %>
@@ -11,8 +12,12 @@
   <body>
     <%= render 'js_set_envs' %>
     <%= render 'navbar' %>
-    <%= render 'flashes' -%>
-    <%= yield %>
+    <main class="main">
+      <div class="container">
+        <%= render 'flashes' -%>
+        <%= yield %>
+      </div>
+    </main>
     <%= render 'javascript' %>
     <%= render 'css_overrides' %>
   </body>

@@ -1,38 +1,64 @@
-<div class="row">
-  <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-    <h1 class="text-center">Account</h1>
+<div class="auth-block">
+  <div class="col auth-block__description">
+    <div class="auth-block__inner">
+      <%= render 'layouts/blocks/auth_description' %>
+      <div class="auth-block__status sign-up"></div>
+    </div>
+  </div>
+  <div class="col auth-block__form">
+    <div class="auth-block__inner">
+      <h1 class="auth-block__title">Account</h1>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= devise_error_messages! %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <% if resource.errors.any? %>
+          <div class="alert alert-danger fade show" role="alert">
+            <%= devise_error_messages! %>
+          </div>
+        <% end %>
 
-      <div class="form-group">
-        <%= f.email_field :email, class: 'form-control', placeholder: 'Email Address' %>
-      </div>
+        <div class="form-item">
+          <label for="<%= :email %>" class="control-label">Email Address</label>
+          <%= f.email_field :email, class: 'form-control' %>
+        </div>
 
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div class="alert alert-warning">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div class="alert alert-warning">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="form-group">
+          <div class="form-item">
+            <label for="<%= :password %>" class="control-label">Password</label>
+            <%= f.password_field :password, id: :password, autocomplete: "off", class: 'form-control' %>
+            <span class="show-password" data-toggle="<%= :password %>">Show</span>
+          </div>
+          <div class="form-description">Leave password blank if you don't want to change it></div>
+        </div>
+
+        <div class="form-item">
+          <label for="<%= :password_confirmation %>" class="control-label">Confirm Password</label>
+          <%= f.password_field :password_confirmation, id: :password_confirmation, autocomplete: "off", class: 'form-control'  %>
+          <span class="show-password" data-toggle="<%= :password_confirmation %>">Show</span>
+        </div>
+
+        <div class="form-group">
+          <div class="form-item">
+            <label for="<%= :current_password %>" class="control-label">Current Password</label>
+            <%= f.password_field :current_password, id: :current_password, autocomplete: "off", class: 'form-control', placeholder: 'Current Password' %>
+            <span class="show-password" data-toggle="<%= :current_password %>">Show</span>
+          </div>
+          <div  class="form-description">We need your current password to confirm your changes</div>
+        </div>
+
+        <div class="form-item">
+          <%= f.submit "Save Changes", class: 'btn btn-full-width' %>
+        </div>
       <% end %>
+      <hr>
 
-      <div class="form-group">
-        <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password'  %>
-        <p class="form-text text-muted"><small>Leave password blank if you don't want to change it</small></p>
+      <div class="auth-block__links text-center">
+        <p><%= link_to "Deactivate my account", registration_path(resource_name), data: { confirm: "Are you sure? You cannot undo this." }, method: :delete %></p>
       </div>
+    </div>
 
-      <div class="form-group">
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirm Password'  %>
-      </div>
-
-      <div class="form-group">
-        <%= f.password_field :current_password, autocomplete: "off", class: 'form-control', placeholder: 'Current Password'  %>
-        <p class="form-text text-muted"><small>We need your current password to confirm your changes</small></p>
-      </div>
-
-      <div class="form-group">
-        <%= f.submit "Save Changes", class: 'btn btn-lg btn-block btn-primary' %>
-      </div>
-    <% end %>
-    <hr>
-
-    <p class="text-center"><%= link_to "Deactivate my account", registration_path(resource_name), data: { confirm: "Are you sure? You cannot undo this." }, method: :delete %></p>
   </div>
 </div>

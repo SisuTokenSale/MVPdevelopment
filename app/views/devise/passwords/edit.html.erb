@@ -1,29 +1,50 @@
-<div class="row">
-  <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-    <h2 class="text-center">Change your password</h2>
-
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-      <%= devise_error_messages! %>
-      <%= f.hidden_field :reset_password_token %>
-
-      <div class="form-group">
-        <%= f.password_field :password, autofocus: true, autocomplete: "off", class: 'form-control', placeholder: "Password" %>
-        <% if @minimum_password_length %>
-          <p class="text-muted"><small><%= @minimum_password_length %> characters minimum</small></p>
-        <% end %>
-      </div>
-
-      <div class="form-group">
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: "Confirm Password" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.submit "Change my password", class: 'btn btn-primary btn-block btn-lg' %>
-      </div>
-    <% end %>
-
-    <div class="text-center">
-      <%= render "devise/shared/links" %>
+<div class="auth-block">
+  <div class="col auth-block__description">
+    <div class="auth-block__inner">
+      <%= render 'layouts/blocks/auth_description_signup' %>
+      <div class="auth-block__status sign-up"></div>
     </div>
   </div>
+  <div class="col auth-block__form">
+    <div class="auth-block__inner">
+      <h2 class="text-center">Change your password</h2>
+
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <% if resource.errors.any? %>
+          <div class="alert alert-danger fade show" role="alert">
+            <%= devise_error_messages! %>
+          </div>
+        <% end %>
+
+        <%= f.hidden_field :reset_password_token %>
+
+        <div class="form-group">
+          <div class="form-item">
+            <label for="<%= :password %>" class="control-label">Password</label>
+            <%= f.password_field :password, id: :password, autofocus: true, autocomplete: "off", class: 'form-control'%>
+            <span class="show-password" data-toggle="<%= :password %>">Show</span>
+          </div>
+          <% if @minimum_password_length %>
+            <div class="alert alert-warning"><%= @minimum_password_length %> characters minimum</div>
+          <% end %>
+        </div>
+
+        <div class="form-item">
+          <label for="<%= :password_confirmation %>" class="control-label">Confirm Password</label>
+          <%= f.password_field :password_confirmation, id: :password_confirmation, autocomplete: "off", class: 'form-control' %>
+          <span class="show-password" data-toggle="<%= :password_confirmation %>">Show</span>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "Change my password", class: 'btn btn-full-width' %>
+        </div>
+      <% end %>
+
+      <div class="auth-block__links text-center">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+
+  </div>
 </div>
+
