@@ -1,4 +1,4 @@
-<%= form_for :invest_set, url: '/invest_sets', method: :post do |f| %>
+<%= form_for :invest_set, url: invest_sets_path, method: :post do |f| %>
   <div class="card invest-block">
     <div class="card-header text-center">
       <small>Add Investment Frequency</small>
@@ -6,8 +6,8 @@
       <div class="card-body">
         <%= render 'invest_sets/form' %>
       </div>
-      <div class="card-footer bg-white text-center">
-        <button type="submit" class="btn btn-outline-success width-40 js-invest_set-create-btn">SAVE</button>
+      <div class="card-footer bg-white text-center js-set-btn-area">
+        <button type="submit" class="btn btn-outline-success width-40 js-set-create-btn">SAVE</button>
       </div>
   </div>
 <% end %>

@@ -17,6 +17,7 @@ git clone git@github.com:SisuTokenSale/MVPdevelopment.git \
 - **Configuring:**
 ```bash
 cat > .env << EOF
+RACK_ENV=development
 PORT=3000
 DB_POOL=5
 DB_REAPING_FREQUENCY=10
@@ -32,8 +33,6 @@ SMTP_DOMAIN=smtp.mailtrap.io
 SMTP_PASSWORD=605f232a15d3ba
 SMTP_USERNAME=52de78f2a6c277
 WEB_CONCURRENCY=2
-MAX_THREADS=2
-RACK_ENV=development
 DWOLLA_ENV=sandbox
 DWOLLA_APP_KEY=LLxv509vkpvZEcDM4swbO5De4yVGvrkYq1KoPYo0487OUNeCV7
 DWOLLA_APP_SECRET=o6AlyWTrDd9Jgoe9st35zE2A6LHHwk6WtMXFvXuZrijKzHD6aQ

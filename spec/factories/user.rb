@@ -1,8 +1,25 @@
 FactoryBot.define do
   factory :user do
     sequence(:email) { |n| "email.#{n + 1}@sisu.com" }
-    # access_token "access-#{ENV['PLAID_ENV']}-6a505352-6c5c-45de-b1a1-c9764ed7d18b"
     password { 'password' }
     password_confirmation(&:password)
+
+    trait :with_source_accounts do
+      after(:create) do |user|
+        create_list(:source_account, 2, user: user)
+      end
+    end
+
+    trait :with_invest_accounts do
+      after(:create) do |user|
+        create_list(:invest_account, 2, user: user)
+      end
+    end
+
+    trait :with_invest_sets do
+      after(:create) do |user|
+        create_list(:invest_set, 2, :with_accounts, user: user)
+      end
+    end
   end
 end

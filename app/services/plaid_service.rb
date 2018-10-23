@@ -23,6 +23,8 @@ class PlaidService
       attrs[:dwolla_token] = self.class.fetch_dwolla_processor_token(access_token, attrs[:uid])
       PlaidAccount.new(attrs)
     end
+  rescue StandardError => error
+    raise AppExceptions::PlaidError, error
   end
 
   def account_data(opts = {})

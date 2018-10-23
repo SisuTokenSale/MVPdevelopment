@@ -5,5 +5,22 @@
   },
   "addons": [
     "heroku-postgresql"
-  ]
+  ],
+
+  "environments": {
+    "test": {
+      "env": {
+        "SECRET_KEY_BASE": "c9af93d4128fb7cb3caa27610d1b889fe2e3b85018323c5dd101ea6e4b62d38847beb8948d823de24f674c2fec096825504adb2d1ee6b8d3039d859c6b59512d",
+        "DWOLLA_ENV": "sandbox",
+        "DWOLLA_APP_KEY": "LLxv509vkpvZEcDM4swbO5De4yVGvrkYq1KoPYo0487OUNeCV7",
+        "DWOLLA_APP_SECRET": "o6AlyWTrDd9Jgoe9st35zE2A6LHHwk6WtMXFvXuZrijKzHD6aQ",
+        "PLAID_CLIENT_ID": "5bab5d496ae04e00139959c6",
+        "PLAID_SECRET": "9a1a79c362bed984829b882260a313",
+        "PLAID_PUBLIC_KEY": "521f8b04497f105c07843610261809",
+        "PLAID_ENV": "sandbox",
+        "RECAPTCHA_SITE_KEY": "6LfWqXQUAAAAACWljYMCuABTQ7EZCpyKdtHePYIS",
+        "RECAPTCHA_SECRET_KEY": "6LfWqXQUAAAAALHAb6x24zzr2EAWS7tP33xaq1Gm"
+      }
+    }
+  }
 }

@@ -1,11 +1,22 @@
 class InvestSet < ApplicationRecord
+  FREQUENCIES = %w[once daily weekly monthly lowest].freeze
+  STRATEGIES = %w[default algo].freeze
+
+  enum frequency: FREQUENCIES.each_with_object({}) { |val, hash| hash[val.to_sym] = val }
+  enum strategy: STRATEGIES.each_with_object({}) { |val, hash| hash[val.to_sym] = val }
+
   validates :user_id,
             :source_account_id,
             :invest_account_id, presence: true
+  validates :amount, numericality: { greater_than_or_equal_to: 5.0 }
 
   belongs_to :user
   belongs_to :source_account
   belongs_to :invest_account
+
+  def ready?
+    source_account&.ready? && invest_account&.ready? && !new_record?
+  end
 
   # before_validation :assign_latest_accounts
   # INFO: Set Source and Invest accounts from previous active InvestSet
