@@ -1,3 +1,7 @@
+require Rails.root.join('lib', 'rails_admin', 'role_setter.rb')
+
+RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::RoleSetter)
+
 RailsAdmin.config do |config|
 
   ### Popular gems integration
@@ -34,8 +38,20 @@ RailsAdmin.config do |config|
     delete
     show_in_app
 
+    role_setter do
+      only [User]
+    end
+
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+  end
+
+  config.model User do
+    edit do
+      configure :role do
+        hide
+      end
+    end
   end
 end

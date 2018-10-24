@@ -1,0 +1,5 @@
+en:
+  admin:
+    actions:
+      role_setter:
+        menu: Toggle admin role
