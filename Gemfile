@@ -63,3 +63,5 @@ group :test do
   gem 'vcr'
   gem 'simplecov', require: false
 end
+
+gem 'rails_admin', '~> 1.3'
