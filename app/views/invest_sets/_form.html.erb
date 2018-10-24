@@ -1,6 +1,8 @@
 <div class="form-row">
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="invest_set[frequency]" id="algo" value="algo">
+    <input class="form-check-input" type="radio" name="invest_set[frequency]" id="algo" value="algo"
+      <%= frequency_checked?('algo') %>
+    >
     <label class="form-check-label" for="algo">
       <small>Let SISU determine on appropriate monthly investment amount.
         <a href="#" data-toggle="modal" data-target="#learn-more">Lear more</a>
@@ -10,18 +12,21 @@
 </div>
 <div class="form-row">
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="invest_set[frequency]" id="daily" value="daily" checked>
+      <input class="form-check-input" type="radio" name="invest_set[frequency]" id="daily" value="daily"
+      <%= frequency_checked?('daily') %> >
       <label class="form-check-label" for="daily">
         <small>Daily($5 - $100):&nbsp;</small>
       </label>
     </div>
     <div class="form-input">
-      <input type="text" class="form-control form-control-sm" name="invest_set[amount]" style="width: 150px;" value="5.0">
+      <input type="text" class="form-control form-control-sm" name="invest_set[amount]" style="width: 150px;" value="<%= @invest_set&.amount %>">
     </div>
 </div>
 <div class="form-row">
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="invest_set[frequency]" id="weekly" value="weekly">
+    <input class="form-check-input" type="radio" name="invest_set[frequency]" id="weekly" value="weekly"
+    <%= frequency_checked?('weekly') %>
+    >
     <label class="form-check-label"  for="weekly">
       <small>Weekly - ($5 - $4,000)</small>
     </label>
@@ -29,7 +34,9 @@
 </div>
 <div class="form-row">
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="invest_set[frequency]" id="monthly" value="monthly">
+    <input class="form-check-input" type="radio" name="invest_set[frequency]" id="monthly" value="monthly"
+    <%= frequency_checked?('monthly') %>
+    >
     <label class="form-check-label" for="monthly">
       <small>Monthly - ($5 - $5,000)</small>
     </label>
@@ -37,7 +44,9 @@
 </div>
 <div class="form-row">
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="invest_set[frequency]" id="lowest" value="lowest">
+    <input class="form-check-input" type="radio" name="invest_set[frequency]" id="lowest" value="lowest"
+    <%= frequency_checked?('lowest') %>
+    >
     <label class="form-check-label" for="lowest">
       <small>Percentage of lowest balance of the month (5% - 90%)</small>
     </label>
@@ -46,12 +55,12 @@
 <hr />
 <div class="form-row">
   <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="invest_transactions[included]"  id="once">
+    <input class="form-check-input" type="checkbox" name="invest_transaction[included]"  id="once">
     <label class="form-check-label" for="once">
       <small>Make one time transfer &nbsp;</small>
     </label>
   </div>
   <div class="form-input">
-    <input type="text" class="form-control form-control-sm" name="invest_transactions[amount]" style="width: 150px;" value="5.0">
+    <input type="text" class="form-control form-control-sm" name="invest_transaction[amount]" style="width: 150px;" value="5.0">
   </div>
 </div>

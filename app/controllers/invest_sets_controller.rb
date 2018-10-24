@@ -15,7 +15,7 @@ class InvestSetsController < ApplicationController
     @invest_set.source_account =  current_user.current_invest_set&.source_account || current_user.last_source_account
     @invest_set.invest_account =  current_user.current_invest_set&.invest_account || current_user.last_invest_account
 
-    @invest_set.save ? redirect_to(dashboard_index_url) : render(action: 'new')
+    @invest_set.save ? redirect_to(dashboard_index_url) : render(template: 'invest_sets/new')
   end
 
   def new

@@ -1,16 +1,16 @@
 <div class="card invest-block">
   <div class="card-header text-center">
-    <small>Selected investment frequency</small>
+    <small>Selected investment frequency <%= raw invest_set_status %></small>
   </div>
     <div class="card-body">
       <p class="card-text">
         <div class="row">
-          <div class="col-sm">
+          <div class="col-sm-7">
             <small>
               <%= @invest_set.frequency.camelize %> amount - $<%= @invest_set.amount %>
             </small>
           </div>
-          <div class="col-sm">
+          <div class="col-sm-5">
             <small>
               <a href="#"> Cancel selected investments</a>
             </small>
@@ -19,7 +19,7 @@
         <p/>
         <div class="row">
           <div class="col-sm text-center">
-            <button type="button" class="btn btn-primary half-width width-40">CHANGE</button>
+            <button type="button" class="btn btn-primary width-40 js-set-change-btn">CHANGE</button>
           </div>
         </div>
         <hr/>
@@ -31,7 +31,7 @@
           </div>
         </div>
         <p />
-        <%= form_for :invest_set, url: '/invest_sets', method: :post do |f| %>
+        <%= form_for :invest_set, url: '/invest_transactions', method: :post do |f| %>
           <div class="row">
             <div class="col-sm">
               <div class="form-row">
@@ -39,7 +39,7 @@
                   <small>Make one time transfer:&nbsp;$&nbsp;</small>
                 </div>
                 <div class="form-input">
-                  <input type="text" class="form-control form-control-sm" name="invest_set[amount]" style="width: 150px;" value="100.00">
+                  <input type="text" class="form-control form-control-sm" name="invest_transaction[amount]" style="width: 150px;" value="100.00">
                 </div>
               </div>
             </div>

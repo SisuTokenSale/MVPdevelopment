@@ -22,7 +22,7 @@ ActiveSupport.on_load(:action_controller) do
   wrap_parameters format: [:json]
 end
 
-ActiveModelSerializers.config.adapter = :json_api
+ActiveModelSerializers.config.adapter = :json
 
 Recaptcha.configure do |config|
   config.site_key = ENV['RECAPTCHA_SITE_KEY']

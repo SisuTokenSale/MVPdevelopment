@@ -6,6 +6,7 @@ Bundler.require(*Rails.groups)
 
 module Sisu
   class Application < Rails::Application
+    config.eager_load_paths << Rails.root.join('lib')
     config.assets.quiet = true
     config.generators do |generate|
       generate.helper false

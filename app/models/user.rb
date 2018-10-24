@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  enum role: { user: 'user', admin: 'admin' }
+  ROLES = %w[admin user].freeze
+
+  enum role: ROLES.each_with_object({}) { |val, hash| hash[val.to_sym] = val }
 
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable

@@ -13,7 +13,7 @@
         product: ['transactions'],
         key: App.plaid.publicKey,
         onSuccess: function(publicToken){
-          App.plaid.successFormCallback(publicToken, type)
+          App.plaid.getAccountsCallback(publicToken, type)
         }
       }).open();
     },
@@ -31,13 +31,25 @@
       });
     },
 
-    successFormCallback: function(publicToken, type){
+    getPlaidAccounts: function(publicToken){
+      return $.post(`/plaid.json`, {
+        public_token: publicToken
+      });
+    },
+
+    showError: function(type, message){
+      $(`.js-${type}-container`).html(
+        `<div class="alert alert-warning" role="alert">
+          ${message}
+        </div>`
+      );
+    },
+
+    getAccountsCallback: function(publicToken, type){
       $(`.js-${type}-btn-area`).empty();
       $(`.js-${type}-container`).text("Please wait ...");
 
-      $.post(`/plaid`, {
-        public_token: publicToken
-      }, function(accounts, status, xhr) {
+      App.plaid.getPlaidAccounts(publicToken).then(function(accounts, status, xhr){
         App.plaid.accounts[type] = accounts.plaid_accounts;
         $(`input[name='${type}_account[plaid_token]']`).val(xhr.getResponseHeader('X-PLAID-TOKEN'));
 
@@ -68,8 +80,17 @@
           $(`.js-${type}-change-btn`).on('click', function(e) {
             App.plaid.changeAccountHandler(type)
           });
-        })
-      })
+        });
+      }, function(xhr, status, err){
+        let error = xhr.responseJSON.error;
+        App.plaid.showError(type, error.message);
+        $(`.js-${type}-btn-area`).html(
+          `<button type="button" class="js-${type}-change-btn btn btn-outline-warning width-40">SELECT ANOTHER</button>`
+        )
+        $(`.js-${type}-change-btn`).on('click', function(e) {
+          App.plaid.changeAccountHandler(type)
+        });
+      });
     },
 
     applyHiddenFields: function(type, account){
