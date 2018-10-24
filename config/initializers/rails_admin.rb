@@ -3,7 +3,6 @@ require Rails.root.join('lib', 'rails_admin', 'role_setter.rb')
 RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::RoleSetter)
 
 RailsAdmin.config do |config|
-
   ### Popular gems integration
 
   ## == Devise ==

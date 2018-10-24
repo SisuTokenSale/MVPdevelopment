@@ -4,11 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :admin_set_by, class_name: 'User', foreign_key: :admin_set_by_id, optional: true
+  belongs_to :admin_set_by, class_name: 'User', foreign_key: :admin_set_by_id, optional: true, inverse_of: :set_admins
   has_many :source_accounts, dependent: :destroy
   has_many :invest_accounts, dependent: :destroy
   has_many :invest_sets,     dependent: :destroy
-  has_many :set_admins, class_name: 'User', foreign_key: :admin_set_by_id
+  has_many :set_admins, class_name: 'User', foreign_key: :admin_set_by_id,
+                        dependent: :nullify, inverse_of: :admin_set_by
 
   def current_invest_set
     invest_sets&.last
