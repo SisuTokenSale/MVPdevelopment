@@ -14,6 +14,8 @@ module RailsAdmin
               flash[:notice] = 'Marked as user'
             else
               @object.admin!
+              @object.update_attributes(admin_set_by_id: current_user.id)
+
               flash[:notice] = 'Marked as admin'
             end
 
