@@ -9,14 +9,18 @@ module RailsAdmin
         register_instance_option :controller do
           proc do
             @object = User.find(params[:id])
-            if @object.admin?
+
+            # TODO: if logic will be more complex, move to service
+            if current_user == @object
+              flash[:alert] = 'Can\'t change for yourself'
+            elsif @object.admin?
               @object.user!
-              flash[:notice] = 'Marked as user'
+              flash[:success] = 'Marked as user'
             else
               @object.admin!
               @object.update(admin_set_by_id: current_user.id)
 
-              flash[:notice] = 'Marked as admin'
+              flash[:success] = 'Marked as admin'
             end
 
             redirect_to rails_admin.index_path('user')
