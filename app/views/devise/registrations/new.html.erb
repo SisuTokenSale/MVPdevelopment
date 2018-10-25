@@ -1,35 +1,58 @@
-<div class="row">
-  <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-    <h1 class="text-center">Sign Up</h1>
-
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
-      <%= flash[:recaptcha_error] %>
-
-      <div class="form-group">
-        <%= f.email_field :email, autofocus: false, class: 'form-control', placeholder: "Email Address" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirm Password' %>
-      </div>
-
-      <div class="form-group">
-        <%= recaptcha_tags %>
-      </div>
-
-      <div class="form-group">
-        <%= f.submit "Sign up", class: "btn btn-primary btn-block btn-lg" %>
-      </div>
-
-    <% end %>
-
-    <div class="text-center">
-      <%= render "devise/shared/links" %>
+<div class="auth-block">
+  <div class="col auth-block__description">
+    <div class="auth-block__inner">
+      <%= render 'layouts/blocks/auth_description_signup' %>
+      <div class="auth-block__status sign-up"></div>
     </div>
+  </div>
+  <div class="col auth-block__form">
+    <div class="auth-block__inner">
+      <h1 class="auth-block__title">Sign Up</h1>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <% if resource.errors.any? %>
+          <div class="alert alert-danger fade show" role="alert">
+            <%= devise_error_messages! %>
+          </div>
+        <% end %>
+
+        <% if flash[:recaptcha_error] %>
+          <div class="alert alert-danger fade show" role="alert">
+            <%= flash[:recaptcha_error] %>
+          </div>
+        <% end %>
+
+        <div class="form-item">
+          <label for="<%= :email %>" class="control-label">Email Address</label>
+          <%= f.email_field :email, autofocus: false, class: 'form-control' %>
+        </div>
+
+        <div class="form-item">
+          <label for="<%= :password %>" class="control-label">Password</label>
+          <%= f.password_field :password, autocomplete: "off", id: :password, class: 'form-control' %>
+          <span class="show-password" data-toggle="<%= :password %>">Show</span>
+        </div>
+
+        <div class="form-item">
+          <label for="<%= :password_confirmation %>" class="control-label">Confirm Password</label>
+          <%= f.password_field :password_confirmation, id: :password_confirmation, autocomplete: "off", class: 'form-control' %>
+          <span class="show-password" data-toggle="<%= :password_confirmation %>">Show</span>
+        </div>
+
+        <div class="form-item recaptha-field">
+          <%= recaptcha_tags %>
+        </div>
+
+        <div class="form-item text-center">
+          <%= f.submit "Sign up", class: "btn btn-full-width" %>
+        </div>
+
+      <% end %>
+
+      <div class="auth-block__links text-center">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+
   </div>
 </div>

@@ -1,0 +1,154 @@
+@for $i from 0 through 12 {
+  .v-offset-top-#{$i} {
+    margin-top: #{$i}em;
+  }
+
+  .v-offset-bottom-#{$i} {
+    margin-bottom: #{$i}em;
+  }
+}
+
+$browser-context: 16; // Default
+
+@function em($pixels, $context: $browser-context) {
+  //if context is em value, first convert to px
+  @if (unit($context) == "em" ) {
+    $context: $context * $browser-context;
+  }
+
+  @if (unit($pixels) ) {
+    //strip the units first
+    $pixels: $pixels / ($pixels * 0 + 1);
+  }
+
+  @if (unit($context)) {
+    //strip the units first
+    $context: $context / ($context * 0 + 1);
+  }
+
+  @return $pixels / $context * 1em;
+}
+
+@function em-sub($em, $context-em, $context: $browser-context){
+  @if (unit($context) == "em" ) {
+    $context: $context * $browser-context;
+  }
+
+  @if (unit($context-em) == "em" ) {
+    $context-em: $context-em * $context * 1px;
+  }
+
+  @if (unit($em) == "em" ) {
+    $em: $em * $context * 1px;
+  }
+
+  @return em($em, $context) / em($context-em, $context) * 1em;
+}
+
+@mixin hover-style($bg-color, $font-color, $scale: false){
+
+  &:hover,
+  &:active,
+  &:focus{
+    background: $bg-color;
+    color: $font-color;
+
+    @if $scale{
+      transform: scale($scale);
+      box-shadow: 0 8px 26px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+@mixin placeholder-style($color, $font-family, $size: false, $font-weight: false){
+
+  font-family: $font-family;
+
+  @if $size{
+    font-size: $size;
+  }
+  @if $font-weight{
+    font-weight: $font-weight;
+  }
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-family: $font-family;
+    color: $color;
+    line-height: inherit;
+
+    @if $size{
+      font-size: $size;
+    }
+    @if $font-weight{
+      font-weight: $font-weight;
+    }
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    font-family: $font-family;
+    color: $color;
+    line-height: inherit;
+
+    @if $size{
+      font-size: $size;
+    }
+    @if $font-weight{
+      font-weight: $font-weight;
+    }
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    font-family: $font-family;
+    color: $color;
+    line-height: inherit;
+
+    @if $size{
+      font-size: $size;
+    }
+    @if $font-weight{
+      font-weight: $font-weight;
+    }
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    font-family: $font-family;
+    color: $color;
+    line-height: inherit;
+
+    @if $size{
+      font-size: $size;
+    }
+    @if $font-weight{
+      font-weight: $font-weight;
+    }
+  }
+}
+
+// Mixin itself
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+
+@for $i from 50 through 2000 {
+  .delay-#{$i} {
+    -webkit-animation-delay: #{$i}ms;
+    animation-delay: #{$i}ms;
+  }
+}
+
+@mixin mobile-font-size($size){
+  @media all and (max-width: 1024px){ font-size: #{$size * 0.9}px; }
+  @media all and (max-width: 991px){ font-size: #{$size * 0.8}px; }
+  @media all and (max-width: 767px){ font-size: #{$size * 0.75}px; }
+  @media all and (max-width: 575px){ font-size: #{$size * 0.6}px; }
+}
+
+@for $i from 8 through 72 {
+  .f-#{$i} {
+    font-size: #{$i}px;
+    line-height: 1.25;
+
+    @include mobile-font-size($i);
+  }
+}

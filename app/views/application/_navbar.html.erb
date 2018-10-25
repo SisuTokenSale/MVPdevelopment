@@ -1,8 +1,13 @@
-<nav class="navbar navbar-light _fixed-top">
-  <div class="container">
-    <%= link_to("Home", dashboard_index_path) if user_signed_in? %>
-    <% if user_signed_in? %>
-      <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-    <% end %>
-  </div>
-</nav>
+<% if user_signed_in? %>
+  <header class="header">
+    <nav class="navbar navbar-light _fixed-top">
+      <div class="container">
+        <%= link_to("Home", dashboard_index_path) if user_signed_in? %>
+
+        <% if user_signed_in? %>
+          <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+        <% end %>
+      </div>
+    </nav>
+  </header>
+<% end %>

@@ -1,0 +1,10 @@
+.main{
+  position: relative;
+  margin-right: 0;
+  margin-left: 0;
+  padding: 65px 0 50px;
+
+  > [class*="container"] {
+    max-width: 1094px;
+  }
+}

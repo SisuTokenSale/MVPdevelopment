@@ -1,23 +1,36 @@
-<div class="row">
-  <div class="col-sm-4 ml-auto mr-auto">
-    <h2 class="text-center">Resend confirmation instructions</h2>
+<div class="auth-block">
+  <div class="col auth-block__description">
+    <div class="auth-block__inner">
+      <%= render 'layouts/blocks/auth_description' %>
+      <div class="auth-block__status sign-up"></div>
+    </div>
+  </div>
+  <div class="col auth-block__form">
+    <div class="auth-block__inner">
+      <h1 class="auth-block__title">Resend confirmation instructions</h1>
 
-    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-      <%= devise_error_messages! %>
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+        <% if resource.errors.any? %>
+          <div class="alert alert-danger fade show" role="alert">
+            <%= devise_error_messages! %>
+          </div>
+        <% end %>
 
-      <div class="form-group">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, class: 'form-control', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+        <div class="form-item">
+          <label for="<%= :email %>" class="control-label">Email Address</label>
+          <%= f.email_field :email, autofocus: true, class: 'form-control', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+        </div>
+
+        <div class="form-item">
+          <%= f.submit "Resend confirmation instructions", class: 'btn' %>
+        </div>
+      <% end %>
+
+      <div class="auth-block__links text-center">
+        <%= render "devise/shared/links" %>
       </div>
-
-      <div class="actions">
-        <%= f.submit "Resend confirmation instructions", class: 'btn btn-primary btn-lg btn-block' %>
-      </div>
-    <% end %>
-
-    <div class="text-center">
-      <%= render "devise/shared/links" %>
     </div>
 
   </div>
 </div>
+
