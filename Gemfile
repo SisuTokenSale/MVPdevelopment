@@ -13,6 +13,10 @@ gem 'redis', '~> 4.0'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rails_param'
 gem 'rack-canonical-host'
+# TODO:
+# TODO:
+# TODO:
+
 
 gem 'jquery-rails'
 gem 'pg', '~> 0.18'

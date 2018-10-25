@@ -10,5 +10,7 @@ class PlaidAccountSerializer < ActiveModel::Serializer
 
   def disabled
     object.dwolla_token.nil?
+
+
   end
 end
