@@ -39,6 +39,16 @@
           <span class="show-password" data-toggle="<%= :password_confirmation %>">Show</span>
         </div>
 
+        <div class="form-row flex-end">
+          <%= f.label :terms, class: "std-label std-label--flex" do %>
+            <%= f.check_box :terms %>
+            <span class="checkboxes-itm__text">
+                    I agree to the
+              <%= link_to('Terms and Conditions', '#', target: '_blank') %>
+                  </span>
+          <% end %>
+        </div>
+
         <div class="form-item recaptha-field">
           <%= recaptcha_tags %>
         </div>
