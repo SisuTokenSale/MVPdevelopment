@@ -1,0 +1,24 @@
+<% if @invest_set_transactions.count > 0 %>
+  <% @invest_set_transactions.each do |trx| %>
+    <tr class="transactions-list__item <%= transaction_class_by_status(trx.status) %>">
+      <td class="item-cell date">
+        <span class="item-cell__inner"><%= l trx.created_at.to_date, format: :default %></span>
+      </td>
+      <td class="item-cell status">
+        <span class="item-cell__inner"><%= trx.status.camelize %></span>
+      </td>
+      <td class="item-cell amount">
+        <span class="item-cell__inner"><%= trx.currency&.symbol %><%= trx.amount %></span>
+      </td>
+      <td class="item-cell action">
+        <span class="item-cell__inner">
+          <button class="transactions-delete"></button>
+        </span>
+      </td>
+    </tr>
+  <% end %>
+<% else %>
+  <tr>
+    <td colspan="4" class="transactions-list__item text-center">No items</td>
+  </tr>
+<% end %>

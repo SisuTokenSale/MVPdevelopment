@@ -14,6 +14,7 @@ describe Account, type: :model do
     it { is_expected.to have_db_column(:iso_currency_code).of_type(:string) }
     it { is_expected.to have_db_column(:created_at).of_type(:datetime) }
     it { is_expected.to have_db_column(:updated_at).of_type(:datetime) }
+    it { is_expected.to have_db_column(:plaid_identity).of_type(:text) }
   end
 
   describe 'indexes' do
@@ -28,5 +29,42 @@ describe Account, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
+  end
+
+  let(:user) { create :user, :with_invest_sets }
+  let(:account) { build :account, user: user }
+  let(:usd_account) { build :account, :with_usd }
+  let(:eur_account) { build :account, :with_eur }
+  let(:gbp_account) { build :account, :with_gbp }
+
+  context 'Instance methods' do
+    describe '#currency_symbol' do
+      specify 'return currency_symbol by iso_currency_code' do
+        expect(usd_account.currency.symbol).to eq('$')
+        expect(eur_account.currency.symbol).to eq('€')
+        expect(gbp_account.currency.symbol).to eq('£')
+      end
+    end
+  end
+
+  context 'Private methods' do
+    describe '#assign_to_invest_set' do
+      specify 'should be raised' do
+        expect { account.send(:assign_to_invest_set) }.to raise_error(NoMethodError, 'assign_to_invest_set doesn\'t exist')
+      end
+    end
+
+    describe '#current_invest_set' do
+      specify 'should be return user current_invest_set' do
+        expect(account.send(:current_invest_set)).to eq(user.current_invest_set)
+      end
+    end
+
+    # TODO: Should be covered like callback in Invest and Source account models
+    # describe '#dwolla_fetch_token' do
+    #   specify 'should be return DwollaFetchTokensJob' do
+    #     expect(account).to respond_to(:dwolla_fetch_token)
+    #   end
+    # end
   end
 end

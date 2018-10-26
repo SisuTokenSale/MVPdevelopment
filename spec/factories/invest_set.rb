@@ -2,7 +2,6 @@ FactoryBot.define do
   factory :invest_set do
     amount { 5.0 }
     frequency { 'daily' }
-    strategy { 'default' }
 
     trait :with_accounts do
       after(:build) do |invest_set|

@@ -80,6 +80,7 @@
           $(`.js-${type}-change-btn`).on('click', function(e) {
             App.plaid.changeAccountHandler(type)
           });
+          App.dashboard.applyGlobalListeners();
         });
       }, function(xhr, status, err){
         let error = xhr.responseJSON.error;
@@ -90,6 +91,7 @@
         $(`.js-${type}-change-btn`).on('click', function(e) {
           App.plaid.changeAccountHandler(type)
         });
+        App.dashboard.applyGlobalListeners();
       });
     },
 

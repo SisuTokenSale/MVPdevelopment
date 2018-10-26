@@ -1,18 +1,21 @@
 class InvestSet < ApplicationRecord
-  FREQUENCIES = %w[once daily weekly monthly lowest].freeze
-  STRATEGIES = %w[default algo].freeze
+  FREQUENCIES = %w[once daily weekly monthly lowest algo].freeze
+  MIN_AMOUNT = 5.0
+
+  attribute :frequency, :string, default: FREQUENCIES[1]
+  attribute :amount, :decimal, default: MIN_AMOUNT
 
   enum frequency: FREQUENCIES.each_with_object({}) { |val, hash| hash[val.to_sym] = val }
-  enum strategy: STRATEGIES.each_with_object({}) { |val, hash| hash[val.to_sym] = val }
 
   validates :user_id,
             :source_account_id,
             :invest_account_id, presence: true
-  validates :amount, numericality: { greater_than_or_equal_to: 5.0 }
+  validates :amount, numericality: { greater_than_or_equal_to: MIN_AMOUNT }
 
   belongs_to :user
   belongs_to :source_account
   belongs_to :invest_account
+  has_many :invest_transactions, dependent: :destroy
 
   def ready?
     source_account&.ready? && invest_account&.ready? && !new_record?

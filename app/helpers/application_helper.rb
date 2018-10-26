@@ -13,4 +13,20 @@ module ApplicationHelper
       flash_type.to_s
     end
   end
+
+  def errors_in_block_for(object)
+    return unless object&.errors&.any?
+
+    message = '<div class="row">'
+    (object&.errors&.full_messages || []).each do |m|
+      message += "<li>#{m}</li>"
+    end
+    "#{message}</div>"
+  end
+
+  def transaction_class_by_status(status)
+    return '' if status == 'cancelled'
+
+    "status-#{status}"
+  end
 end

@@ -1,3 +1,5 @@
+<%= raw errors_in_block_for(@invest_set) %>
+
 <div class="form-item check-field">
   <label class="checkbox radio">
     <input class="form-check-input" type="radio" name="invest_set[frequency]" id="algo" value="algo"
@@ -15,7 +17,7 @@
     <span class="checkmark"></span>
   </label>
   <label class="form-label" for="daily">
-    Daily($5 - $100):&nbsp;
+    Daily(<%= currency_symbol %>5 - <%= currency_symbol %>100):&nbsp;
 
     <div class="form-input">
       <input type="text" name="invest_set[amount]" value="<%= @invest_set&.amount %>">
@@ -29,7 +31,7 @@
     <span class="checkmark"></span>
   </label>
   <label class="form-label" for="weekly">
-    Weekly - ($5 - $4,000)
+    Weekly - (<%= currency_symbol %>5 - <%= currency_symbol %>4,000)
   </label>
 </div>
 <div class="form-item check-field">
@@ -39,7 +41,7 @@
     <span class="checkmark"></span>
   </label>
   <label class="form-label" for="monthly">
-    Monthly - ($5 - $5,000)
+    Monthly - (<%= currency_symbol %>5 - <%= currency_symbol %>5,000)
   </label>
 </div>
 <div class="form-item check-field">
@@ -59,15 +61,17 @@
 
 <div class="widget-body__title">One time investment</div>
 
+<%= raw errors_in_block_for(@invest_transaction) %>
+
 <div class="form-item check-field">
   <label class="checkbox">
-    <input class="form-check-input" type="checkbox" name="invest_transaction[included]"  id="once">
+    <input class="form-check-input" type="checkbox" name="invest_transaction[required]"  id="once">
     <span class="checkmark"></span>
   </label>
   <label class="form-label" for="once">
-    Make one time transfer&nbsp;
+    Make one time transfer&nbsp; <%= currency_symbol %>
     <div class="form-input">
-      <input type="text" name="invest_transaction[amount]" value="5.0">
+      <input type="text" name="invest_transaction[amount]" value="<%= @invest_transaction&.amount %>">
     </div>
   </label>
 </div>

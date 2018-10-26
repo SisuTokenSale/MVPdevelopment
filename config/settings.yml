@@ -1,0 +1,7 @@
+currencies:
+  - symbol: '$'
+    iso: 'USD'
+  - symbol: '€'
+    iso: 'EUR'
+  - symbol: '£'
+    iso: 'GBP'
