@@ -1,13 +1,22 @@
 <% if user_signed_in? %>
   <header class="header">
-    <nav class="navbar navbar-light _fixed-top">
-      <div class="container">
-        <%= link_to("Home", dashboard_index_path) if user_signed_in? %>
+    <div class="container">
+      <nav class="navbar">
+        <%= link_to dashboard_index_path, class: 'header-logo' do
+          image_tag 'icons/sisu-logo.svg', alt: 'Sisu Logo', class: 'header-logo-img'
+        end %>
 
-        <% if user_signed_in? %>
-          <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-        <% end %>
-      </div>
-    </nav>
+        <div class="user-menu">
+          <a href="#user-dropdown" id="user-menu-toggle" class="user-menu__toggle">
+            <span class="icon-user"></span>
+            <span class="user-menu__name">John Smith</span>
+          </a>
+          <ul class="user-menu__dropdown" id="user-menu-dropdown">
+            <li class="user-menu__dropdown__item"><a href="#" class="btn btn-primary btn-block">My Profile</a></li>
+            <li class="user-menu__dropdown__item"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
   </header>
 <% end %>

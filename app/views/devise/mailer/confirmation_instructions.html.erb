@@ -1,5 +1,47 @@
-<p>Welcome <%= @email %>!</p>
+<%= render "layouts/emails/header" %>
 
-<p>You can confirm your account email through the link below:</p>
+<tr style="padding: 0 !important; text-align: center;">
+  <td valign="top" height="auto" style="vertical-align: top; padding: 0 !important; text-align: left; height:auto;">
+    <div style="width: 500px; margin: 50px; text-align: left;">
+      <span style="font-family: 'Roboto', Arial, Tahoma, 'Times New Roman', sans-serif; font-size: 24px;">
+        Congratulations and welcome to the SISU Automated Investment Application!
+      </span>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+      <div style="height: 20px; line-height: 20px; font-size: 7px;">&nbsp;</div>
+      <span style="font-family: Roboto, Arial, Tahoma, 'Times New Roman', sans-serif; color: #272727; font-size: 17px; text-align: center;">
+        Welcome <%= @email %>!</span>
+
+      <div style="height: 20px; line-height: 20px; font-size: 7px;">&nbsp;</div>
+      <span style="font-family: 'Roboto', Arial, Tahoma, 'Times New Roman', sans-serif; color: #272727; font-size: 14px; text-align: center;">
+        Here are links to our
+        <%= link_to 'Privacy', "#", style: "color: #5B8EFF;" %>
+        and
+        <%= link_to 'Terms of use', "#", style: "color: #5B8EFF;" %>.
+        Please, have a look. </span>
+
+      <div style="height: 20px; line-height: 20px; font-size: 7px;">&nbsp;</div>
+      <span style="font-family: 'Roboto', Arial, Tahoma, 'Times New Roman', sans-serif; color: #272727; font-size: 14px; text-align: center;">
+        You can confirm your account email through the link below:</span>
+
+      <div style="height: 20px; line-height: 20px; font-size: 7px;">&nbsp;</div>
+      <span style="font-family: 'Roboto', Arial, Tahoma, 'Times New Roman', sans-serif; color: #272727; font-size: 14px; text-align: center;">
+        <%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token), style: "color: #5B8EFF;" %></span>
+
+      <div style="height: 20px; line-height: 20px; font-size: 7px;">&nbsp;</div>
+      <span style="font-family: 'Roboto', Arial, Tahoma, 'Times New Roman', sans-serif; color: #8A8A8A; font-size: 11px; text-align: center;">
+        SISU is happy to have you as a new customer</span>
+
+      <div style="height: 25px; line-height: 20px; font-size: 7px;">&nbsp;</div>
+      <div style="height: 1px; width: 500px; margin: 0; background: #ECECEF; font-size: 7px;">&nbsp;</div>
+      <div style="height: 25px; line-height: 20px; font-size: 7px;">&nbsp;</div>
+      <span style="font-family: Roboto, Arial, Tahoma, 'Times New Roman', sans-serif; font-style: italic; color: #000000; font-size: 14px; text-align: left;">
+        Best regards,
+        <div style="height: 10px; line-height: 10px; font-size: 7px;">&nbsp;</div>
+        <img src="<%= asset_path('email-logo.png') %>" alt="banner-logo" class="img-respons" style="width: 72px; height: 36px; margin: 0;">
+      </span>
+    </div>
+
+  </td>
+</tr>
+
+<%= render "layouts/emails/footer" %>
