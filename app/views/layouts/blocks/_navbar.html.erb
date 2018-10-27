@@ -7,15 +7,17 @@
         end %>
 
         <div class="user-menu">
-          <a href="#user-dropdown" id="user-menu-toggle" class="user-menu__toggle">
+          <a href="javascript:void(0);" id="user-menu-toggle" class="user-menu__toggle">
             <span class="icon-user"></span>
             <span class="user-menu__name">John Smith</span>
           </a>
           <ul class="user-menu__dropdown" id="user-menu-dropdown">
             <li class="user-menu__dropdown__item">
-              <%= link_to 'My Profile', users_profile_index_path, class: 'btn btn-primary btn-block' %>
+              <%= link_to 'User profile', users_profile_index_path %>
             </li>
-            <li class="user-menu__dropdown__item"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+            <li class="user-menu__dropdown__item">
+              <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+            </li>
           </ul>
         </div>
       </nav>

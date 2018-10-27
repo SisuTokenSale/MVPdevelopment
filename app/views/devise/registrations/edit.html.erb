@@ -11,7 +11,7 @@
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <% if resource.errors.any? %>
-          <div class="alert alert-danger fade show" role="alert">
+          <div class="form-alert danger">
             <%= devise_error_messages! %>
           </div>
         <% end %>
@@ -22,7 +22,7 @@
         </div>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div class="alert alert-warning">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <div class="form-alert warning">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
 
         <div class="form-group">
@@ -53,7 +53,6 @@
           <%= f.submit "Save Changes", class: 'btn btn-full-width' %>
         </div>
       <% end %>
-      <hr>
 
       <div class="auth-block__links text-center">
         <p><%= link_to "Deactivate my account", registration_path(resource_name), data: { confirm: "Are you sure? You cannot undo this." }, method: :delete %></p>

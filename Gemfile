@@ -29,7 +29,7 @@ gem 'recaptcha'
 # TODO: Remove after implement new design
 gem 'bourbon', '~> 5.0'
 gem 'neat', '~> 2.1'
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap', '~> 4.1.3' # TODO: DON'T REMOVE bootstrap - currently used bootstap grid system & popup
 gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
 
 group :development do
