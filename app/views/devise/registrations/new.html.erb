@@ -41,10 +41,10 @@
 
         <div class="form-row flex-end">
           <%= f.label :terms, class: "std-label std-label--flex" do %>
-            <%= f.check_box :terms %>
+            <%= f.check_box :terms, checked: true %>
             <span class="checkboxes-itm__text">
                     I agree to the
-              <%= link_to('Terms and Conditions', '#', target: '_blank') %>
+              <%= link_to('Terms and Conditions', terms_path, target: '_blank') %>
                   </span>
           <% end %>
         </div>

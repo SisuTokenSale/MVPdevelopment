@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   resources :invest_sets, only: %i[new create]
   resources :source_accounts, only: %i[new create]
   resources :invest_accounts, only: %i[new create]
+
+  get '/terms', to: 'pages#terms', as: :terms
 end
