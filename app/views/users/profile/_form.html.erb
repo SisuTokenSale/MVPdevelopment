@@ -41,6 +41,17 @@
                  <% end %>
                </div>
              </div>
+
+             <div class="form-row">
+               <div class="form-check col-sm-3">
+                 <label class="form-check-label">
+                   <small>Documents:&nbsp;</small>
+                 </label>
+               </div>
+               <div class="form_input col-sm-9">
+                 <%= f.input :documents, as: :file, label: false, input_html: { class: 'form-control form-control-sm' } %>
+               </div>
+             </div>
            </div>
          </div>
         </div>
