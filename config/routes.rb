@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations'
   }
 
+  namespace :users do
+    resources :profile, only: %i[index update]
+  end
+
   root to: redirect('/users/sign_in')
   resources :dashboard, only: %i[index]
 
@@ -21,4 +25,5 @@ Rails.application.routes.draw do
   resources :invest_accounts, only: %i[new create]
 
   get '/terms', to: 'pages#terms', as: :terms
+  put '/users/profile', to: 'users/profile#update', as: :update_profile
 end

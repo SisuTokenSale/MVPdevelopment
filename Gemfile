@@ -65,3 +65,4 @@ group :test do
 end
 
 gem 'rails_admin', '~> 1.3'
+gem 'jquery-ui-rails'

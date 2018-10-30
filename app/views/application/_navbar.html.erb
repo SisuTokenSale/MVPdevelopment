@@ -12,7 +12,9 @@
             <span class="user-menu__name">John Smith</span>
           </a>
           <ul class="user-menu__dropdown" id="user-menu-dropdown">
-            <li class="user-menu__dropdown__item"><a href="#" class="btn btn-primary btn-block">My Profile</a></li>
+            <li class="user-menu__dropdown__item">
+              <%= link_to 'My Profile', users_profile_index_path, class: 'btn btn-primary btn-block' %>
+            </li>
             <li class="user-menu__dropdown__item"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
           </ul>
         </div>

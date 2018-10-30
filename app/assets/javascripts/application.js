@@ -2,6 +2,8 @@
 //= require activestorage
 //= require jquery3
 //= require bootstrap-sprockets
+//= require jquery-ui
+//= require profile
 //= require_tree .
 
 // INFO: Set CSRF-TOKEN to each Ajax requests
