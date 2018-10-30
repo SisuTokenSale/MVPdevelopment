@@ -9,6 +9,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :admin_set_by, class_name: 'User', foreign_key: :admin_set_by_id, optional: true, inverse_of: :set_admins
+  has_one :profile, dependent: :destroy, inverse_of: :user
   has_many :source_accounts, dependent: :destroy
   has_many :invest_accounts, dependent: :destroy
   has_many :invest_sets,     dependent: :destroy

@@ -30,6 +30,7 @@ describe User, type: :model do
   end
 
   describe 'associations' do
+    it { is_expected.to have_one(:profile) }
     it { is_expected.to have_many(:source_accounts) }
     it { is_expected.to have_many(:invest_accounts) }
     it { is_expected.to have_many(:invest_sets) }

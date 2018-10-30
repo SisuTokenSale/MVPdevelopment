@@ -422,6 +422,7 @@ DEPENDENCIES
   factory_bot_rails
   jbuilder (~> 2.5)
   jquery-rails
+  jquery-ui-rails
   letter_opener!
   listen (>= 3.0.5, < 3.2)
   neat (~> 2.1)

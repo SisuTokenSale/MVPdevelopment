@@ -62,6 +62,21 @@ ActiveRecord::Schema.define(version: 2018_10_24_171627) do
     t.index ["source_account_id"], name: "index_invest_transactions_on_source_account_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.date "birth_date"
+    t.string "ssn"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -88,4 +103,5 @@ ActiveRecord::Schema.define(version: 2018_10_24_171627) do
   add_foreign_key "accounts", "users"
   add_foreign_key "invest_sets", "users"
   add_foreign_key "invest_transactions", "invest_sets"
+  add_foreign_key "profiles", "users"
 end

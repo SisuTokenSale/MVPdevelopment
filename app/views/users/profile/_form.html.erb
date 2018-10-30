@@ -1,0 +1,160 @@
+<div class="row col-sm-12">
+  <div class="col-sm-12">
+    <h1 class="text-center">User Profile</h1>
+
+    <%= simple_form_for(@profile, url: update_profile_path, html: { method: :put }) do |f| %>
+      <div class="row col-sm-12 ml-auto mr-auto">
+        <div class="col-sm-6">
+         <div class="card">
+           <div class="card-body">
+             <div class="form-row">
+               <div class="form-check col-sm-3">
+                 <label class="form-check-label">
+                   <small>First Name:&nbsp;</small>
+                 </label>
+               </div>
+               <div class="form-input col-sm-9">
+                 <%= f.input :first_name, label: false, input_html: { class: 'form-control form-control-sm' } %>
+               </div>
+             </div>
+
+             <div class="form-row">
+               <div class="form-check col-sm-3">
+                 <label class="form-check-label">
+                   <small>Last Name:&nbsp;</small>
+                 </label>
+               </div>
+               <div class="form-input col-sm-9">
+                 <%= f.input :last_name, label: false, input_html: { class: 'form-control form-control-sm' } %>
+               </div>
+             </div>
+
+             <div class="form-row">
+               <div class="form-check col-sm-3">
+                 <label class="form-check-label">
+                   <small>Email:&nbsp;</small>
+                 </label>
+               </div>
+               <div class="form_input col-sm-9">
+                 <%= f.simple_fields_for :user, current_user do |usr| %>
+                   <%= usr.input :email, disabled: true, label: false, input_html: { class: 'form-control form-control-sm' } %>
+                 <% end %>
+               </div>
+             </div>
+
+             <div class="form-row">
+               <div class="form-check col-sm-3">
+                 <label class="form-check-label">
+                   <small>Documents:&nbsp;</small>
+                 </label>
+               </div>
+               <div class="form_input col-sm-9">
+                 <%= f.input :documents, as: :file, label: false, input_html: { class: 'form-control form-control-sm' } %>
+               </div>
+             </div>
+           </div>
+         </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="card">
+           <div class="card-body">
+             <div class="form-row">
+               <div class="form-check col-sm-3">
+                 <label class="form-check-label">
+                   <small>Street:&nbsp;</small>
+                 </label>
+               </div>
+               <div class="form-input col-sm-9">
+                 <%= f.input :street, label: false, input_html: { class: 'form-control form-control-sm' } %>
+               </div>
+             </div>
+
+             <div class="form-row">
+               <div class="form-check col-sm-3">
+                 <label class="form-check-label">
+                   <small>City:&nbsp;</small>
+                 </label>
+               </div>
+               <div class="form-input col-sm-9">
+                 <%= f.input :city, label: false, input_html: { class: 'form-control form-control-sm' } %>
+               </div>
+             </div>
+
+             <div class="form-row">
+               <div class="form-check col-sm-3">
+                 <label class="form-check-label">
+                   <small>State:&nbsp;</small>
+                 </label>
+               </div>
+               <div class="form-input col-sm-9">
+                 <%= f.input :state, label: false, input_html: { class: 'form-control form-control-sm' } %>
+               </div>
+             </div>
+           </div>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row col-sm-12 ml-auto mr-auto">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-check col-sm-3">
+                  <label class="form-check-label">
+                    <small>Zip:&nbsp;</small>
+                  </label>
+                </div>
+                <div class="form-input col-sm-9">
+                  <%= f.input :zip, label: false, input_html: { class: 'form-control form-control-sm' } %>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-check col-sm-3">
+                  <label class="form-check-label">
+                    <small>Birth Date:&nbsp;</small>
+                  </label>
+                </div>
+                <div class="form- col-sm-9">
+                  <%= f.input :birth_date, as: :string, label: false,
+                    input_html: { class: 'form-control form-control-sm datepicker', :value => f.object.birth_date&.strftime("%d-%m-%Y") } %>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-check col-sm-3">
+                  <label class="form-check-label">
+                    <small>Social Number:&nbsp;</small>
+                  </label>
+                </div>
+                <div class="form-input col-sm-9">
+                  <%= f.input :ssn, label: false, input_html: { class: 'form-control form-control-sm' } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+        </div>
+      </div>
+
+      <br />
+
+      <div class="row col-sm-12 ">
+        <div class="mr-2">
+          <%= f.submit "Update", class: 'btn btn-sm btn-block btn-primary' %>
+        </div>
+        <div class="mr-2">
+          <%= link_to('Cancel', dashboard_index_path, class: 'btn btn-sm btn-secondary') %>
+        </div>
+      </div>
+
+      <br />
+    <% end %>
+  </div>
+</div>
