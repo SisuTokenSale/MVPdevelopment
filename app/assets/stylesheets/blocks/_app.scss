@@ -1,9 +1,11 @@
 @import "main";
 @import "header";
+@import "modal";
 @import "content";
 @import "dashboard";
 @import "dashboard.transactions";
-@import "user_profile";
+@import "user.menu";
+@import "user.profile";
 @import "forms_signup";
 @import "forms_elements";
 @import "notifications";

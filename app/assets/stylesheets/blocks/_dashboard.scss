@@ -3,7 +3,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 20px 0 0;
+  margin: 25px 0 50px;
+
   &__item{
     display: flex;
     flex-wrap: wrap;
@@ -22,7 +23,6 @@
       .widget{
         &-card{
           background-color: $color-light-grey2;
-
           border: 2px dotted rgba($color-purple-2, 0.38);
         }
         &-header{
@@ -45,40 +45,43 @@
           }
         }
 
-        & ~ &{
-          background-color: transparent;
+        background-color: transparent;
 
-          .widget{
-            &-card{
-              background-color: transparent;
-            }
+        .widget{
+          &-card{
+            background-color: transparent;
+          }
 
-            &-step-sign{
-              background: $color-light-grey;
+          &-step-sign{
+            background: $color-light-grey;
+            border: 1px solid $color-grey5;
+
+            .num,
+            .icon{
               border: 1px solid $color-grey5;
-
-              .num,
-              .icon{
-                border: 1px solid $color-grey5;
-                color: rgba($color-purple-dark, 0.34);
-              }
-            }
-
-            &-header {
               color: rgba($color-purple-dark, 0.34);
             }
+          }
 
-            &-footer {
+          &-header {
+            color: rgba($color-purple-dark, 0.34);
+          }
 
-              .btn{
-                border: 1px solid rgba($color-purple-dark, 0.34);
-                color: rgba($color-purple-dark, 0.34);
-                background: transparent;
-                box-shadow: none;
-              }
+          &-footer {
+
+            .btn{
+              border: 1px solid rgba($color-purple-dark, 0.34);
+              color: rgba($color-purple-dark, 0.34);
+              background: transparent;
+              box-shadow: none;
             }
           }
         }
+      }
+
+      &.transactions-footer{
+        opacity: 0;
+        pointer-events: none;
       }
     }
 
@@ -95,7 +98,7 @@
         &-card{
           background-color: $color-white;
           border: none;
-          box-shadow: 0 0 9px 0 rgba($color-black, 0.15);
+          box-shadow: 0 2px 8px 0 rgba($color-black, 0.15);
           margin-bottom: 50px;
         }
       }
@@ -136,6 +139,7 @@
       }
     }
 
+    //z-index from HIGH to LOW for transaction menu
     $zIndex: 12;
     @for $i from 1 through $zIndex {
       $zIndex: $zIndex - 1;
@@ -346,7 +350,7 @@
 
   &-body {
     flex: 1 1 auto;
-    padding: 20px 0 0;
+    padding: 15px 0;
 
     &__separator{
       position: relative;

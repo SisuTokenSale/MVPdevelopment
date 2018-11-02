@@ -22,18 +22,18 @@
           </div>
         <% end %>
 
-        <div class="form-item">
+        <div class="form-item <%= resource.errors['email'].any? ? 'form-error' : '' %>">
           <label for="<%= :email %>" class="control-label">Email Address</label>
           <%= f.email_field :email, autofocus: false, class: 'form-control' %>
         </div>
 
-        <div class="form-item">
+        <div class="form-item <%= resource.errors['password'].any? ? 'form-error' : '' %>">
           <label for="<%= :password %>" class="control-label">Password</label>
           <%= f.password_field :password, autocomplete: "off", id: :password, class: 'form-control' %>
           <span class="show-password" data-toggle="<%= :password %>">Show</span>
         </div>
 
-        <div class="form-item">
+        <div class="form-item <%= resource.errors['password'].any? ? 'form-error' : '' %>">
           <label for="<%= :password_confirmation %>" class="control-label">Confirm Password</label>
           <%= f.password_field :password_confirmation, id: :password_confirmation, autocomplete: "off", class: 'form-control' %>
           <span class="show-password" data-toggle="<%= :password_confirmation %>">Show</span>

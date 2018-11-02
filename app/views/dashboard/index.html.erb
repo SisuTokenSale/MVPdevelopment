@@ -15,6 +15,14 @@
     </div>
     <div class="dashboard-widget__item js-set-content <%= invest_set_block_class %>">
       <%= render template: 'invest_sets/index' %>
+      <%#= render 'invest_sets/index_preview' %>
     </div>
   </div>
+  <!--DRAFT LAYOUTS-->
+  <%#= render 'index_draft' %>
+
+  <p><a href="#" data-toggle="modal" data-target="#security-info">PROVIDE YOUR SECURITY INFORMATION</a></p>
+  <p><a href="#" data-toggle="modal" data-target="#thank-you-steps">Thank you!</a></p>
+  <p><a href="#" data-toggle="modal" data-target="#account-success">You have successfully added the account</a></p>
+  <p><a href="#" data-toggle="modal" data-target="#external-service-unavailable">External service unavailable</a></p>
 </section>

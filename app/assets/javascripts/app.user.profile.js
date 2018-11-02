@@ -27,4 +27,18 @@ $(document).ready(function(){
       }
     });
   }
+
+  select2_init();
 });
+
+function select2_init() {
+  var $select2Field = $('.main .select2-control');
+
+  if($select2Field.length){
+    $select2Field.select2({
+      dropdownParent: $('.main'),
+      containerCssClass: 'select2-field',
+      minimumResultsForSearch: -1
+    });
+  }
+}

@@ -2,8 +2,10 @@
 //= require activestorage
 //= require jquery3
 //= require vendor/jquery.mCustomScrollbar.min
+//= require vendor/select2.full.min
 //= require bootstrap-sprockets
-//= require jquery-ui
+//= require jquery-ui/widgets/datepicker
+//= require vendor/jquery.mask.min
 //= require profile
 //= require_tree .
 

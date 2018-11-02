@@ -6,7 +6,7 @@
       $('.show-more').on('click', function(e) {
         e.preventDefault();
 
-        let transHead = $(this).closest('.transactions-footer__head');
+        let transHead = $(this).closest('.drop-footer');
         let transBody = transHead.next();
 
         if(transHead.hasClass('opened')){
@@ -23,7 +23,7 @@
     },
 
     applyTransListScrollbar: function(){
-      $('.transactions-list-outer').mCustomScrollbar({
+      $('.custom-scrollbar').mCustomScrollbar({
         theme:"light",
         alwaysShowScrollbar:true,
         autoDraggerLength: true,

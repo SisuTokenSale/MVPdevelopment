@@ -20,7 +20,7 @@
   justify-content: center;
   align-items: center;
   margin: 10px auto;
-  cursor: pointer;
+  cursor: pointer !important;
   width: auto;
   max-width: 100%;
   box-shadow: 0px 2px 4px 1px rgba($color-black, 0.25);
@@ -33,7 +33,9 @@
   &:hover,
   &:active,
   &:focus{
+    outline: none !important;
     background-position: 0 -100%;
+    color: $color-white;
   }
 
   //@include hover-style('', '', 1.1);
@@ -42,6 +44,38 @@
   -moz-appearance: none;
   appearance: none;
 
+  &-invert{
+    background: transparent;
+    box-shadow: none;
+    border: 1px solid $color-purple-dark;
+    color: $color-purple-dark;
+
+    &:hover,
+    &:active,
+    &:focus{
+      background: $color-purple-dark;
+    }
+  }
+
+  &-file{
+    position: relative;
+    height: 30px;
+    width: 159px;
+    padding: 12px;
+    .input,
+    input{
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      z-index: 11;
+      cursor: pointer;
+    }
+  }
 
   &:disabled{
     border: 1px solid rgba($color-purple-dark, 0.34);

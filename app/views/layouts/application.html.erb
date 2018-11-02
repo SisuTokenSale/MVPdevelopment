@@ -18,6 +18,15 @@
         <%= yield %>
       </div>
     </main>
+
+    <!--POPUPS-->
+    <%= render 'layouts/modals/learn_more' %>
+    <%= render 'layouts/modals/security_info' %>
+    <%= render 'layouts/modals/thank_you_steps' %>
+    <%= render 'layouts/modals/account_success' %>
+    <%= render 'layouts/modals/external_service_unavailable' %>
+    <!--POPUPS END-->
+
     <%= render 'javascript' %>
     <%= render 'css_overrides' %>
   </body>
