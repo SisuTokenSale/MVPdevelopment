@@ -11,13 +11,13 @@
       <p class="form-description">Enter your email below and we’ll send  you the Reset link</p>
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
         <% if resource.errors.any? %>
-          <div class="alert alert-danger fade show" role="alert">
+          <div class="form-alert danger">
             <%= devise_error_messages! %>
           </div>
         <% end %>
 
         <% if flash[:recaptcha_error] %>
-          <div class="alert alert-danger fade show" role="alert">
+          <div class="form-alert danger">
             <%= flash[:recaptcha_error] %>
           </div>
         <% end %>

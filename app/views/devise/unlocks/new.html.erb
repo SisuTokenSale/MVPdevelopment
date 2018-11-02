@@ -11,7 +11,7 @@
 
       <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
         <% if resource.errors.any? %>
-          <div class="alert alert-danger fade show" role="alert">
+          <div class="form-alert danger">
             <%= devise_error_messages! %>
           </div>
         <% end %>

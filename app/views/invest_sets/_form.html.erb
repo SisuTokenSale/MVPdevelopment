@@ -1,66 +1,73 @@
-<div class="form-row">
-  <div class="form-check">
+<div class="form-item check-field">
+  <label class="checkbox radio">
     <input class="form-check-input" type="radio" name="invest_set[frequency]" id="algo" value="algo"
-      <%= frequency_checked?('algo') %>
-    >
-    <label class="form-check-label" for="algo">
-      <small>Let SISU determine on appropriate monthly investment amount.
-        <a href="#" data-toggle="modal" data-target="#learn-more">Lear more</a>
-      </small>
-    </label>
-  </div>
+           <%= frequency_checked?('algo') %> >
+    <span class="checkmark"></span>
+  </label>
+  <label class="form-label" for="algo">
+    <span>Let SISU determine on appropriate monthly investment amount. <a href="#" data-toggle="modal" data-target="#learn-more">Lear more</a></span>
+  </label>
 </div>
-<div class="form-row">
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="invest_set[frequency]" id="daily" value="daily"
-      <%= frequency_checked?('daily') %> >
-      <label class="form-check-label" for="daily">
-        <small>Daily($5 - $100):&nbsp;</small>
-      </label>
-    </div>
+<div class="form-item check-field">
+  <label class="checkbox radio">
+    <input class="form-check-input" type="radio" name="invest_set[frequency]" id="daily" value="daily"
+           <%= frequency_checked?('daily') %> >
+    <span class="checkmark"></span>
+  </label>
+  <label class="form-label" for="daily">
+    Daily($5 - $100):&nbsp;
+
     <div class="form-input">
-      <input type="text" class="form-control form-control-sm" name="invest_set[amount]" style="width: 150px;" value="<%= @invest_set&.amount %>">
+      <input type="text" name="invest_set[amount]" value="<%= @invest_set&.amount %>">
     </div>
+  </label>
 </div>
-<div class="form-row">
-  <div class="form-check">
+<div class="form-item check-field">
+  <label class="checkbox radio">
     <input class="form-check-input" type="radio" name="invest_set[frequency]" id="weekly" value="weekly"
-    <%= frequency_checked?('weekly') %>
-    >
-    <label class="form-check-label"  for="weekly">
-      <small>Weekly - ($5 - $4,000)</small>
-    </label>
-  </div>
+           <%= frequency_checked?('weekly') %> >
+    <span class="checkmark"></span>
+  </label>
+  <label class="form-label" for="weekly">
+    Weekly - ($5 - $4,000)
+  </label>
 </div>
-<div class="form-row">
-  <div class="form-check">
+<div class="form-item check-field">
+  <label class="checkbox radio">
     <input class="form-check-input" type="radio" name="invest_set[frequency]" id="monthly" value="monthly"
-    <%= frequency_checked?('monthly') %>
-    >
-    <label class="form-check-label" for="monthly">
-      <small>Monthly - ($5 - $5,000)</small>
-    </label>
-  </div>
+           <%= frequency_checked?('monthly') %> >
+    <span class="checkmark"></span>
+  </label>
+  <label class="form-label" for="monthly">
+    Monthly - ($5 - $5,000)
+  </label>
 </div>
-<div class="form-row">
-  <div class="form-check">
+<div class="form-item check-field">
+  <label class="checkbox radio">
     <input class="form-check-input" type="radio" name="invest_set[frequency]" id="lowest" value="lowest"
-    <%= frequency_checked?('lowest') %>
-    >
-    <label class="form-check-label" for="lowest">
-      <small>Percentage of lowest balance of the month (5% - 90%)</small>
-    </label>
-  </div>
+           <%= frequency_checked?('lowest') %> >
+    <span class="checkmark"></span>
+  </label>
+  <label class="form-label" for="lowest">
+    Percentage of lowest balance of the month (5% - 90%)
+  </label>
 </div>
-<hr />
-<div class="form-row">
-  <div class="form-check">
+
+<div class="widget-body__separator">
+  <span class="widget-body__separator-txt">and/or</span>
+</div>
+
+<div class="widget-body__title">One time investment</div>
+
+<div class="form-item check-field">
+  <label class="checkbox">
     <input class="form-check-input" type="checkbox" name="invest_transaction[included]"  id="once">
-    <label class="form-check-label" for="once">
-      <small>Make one time transfer &nbsp;</small>
-    </label>
-  </div>
-  <div class="form-input">
-    <input type="text" class="form-control form-control-sm" name="invest_transaction[amount]" style="width: 150px;" value="5.0">
-  </div>
+    <span class="checkmark"></span>
+  </label>
+  <label class="form-label" for="once">
+    Make one time transfer&nbsp;
+    <div class="form-input">
+      <input type="text" name="invest_transaction[amount]" value="5.0">
+    </div>
+  </label>
 </div>

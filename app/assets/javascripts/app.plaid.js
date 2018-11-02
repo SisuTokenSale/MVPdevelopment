@@ -62,7 +62,7 @@
         });
         // INFO: Add Save Submit to Form
         $(`.js-${type}-btn-area`).html(
-          '<button type="submit" class="btn btn-outline-success width-40">SAVE</button>'
+          '<button type="submit" class="btn btn-outline-success">SAVE</button>'
         )
 
         // INFO: Add Save Submit Form Handler
@@ -85,7 +85,7 @@
         let error = xhr.responseJSON.error;
         App.plaid.showError(type, error.message);
         $(`.js-${type}-btn-area`).html(
-          `<button type="button" class="js-${type}-change-btn btn btn-outline-warning width-40">SELECT ANOTHER</button>`
+          `<button type="button" class="js-${type}-change-btn btn btn-outline-warning">SELECT ANOTHER</button>`
         )
         $(`.js-${type}-change-btn`).on('click', function(e) {
           App.plaid.changeAccountHandler(type)

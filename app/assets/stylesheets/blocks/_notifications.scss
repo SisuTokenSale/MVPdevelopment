@@ -1,0 +1,90 @@
+.alert{
+  font: 13px/1 $font-default;
+  font-weight: 300;
+  color: $color-dark;
+  letter-spacing: -0.03em;
+  width: auto;
+  max-width: 100%;
+  display: inline-block;
+  text-align: center;
+  border: none;
+  box-shadow: 0 12px 17px 0 rgba($color-black, 0.08);
+  padding: 17px 80px;
+  border-radius: 48px;
+  margin: 0 15px 15px;
+  flex-shrink: 0;
+  pointer-events: all;
+
+  &-wrapper{
+    width: 100%;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+
+    &:empty{
+      display: none;
+    }
+  }
+  .close{
+    width: 18px;
+    height: 17px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: image_url('icons/ico-alert-close.svg') no-repeat 50% 50%;
+    background-size: auto 17px;
+    opacity: 1;
+  }
+
+  &:before{
+    content: '';
+    position: absolute;
+    left: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 30px;
+  }
+
+  &.alert-danger{
+    background-color: $color-pink2;
+
+    &:before{
+      background-image: image_url('icons/ico-alert-danger.svg');
+    }
+  }
+  &.alert-warning{
+    background-color: $color-orange-2;
+
+    &:before{
+      background-image: image_url('icons/ico-alert-warning.svg');
+    }
+  }
+  &.alert-success{
+    background-color: $color-green2;
+
+    &:before{
+      background-image: image_url('icons/ico-alert-success.svg');
+    }
+  }
+  &.alert-info{
+    background-color: $color-purple-3;
+
+    &:before{
+      background-image: image_url('icons/ico-alert-info.svg');
+    }
+  }
+}

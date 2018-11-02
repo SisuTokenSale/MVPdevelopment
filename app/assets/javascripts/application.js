@@ -1,6 +1,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require jquery3
+//= require vendor/jquery.mCustomScrollbar.min
 //= require bootstrap-sprockets
 //= require jquery-ui
 //= require profile

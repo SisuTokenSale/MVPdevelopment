@@ -1,17 +1,18 @@
-<%= form_for :source_account, url: '/source_accounts', method: :post, remote: true, html: { id: 'js-source-create' } do |f| %>
+<%= form_for :source_account, url: '/source_accounts', method: :post, remote: true,
+             html: { id: 'js-source-create', class: 'widget-card new' } do |f| %>
   <%= render 'source_accounts/form' %>
-  <div class="card invest-block">
-    <div class="card-header text-center">
-      <small>Add Source Account</small>
-    </div>
-    <div class="card-body">
-      <p class="card-text js-source-container">
-      </p>
-    </div>
-    <div class="card-footer bg-white text-center js-source-btn-area">
-      <button type="button" class="btn btn-outline-primary width-40 js-source-create-btn">
-        ADD
-      </button>
-    </div>
+  <div class="widget-header text-center">
+    <span>Add Source Account</span>
+  </div>
+  <div class="widget-body">
+    <div class="widget-icon source"></div>
+    <p class="widget-text js-source-container">
+      First add a source checking account. This account will be used to fund your investments
+    </p>
+  </div>
+  <div class="widget-footer text-center js-source-btn-area">
+    <button type="button" class="btn js-source-create-btn">
+      ADD
+    </button>
   </div>
 <% end %>

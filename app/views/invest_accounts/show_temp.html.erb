@@ -1,31 +1,29 @@
 <div class="widget-card show">
   <div class="widget-header text-center">
-    <span>Source Account <%= raw account_status(@source_account) %></span>
+    <span>Invest Account STATUS</span>
   </div>
   <div class="widget-body">
     <ul class="widget-list">
       <li class="widget-list__item">
         <span class="widget-list__label">Name:&nbsp;</span>
-        <span class="widget-list__value"><%= @source_account.name %></span>
+        <span class="widget-list__value">Interactive Brokers</span>
       </li>
       <li class="widget-list__item">
         <span class="widget-list__label">Institution:&nbsp;</span>
-        <span class="widget-list__value"><%= @source_account.institution %></span>
+        <span class="widget-list__value">Citi</span>
       </li>
       <li class="widget-list__item">
         <span class="widget-list__label">Balance:&nbsp;</span>
-        <span class="widget-list__value">
-          <%= @source_account.balance %> <%= @source_account.iso_currency_code %>
-        </span>
+        <span class="widget-list__value">$ 1000.00</span>
       </li>
       <li class="widget-list__item">
         <span class="widget-list__label">Type:&nbsp;</span>
-        <span class="widget-list__value"><%= @source_account.account_type %></span>
+        <span class="widget-list__value">Depository</span>
       </li>
     </ul>
   </div>
-  <div class="widget-footer text-center js-source-btn-area">
-    <button type="button" class="btn js-source-change-btn">
+  <div class="widget-footer text-center js-invest-btn-area">
+    <button type="button" class="btn js-invest-change-btn">
       CHANGE ACCOUNT
     </button>
   </div>
@@ -298,5 +296,3 @@
     </div>
   </div>
 </div>
-
-

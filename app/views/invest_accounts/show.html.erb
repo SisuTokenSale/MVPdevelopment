@@ -1,36 +1,301 @@
-<div class="card invest-block">
-  <div class="card-header text-center">
-    <small>Invest Account <%= raw account_status(@invest_account) %></small>
+<div class="widget-card show">
+  <div class="widget-header text-center">
+    <span>Invest Account <%= raw account_status(@invest_account) %></span>
   </div>
-  <div class="card-body">
-    <p class="card-text js-invest-container">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <small>
-            <strong>Name:&nbsp;</strong><%= @invest_account.name %>
-          </small>
-        </li>
-        <li class="list-group-item">
-          <small>
-            <strong>Institution:&nbsp;</strong><%= @invest_account.institution %>
-          </small>
-        </li>
-        <li class="list-group-item">
-          <small>
-            <strong>Balance:&nbsp;</strong><%= @invest_account.balance %> <%= @invest_account.iso_currency_code %>
-          </small>
-        </li>
-        <li class="list-group-item">
-          <small>
-            <strong>Type:&nbsp;</strong><%= @invest_account.account_type %>
-          </small>
-        </li>
-      </ul>
-    </p>
+  <div class="widget-body">
+    <ul class="widget-list">
+      <li class="widget-list__item">
+        <span class="widget-list__label">Name:&nbsp;</span>
+        <span class="widget-list__value"><%= @invest_account.name %></span>
+      </li>
+      <li class="widget-list__item">
+        <span class="widget-list__label">Institution:&nbsp;</span>
+        <span class="widget-list__value"><%= @invest_account.institution %></span>
+      </li>
+      <li class="widget-list__item">
+        <span class="widget-list__label">Balance:&nbsp;</span>
+        <span class="widget-list__value">
+          <%= @invest_account.balance %> <%= @invest_account.iso_currency_code %>
+        </span>
+      </li>
+      <li class="widget-list__item">
+        <span class="widget-list__label">Type:&nbsp;</span>
+        <span class="widget-list__value"><%= @invest_account.account_type %></span>
+      </li>
+    </ul>
   </div>
-  <div class="card-footer bg-white text-center js-invest-btn-area">
-    <button type="button" class="btn btn-primary js-invest-change-btn">
+  <div class="widget-footer text-center js-invest-btn-area">
+    <button type="button" class="btn js-invest-change-btn">
       CHANGE ACCOUNT
     </button>
   </div>
 </div>
+<div class="transactions-footer">
+  <div class="transactions-footer__inner">
+    <div class="transactions-footer__head">
+      <div class="widget-sub-footer__label">Transactions</div>
+
+      <a href="javascript:void(0);" class="show-more">Show more</a>
+    </div>
+    <div class="transactions-footer__body">
+      <div class="transactions-list-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+          <tr>
+            <th class="head-cell date">Date</th>
+            <th class="head-cell description">Action</th>
+            <th class="head-cell amount">Amount</th>
+          </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="transactions-list-outer">
+        <table class="transactions-list">
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell description">
+              <span class="item-cell__inner">Uber 063015 SF**...</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

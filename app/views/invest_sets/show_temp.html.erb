@@ -1,18 +1,18 @@
 <div class="widget-card show">
   <div class="widget-header text-center">
-    <span>Selected investment frequency <%= raw invest_set_status %></span>
+    <span>Selected investment frequency STATUS</span>
   </div>
   <div class="widget-body">
     <div class="form-item flex-nowrap">
       <label class="form-label">
-        <%= @invest_set.frequency.camelize %> amount - $<%= @invest_set.amount %>
+        Daily amount - $95
       </label>
       <a href="#"> Cancel selected investments</a>
     </div>
     <div class="form-item">
       <span class="widget-list__controls">
-        <button type="button" class="btn js-set-change-btn">CHANGE</button>
-      </span>
+          <button type="button" class="btn js-set-change-btn">CHANGE</button>
+        </span>
     </div>
   </div>
 
@@ -24,12 +24,12 @@
         <label class="form-label">
           <span>Make one time transfer:&nbsp;$&nbsp;</span>
           <div class="form-input">
-            <input type="text" class="form-control" name="invest_transaction[amount]" value="100.00">
+            <input type="text" class="form-control form-control-sm" name="invest_transaction[amount]" value="100.00">
           </div>
         </label>
       </div>
       <div class="form-item">
-        <button type="button" class="btn" disabled>SAVE</button>
+        <button type="button" class="btn btn-outline-success" disabled>SAVE</button>
       </div>
     <% end %>
   </div>
