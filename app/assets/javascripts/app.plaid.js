@@ -12,7 +12,10 @@
         env: App.plaid.env,
         product: ['transactions'],
         key: App.plaid.publicKey,
-        onSuccess: function(publicToken){
+        onSuccess: function(publicToken, metadata){
+          console.log('onSuccess')
+          console.log(publicToken)
+          console.log(metadata)
           App.plaid.getAccountsCallback(publicToken, type)
         }
       }).open();

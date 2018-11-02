@@ -3,6 +3,7 @@
 production:
   :concurrency: 2
 :queues:
+  - dwolla
   - dwolla_fetch_tokens
   - plaid_fetch_transactions
 :schedule:
