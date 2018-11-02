@@ -138,8 +138,17 @@
                   </label>
                 </div>
                 <div class="form_input col-sm-9">
-                  <%= f.input :documents, as: :file, label: false, input_html: {class: 'form-control form-control-sm'} %>
+                  <%= f.input :document, as: :file, label: false, input_html: {class: 'form-control form-control-sm'} %>
                 </div>
+
+                <% if @profile.document.present? %>
+                  <div class="document_placeholder">
+                    <p>Document uploaded</p>
+                    <div class="document_placeholder_image">
+                      <%= image_tag('/documents_placeholder.png') %>
+                    </div>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>
