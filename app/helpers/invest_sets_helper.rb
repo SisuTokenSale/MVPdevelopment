@@ -13,6 +13,10 @@ module InvestSetsHelper
     status_span(@invest_set&.ready?)
   end
 
+  def currency_symbol
+    @source_account&.currency&.symbol || Currency.default.symbol
+  end
+
   private
 
   def status_span(status)

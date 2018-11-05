@@ -44,19 +44,19 @@ describe User, type: :model do
   context 'Instance methods' do
     describe '#current_invest_set' do
       specify 'return last invest_set' do
-        expect(user.current_invest_set.attributes).to match(last_invest_set.attributes)
+        expect(user.current_invest_set.to_json).to match(last_invest_set.to_json)
       end
     end
 
     describe '#last_source_account' do
       specify 'return last source_account' do
-        expect(user.last_source_account.attributes).to match(last_source_account.attributes)
+        expect(user.last_source_account.to_json).to match(last_source_account.to_json)
       end
     end
 
     describe '#last_invest_account' do
       specify 'return last invest_account' do
-        expect(user.last_invest_account.attributes).to match(last_invest_account.attributes)
+        expect(user.last_invest_account.to_json).to match(last_invest_account.to_json)
       end
     end
   end

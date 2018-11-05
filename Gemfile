@@ -25,6 +25,8 @@ gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'recaptcha'
+gem 'settingslogic'
+gem 'ransack', github: 'activerecord-hackery/ransack'
 
 # TODO: Remove after implement new design
 gem 'bourbon', '~> 5.0'

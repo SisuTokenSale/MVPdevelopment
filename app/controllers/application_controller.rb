@@ -10,7 +10,15 @@ class ApplicationController < ActionController::Base
   private
 
   def invest_set
-    @invest_set ||= current_user.current_invest_set
+    @invest_set ||= current_user.current_invest_set || current_user.invest_sets.new
+  end
+
+  def invest_set_transactions
+    @invest_set_transactions ||= current_user.invest_set_transactions.limit(10).order(created_at: :desc)
+  end
+
+  def invest_transaction
+    @invest_transaction ||= invest_set.invest_transactions.new
   end
 
   def source_account

@@ -1,0 +1,13 @@
+<%= raw errors_in_block_for(@invest_transaction) %>
+
+<div class="form-item">
+  <label class="form-label">
+    <span>Make one time transfer:&nbsp;$&nbsp;</span>
+    <div class="form-input">
+      <input type="text" class="form-control" name="invest_transaction[amount]" value="<%= @invest_set.amount %>">
+    </div>
+  </label>
+</div>
+<div class="form-item">
+  <button type="submit" class="btn">SAVE</button>
+</div>

@@ -1,0 +1,28 @@
+<div class="transactions-footer">
+  <div class="transactions-footer__inner">
+    <div class="transactions-footer__head">
+      <div class="widget-sub-footer__label">History of investments</div>
+      <a href="javascript:void(0);" class="show-more">Show more</a>
+    </div>
+    <div class="transactions-footer__body">
+      <%= render 'invest_sets/transactions/filters' %>
+      <div class="transactions-list-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <th class="head-cell date">Date</th>
+              <th class="head-cell status">Status</th>
+              <th class="head-cell amount">Amount</th>
+              <th class="head-cell action">Action</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="transactions-list-outer">
+        <table class="transactions-list js-set-transactions-items">
+          <%= render 'invest_sets/transactions/items' %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

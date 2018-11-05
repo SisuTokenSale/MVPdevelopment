@@ -9,9 +9,7 @@ class InvestAccountsController < AccountsController
       a.param! :iso_currency_code, String, required: true
       a.param! :balance, Float, required: true, default: 0.0
     end
-
-    account_prms = params.require(:invest_account).permit(*permitted_attrs)
-    @invest_account = current_user.invest_accounts.new(account_prms)
+    @invest_account = current_user.invest_accounts.new(params.require(:invest_account).permit(*permitted_attrs))
 
     render action: (@invest_account.save ? 'show' : 'new')
   end

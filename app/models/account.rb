@@ -9,10 +9,16 @@ class Account < ApplicationRecord
 
   belongs_to :user
 
-  after_create :dwolla_fetch_token, :assign_to_invest_set
+  serialize :plaid_identity, PlaidIdentity
+
+  after_commit :dwolla_fetch_token, :assign_to_invest_set, :plaid_fetch_identity, on: :create
 
   def ready?
     plaid_token.present? && dwolla_token.present?
+  end
+
+  def currency
+    Currency.by_iso(iso_currency_code)
   end
 
   private
@@ -26,6 +32,10 @@ class Account < ApplicationRecord
   end
 
   def dwolla_fetch_token
-    DwollaFetchTokensJob.perform_now(id: id)
+    DwollaFetchTokensJob.perform_later(id: id)
+  end
+
+  def plaid_fetch_identity
+    PlaidFetchIdentityJob.perform_later(id: id)
   end
 end

@@ -3,6 +3,8 @@ class PlaidService
 
   ACCOUNT_TYPES = %i[current available].freeze
 
+  IDENTITY_ATTRIBUTES = %i[addresses emails names phone_numbers].freeze
+
   def initialize(opts = {})
     @access_token = opts[:access_token]
   end
@@ -57,13 +59,25 @@ class PlaidService
   end
 
   class << self
+    def account_identity(plaid_token, uid)
+      raise(ArgumentError, 'plaid_token required!') unless plaid_token
+
+      raise(ArgumentError, 'uid required!') unless uid
+
+      response = client.identity.get(plaid_token).with_indifferent_access
+      mask = response[:accounts].detect { |acc| acc[:account_id] == uid }[:mask]
+      idty_attrs = response[:identity].slice(*IDENTITY_ATTRIBUTES)
+      address = idty_attrs[:addresses].detect { |addr| addr[:accounts].detect { |el| el.include?(mask) } }[:data]
+      email = idty_attrs[:emails].detect { |h| h[:primary] == true }[:data]
+      phones = idty_attrs[:phone_numbers].map { |pn| pn[:data] }
+      PlaidIdentity.new(names: idty_attrs[:names], address: address, email: email, phones: phones)
+    end
+
     def fetch_dwolla_processor_token(plaid_token, uid)
       raise(ArgumentError, 'plaid_token required!') unless plaid_token
 
       raise(ArgumentError, 'uid required!') unless uid
 
-      # client.processor
-      #       .createProcessorToken(plaid_token, uid,'dwolla')['processor_token']
       client.processor
             .dwolla
             .processor_token

@@ -5,6 +5,10 @@ class PlaidAccount
   attr_accessor :id, :uid, :available_balance, :current_balance, :iso_currency_code, :name,
                 :type, :subtype, :official_name, :institution_id, :institution_name, :dwolla_token
 
+  def currency_symbol
+    Currency.symbol_by_iso(iso_currency_code)
+  end
+
   def attributes
     {
       'uid' => account_id,

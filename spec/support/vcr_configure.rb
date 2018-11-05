@@ -13,7 +13,8 @@ PLAID_CFG = {
 }.freeze
 
 VCR.configure do |config|
-  config.cassette_library_dir = 'spec/vcr'
+  config.cassette_library_dir = Rails.root.join('spec', 'vcr')
+
   config.hook_into :webmock
   config.ignore_localhost = true
   config.filter_sensitive_data('PLAID_CLIENT_ID') { ENV['PLAID_CLIENT_ID'] }
@@ -28,4 +29,17 @@ VCR.configure do |config|
   config.filter_sensitive_data('PLAID_START_DATE') { PLAID_CFG[:start_date] }
   config.filter_sensitive_data('PLAID_END_DATE') { PLAID_CFG[:end_date] }
   config.default_cassette_options = { record: :none, match_requests_on: %i[method uri body] }
+
+  config.around_http_request do |request|
+    case request&.uri
+    when 'https://sandbox.plaid.com/identity/get'
+      VCR.use_cassette('plaid/identity', &request)
+    when 'https://sandbox.plaid.com/auth/get'
+      VCR.use_cassette('plaid/auth', &request)
+    when 'https://sandbox.plaid.com/item/public_token/exchange'
+      VCR.use_cassette('plaid/exchange', &request)
+    when 'https://sandbox.plaid.com/transactions/get'
+      VCR.use_cassette('plaid/transactions', &request)
+    end
+  end
 end

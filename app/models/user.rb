@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :set_admins, class_name: 'User', foreign_key: :admin_set_by_id,
                         dependent: :nullify, inverse_of: :admin_set_by
 
+  has_many :invest_set_transactions, through: :invest_sets, source: :invest_transactions
+
   validates :terms, acceptance: true
 
   def current_invest_set

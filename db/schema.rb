@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_171627) do
+ActiveRecord::Schema.define(version: 2018_10_29_111846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2018_10_24_171627) do
     t.string "institution"
     t.string "account_type"
     t.string "iso_currency_code"
+    t.text "plaid_identity"
     t.index ["plaid_token", "uid", "dwolla_token"], name: "index_accounts_on_plaid_token_and_uid_and_dwolla_token", unique: true
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
@@ -37,7 +38,6 @@ ActiveRecord::Schema.define(version: 2018_10_24_171627) do
     t.bigint "user_id", null: false
     t.bigint "source_account_id", null: false
     t.bigint "invest_account_id", null: false
-    t.string "strategy"
     t.string "frequency", default: "once", null: false
     t.integer "lowest"
     t.decimal "amount", precision: 15, scale: 10, default: "0.0", null: false
@@ -50,16 +50,12 @@ ActiveRecord::Schema.define(version: 2018_10_24_171627) do
 
   create_table "invest_transactions", force: :cascade do |t|
     t.bigint "invest_set_id", null: false
-    t.bigint "source_account_id", null: false
-    t.bigint "invest_account_id", null: false
     t.string "status", default: "planned", null: false
     t.decimal "amount", precision: 15, scale: 10, default: "0.0", null: false
     t.string "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["invest_account_id"], name: "index_invest_transactions_on_invest_account_id"
     t.index ["invest_set_id"], name: "index_invest_transactions_on_invest_set_id"
-    t.index ["source_account_id"], name: "index_invest_transactions_on_source_account_id"
   end
 
   create_table "profiles", force: :cascade do |t|

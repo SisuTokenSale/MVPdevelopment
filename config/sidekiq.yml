@@ -5,6 +5,7 @@ production:
 :queues:
   - dwolla_fetch_tokens
   - plaid_fetch_transactions
+  - plaid_fetch_identity
 :schedule:
   fetch_plaid_transactions:
     cron: '0 */15 * * * *'

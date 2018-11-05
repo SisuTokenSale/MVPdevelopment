@@ -5,10 +5,9 @@ describe InvestSet, type: :model do
     it { is_expected.to have_db_column(:user_id).of_type(:integer).with_options(null: false) }
     it { is_expected.to have_db_column(:source_account_id).of_type(:integer).with_options(null: false) }
     it { is_expected.to have_db_column(:invest_account_id).of_type(:integer).with_options(null: false) }
-    it { is_expected.to have_db_column(:strategy).of_type(:string) }
-    it { is_expected.to have_db_column(:frequency).of_type(:string).with_options(null: false, default: 'once') }
+    it { is_expected.to have_db_column(:frequency).of_type(:string).with_options(null: false, default: InvestSet::FREQUENCIES[1]) }
     it { is_expected.to have_db_column(:lowest).of_type(:integer) }
-    it { is_expected.to have_db_column(:amount).of_type(:decimal).with_options(null: false, default: 0.0) }
+    it { is_expected.to have_db_column(:amount).of_type(:decimal).with_options(null: false, default: InvestSet::MIN_AMOUNT) }
     it { is_expected.to have_db_column(:created_at).of_type(:datetime) }
     it { is_expected.to have_db_column(:updated_at).of_type(:datetime) }
   end
@@ -22,13 +21,13 @@ describe InvestSet, type: :model do
   context 'constants' do
     describe 'FREQUENCIES' do
       specify 'exist' do
-        expect(InvestSet::FREQUENCIES).to match_array(%w[once daily weekly monthly lowest])
+        expect(InvestSet::FREQUENCIES).to match_array(%w[once daily weekly monthly lowest algo])
       end
     end
 
-    describe 'STRATEGIES' do
+    describe 'MIN_AMOUNT' do
       specify 'exist' do
-        expect(InvestSet::STRATEGIES).to match_array(%w[default algo])
+        expect(InvestSet::MIN_AMOUNT).to eq 5.0
       end
     end
   end
@@ -37,7 +36,7 @@ describe InvestSet, type: :model do
     it { is_expected.to validate_presence_of(:user_id) }
     it { is_expected.to validate_presence_of(:source_account_id) }
     it { is_expected.to validate_presence_of(:invest_account_id) }
-    it { is_expected.to validate_numericality_of(:amount).is_greater_than_or_equal_to(5.0) }
+    it { is_expected.to validate_numericality_of(:amount).is_greater_than_or_equal_to(InvestSet::MIN_AMOUNT) }
   end
 
   describe 'associations' do

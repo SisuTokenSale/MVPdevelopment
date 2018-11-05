@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/activerecord-hackery/ransack.git
+  revision: a0609874f13816613e216f131d7004519c99be6b
+  specs:
+    ransack (2.1.0)
+      actionpack (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      i18n
+
+GIT
   remote: https://github.com/king601/devise-bootstrapped.git
   revision: 02e5259cfaa980deeb3e190ac5a49c9254caa867
   branch: bootstrap4
@@ -341,6 +351,7 @@ GEM
     selenium-webdriver (3.14.1)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
+    settingslogic (2.0.9)
     shoulda-matchers (3.1.2)
       activesupport (>= 4.0.0)
     sidekiq (5.2.2)
@@ -436,6 +447,7 @@ DEPENDENCIES
   rails (~> 5.2.1)
   rails_admin (~> 1.3)
   rails_param
+  ransack!
   recaptcha
   redis (~> 4.0)
   rspec-rails (~> 3.6)
@@ -443,6 +455,7 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 5.0)
   selenium-webdriver
+  settingslogic
   shoulda-matchers
   sidekiq
   sidekiq-scheduler
