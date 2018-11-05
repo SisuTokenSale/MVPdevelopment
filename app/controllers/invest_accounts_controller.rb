@@ -11,11 +11,11 @@ class InvestAccountsController < AccountsController
     end
     @invest_account = current_user.invest_accounts.new(params.require(:invest_account).permit(*permitted_attrs))
 
-    render action: (@invest_account.save ? 'show' : 'new')
-  end
-
-  def show
-    invest_account
+    if @invest_account.save
+      head :no_content, status: :created
+    else
+      render template: 'invest_accounts/new', status: :unprocessable_entity
+    end
   end
 
   def new

@@ -3,7 +3,6 @@ Rails.application.routes.draw do
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end
 
-  # devise_for :users
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     passwords: 'users/passwords',
@@ -18,7 +17,6 @@ Rails.application.routes.draw do
   resources :dashboard, only: %i[index]
 
   resources :plaid, only: %i[create]
-  # match 'plaid/:type',         to: 'plaid#create', via: :post
 
   resources :invest_sets, only: %i[new create]
   get '/invest_sets/transactions', to: 'invest_sets#transactions', as: :invest_set_transactions

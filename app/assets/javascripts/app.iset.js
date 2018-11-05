@@ -12,10 +12,12 @@
 
     applyFormListener: function(){
       $('form#js-set-create').on('ajax:success', function(event) {
-        let xhr = event.detail[2];
-        $('.js-set-content').html(xhr.responseText);
-        App.iset.applyChangeListener();
-        App.dashboard.applyGlobalListeners();
+        App.shared.goToDashboard();
+        // TODO: Will use this for Full Async I-face
+        // let xhr = event.detail[2];
+        // $('.js-set-content').html(xhr.responseText);
+        // App.iset.applyChangeListener();
+        // App.dashboard.applyGlobalListeners();
       }).on('ajax:error', function(event) {
         let xhr = event.detail[2];
         $('.js-set-content').html(xhr.responseText);
@@ -26,10 +28,12 @@
 
     applyOneTimeInvestmentFormListener: function(){
       $('form#js-set-one-time-investment').on('ajax:success', function(event) {
-        let xhr = event.detail[2];
-        $('.js-one-time-investment-container').html(xhr.responseText);
-        App.iset.getAndApplyTransactions('');
-        App.iset.applyOneTimeInvestmentFormListener();
+        App.shared.goToDashboard();
+        // TODO: Will use this for Full Async I-face
+        // let xhr = event.detail[2];
+        // $('.js-one-time-investment-container').html(xhr.responseText);
+        // App.iset.getAndApplyTransactions('');
+        // App.iset.applyOneTimeInvestmentFormListener();
       }).on('ajax:error', function(event) {
         let xhr = event.detail[2];
         $('.js-one-time-investment-container').html(xhr.responseText);

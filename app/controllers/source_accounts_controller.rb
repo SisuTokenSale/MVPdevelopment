@@ -11,11 +11,11 @@ class SourceAccountsController < AccountsController
     end
     @source_account = current_user.source_accounts.new(params.require(:source_account).permit(*permitted_attrs))
 
-    render action: (@source_account.save ? 'show' : 'new')
-  end
-
-  def show
-    source_account
+    if @source_account.save
+      head :no_content, status: :created
+    else
+      render template: 'source_accounts/new', status: :unprocessable_entity
+    end
   end
 
   def new
