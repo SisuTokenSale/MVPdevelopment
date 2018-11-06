@@ -4,6 +4,7 @@
   // INFO: Plaid Activities
   App.plaid = {
     accounts: {},
+    // TODO: Will implement collection of needed fields and after reduce applyHiddenFields() function
     // fields: ['plaid_token', 'uid', 'name', 'institution', 'account_type', 'iso_currency_code', 'balance'],
     openWidget: function(type){
       Plaid.create({
@@ -67,20 +68,19 @@
 
         // INFO: Add Save Submit Form Handler
         $(`form#js-${type}-create`).on('ajax:success', function(event) {
-          var detail = event.detail;
-          var data = detail[0], status = detail[1],  xhr = detail[2];
-
-          $(`.js-${type}-content`).html(xhr.responseText);
-
-          $(`.js-${type}-create-btn`).on('click', function(e) {
-            App.plaid.openWidget(type);
-          });
-
+          App.shared.goToDashboard();
+          // INFO: Will use this for Full Async I-face
+          // var detail = event.detail;
+          // var data = detail[0], status = detail[1],  xhr = detail[2];
+          // $(`.js-${type}-content`).html(xhr.responseText);
+          // $(`.js-${type}-create-btn`).on('click', function(e) {
+          //   App.plaid.openWidget(type);
+          // });
           // INFO: Click Change Account Button
-          $(`.js-${type}-change-btn`).on('click', function(e) {
-            App.plaid.changeAccountHandler(type)
-          });
-          App.dashboard.applyGlobalListeners();
+          // $(`.js-${type}-change-btn`).on('click', function(e) {
+          //   App.plaid.changeAccountHandler(type)
+          // });
+          // App.dashboard.applyGlobalListeners();
         });
       }, function(xhr, status, err){
         let error = xhr.responseJSON.error;

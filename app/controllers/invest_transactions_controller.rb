@@ -3,8 +3,12 @@ class InvestTransactionsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @invest_transaction = invest_set.invest_transactions.create(invest_transaction_params)
-    render template: 'invest_transactions/new'
+    @invest_transaction = invest_set.invest_transactions.new(invest_transaction_params)
+    if @invest_transaction.save
+      head :no_content, status: :created
+    else
+      render template: 'invest_transactions/new', status: :unprocessable_entity
+    end
   end
 
   private

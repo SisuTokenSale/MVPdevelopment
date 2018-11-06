@@ -1,3 +1,4 @@
+<%= render 'invest_accounts/step_icon' %>
 <%= form_for :invest_account, url: '/invest_accounts', method: :post, remote: true,
              html: { id: 'js-invest-create', class: 'widget-card new' } do |f| %>
   <%= render 'invest_accounts/form'%>
@@ -11,7 +12,8 @@
     </p>
   </div>
   <div class="widget-footer text-center js-invest-btn-area">
-    <button type="button" id="invest-add-btn" class="btn btn-outline-primary js-invest-create-btn">
+    <button type="button" id="invest-add-btn" class="btn btn-outline-primary js-invest-create-btn"
+    <%= ' disabled' unless current_step.in?([0, 2, 3]) %>>
       ADD
     </button>
   </div>

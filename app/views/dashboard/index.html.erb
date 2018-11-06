@@ -7,25 +7,13 @@
     <p class="content-description">In order to use the SISU automated investment application, there are only three steps. </p>
   </div>
   <div class="dashboard-widget">
-    <div class="dashboard-widget__item js-source-content <%= @source_account ? 'show' : 'new' %>">
-      <div class="widget-step-sign <%= @source_account ? 'show' : 'new' %>">
-        <div class="icon source"></div>
-        <span class="num">1.</span>
-      </div>
+    <div class="dashboard-widget__item js-source-content <%= current_step.in?([1]) ? 'new active' : 'show' %>">
       <%= render template: 'source_accounts/index' %>
     </div>
-    <div class="dashboard-widget__item js-invest-content <%= @invest_set ? 'show' : 'new' %>">
-      <div class="widget-step-sign <%= @invest_set ? 'show' : 'new' %>">
-        <div class="icon invest"></div>
-        <span class="num">2.</span>
-      </div>
+    <div class="dashboard-widget__item js-invest-content <%= current_step.in?([1, 2]) ?  'new active' : 'show' %>">
       <%= render template: 'invest_accounts/index' %>
     </div>
-    <div class="dashboard-widget__item js-set-content <%= @invest_account ? 'show' : 'new active' %>">
-      <div class="widget-step-sign <%= @invest_account ? 'show' : 'new' %>">
-        <div class="icon invest_set"></div>
-        <span class="num">3.</span>
-      </div>
+    <div class="dashboard-widget__item js-set-content <%= current_step.in?([0, 3])  ? 'show' : 'new active' %>">
       <%= render template: 'invest_sets/index' %>
     </div>
   </div>

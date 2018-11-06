@@ -14,7 +14,7 @@ class Account < ApplicationRecord
   after_commit :dwolla_fetch_token, :assign_to_invest_set, :plaid_fetch_identity, on: :create
 
   def ready?
-    plaid_token.present? && dwolla_token.present?
+    plaid_token.present? && dwolla_token.present? && !new_record?
   end
 
   def currency
