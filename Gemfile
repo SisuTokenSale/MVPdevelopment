@@ -28,6 +28,9 @@ gem 'recaptcha'
 gem 'settingslogic'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
+# INFO: Debug tools
+gem 'rollbar'
+
 # TODO: Remove after implement new design
 gem 'bourbon', '~> 5.0'
 gem 'neat', '~> 2.1'
