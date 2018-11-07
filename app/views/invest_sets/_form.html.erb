@@ -1,9 +1,7 @@
 <%= raw errors_in_block_for(@invest_set) %>
-
 <div class="form-item check-field">
   <label class="checkbox radio">
-    <input class="form-check-input" type="radio" name="invest_set[frequency]" id="algo" value="algo"
-           <%= frequency_checked?('algo') %> >
+    <%= f.radio_button :frequency, 'algo', id: 'algo', class: 'form-check-input', checked: frequency_checked?('algo') %>
     <span class="checkmark"></span>
   </label>
   <label class="form-label" for="algo">
@@ -12,22 +10,22 @@
 </div>
 <div class="form-item check-field">
   <label class="checkbox radio">
-    <input class="form-check-input" type="radio" name="invest_set[frequency]" id="daily" value="daily"
-           <%= frequency_checked?('daily') %> >
+    <%= f.radio_button :frequency, 'daily', id: 'daily', class: 'form-check-input', checked: frequency_checked?('daily') %>
     <span class="checkmark"></span>
   </label>
+
   <label class="form-label" for="daily">
     Daily(<%= currency_symbol %>5 - <%= currency_symbol %>100):&nbsp;
 
     <div class="form-input">
-      <input type="text" name="invest_set[amount]" value="<%= @invest_set&.amount %>">
+      <%= f.text_field :amount %>
     </div>
   </label>
+
 </div>
 <div class="form-item check-field">
   <label class="checkbox radio">
-    <input class="form-check-input" type="radio" name="invest_set[frequency]" id="weekly" value="weekly"
-           <%= frequency_checked?('weekly') %> >
+    <%= f.radio_button :frequency, 'weekly', id: 'weekly', class: 'form-check-input', checked: frequency_checked?('weekly') %>
     <span class="checkmark"></span>
   </label>
   <label class="form-label" for="weekly">
@@ -36,8 +34,7 @@
 </div>
 <div class="form-item check-field">
   <label class="checkbox radio">
-    <input class="form-check-input" type="radio" name="invest_set[frequency]" id="monthly" value="monthly"
-           <%= frequency_checked?('monthly') %> >
+    <%= f.radio_button :frequency, 'monthly', id: 'monthly', class: 'form-check-input', checked: frequency_checked?('monthly') %>
     <span class="checkmark"></span>
   </label>
   <label class="form-label" for="monthly">
@@ -46,12 +43,14 @@
 </div>
 <div class="form-item check-field">
   <label class="checkbox radio">
-    <input class="form-check-input" type="radio" name="invest_set[frequency]" id="lowest" value="lowest"
-           <%= frequency_checked?('lowest') %> >
+    <%= f.radio_button :frequency, 'lowest', id: 'lowest', class: 'form-check-input', checked: frequency_checked?('lowest') %>
     <span class="checkmark"></span>
   </label>
   <label class="form-label" for="lowest">
     Percentage of lowest balance of the month (5% - 90%)
+    <div class="form-input">
+      <%= f.text_field :rel_min_balance %>
+    </div>
   </label>
 </div>
 

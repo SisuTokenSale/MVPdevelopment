@@ -33,7 +33,7 @@ class InvestSetsController < ApplicationController
   private
 
   def invest_set_params
-    params.require(:invest_set).permit(%i[amount frequency])
+    params.require(:invest_set).permit(%i[amount frequency rel_min_balance])
   end
 
   def invest_transaction_params

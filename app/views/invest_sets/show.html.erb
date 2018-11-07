@@ -7,7 +7,11 @@
   <div class="widget-body">
     <div class="form-item flex-nowrap">
       <label class="form-label">
-        <%= @invest_set.frequency.camelize %> amount - $<%= @invest_set.amount %>
+        <% if @invest_set.lowest? %>
+          Percentage of lowest balance of the month - <%= @invest_set.rel_min_balance %>%
+        <% else %>
+          <%= @invest_set.frequency.camelize %> amount - $<%= @invest_set.amount %>
+        <% end %>
       </label>
       <a href="#"> Cancel selected investments</a>
     </div>

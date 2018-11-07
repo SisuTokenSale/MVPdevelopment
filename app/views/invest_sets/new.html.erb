@@ -1,19 +1,15 @@
 <%= render 'invest_sets/step_icon' %>
-<%= form_for :invest_set, url: invest_sets_path, method: :post, remote: true,
+<%= form_for @invest_set, as: :invest_set, url: invest_sets_path, method: :post, remote: true,
              html: { id: 'js-set-create', class: 'widget-card new' } do |f| %>
   <div class="widget-header text-center">
     <span>Add Investment Frequency</span>
   </div>
   <div class="widget-body">
-    <%= render 'invest_sets/form' %>
+    <%= render 'invest_sets/form', f: f %>
   </div>
   <div class="widget-footer text-center js-set-btn-area">
     <button type="submit" class="btn js-set-create-btn" <%= invest_set_btn_state %>>SAVE</button>
   </div>
 <% end %>
-
-<!-- InvestSet Transactions block -->
-<%= render template: 'invest_sets/transactions/index' %>
-<!-- /InvestSet Transactions block -->
 
 <%= render 'invest_sets/learn_more' %>

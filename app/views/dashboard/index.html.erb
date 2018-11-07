@@ -7,13 +7,13 @@
     <p class="content-description">In order to use the SISU automated investment application, there are only three steps. </p>
   </div>
   <div class="dashboard-widget">
-    <div class="dashboard-widget__item js-source-content <%= current_step.in?([1]) ? 'new active' : 'show' %>">
+    <div class="dashboard-widget__item js-source-content <%= source_block_class %>">
       <%= render template: 'source_accounts/index' %>
     </div>
-    <div class="dashboard-widget__item js-invest-content <%= current_step.in?([1, 2]) ?  'new active' : 'show' %>">
+    <div class="dashboard-widget__item js-invest-content <%= invest_block_class %>">
       <%= render template: 'invest_accounts/index' %>
     </div>
-    <div class="dashboard-widget__item js-set-content <%= current_step.in?([0, 3])  ? 'show' : 'new active' %>">
+    <div class="dashboard-widget__item js-set-content <%= invest_set_block_class %>">
       <%= render template: 'invest_sets/index' %>
     </div>
   </div>
