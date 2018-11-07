@@ -15,3 +15,8 @@ en:
         "%B %d"
   titles:
     application: Sisu-poc
+en:
+  activerecord:
+    attributes:
+      invest_set:
+        rel_min_balance: Percentage of lowest

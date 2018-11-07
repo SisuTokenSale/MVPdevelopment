@@ -15,6 +15,9 @@
         key: App.plaid.publicKey,
         onSuccess: function(publicToken){
           App.plaid.getAccountsCallback(publicToken, type)
+        },
+        onExit: function(err, metadata) {
+          App.shared.goToDashboard();
         }
       }).open();
     },

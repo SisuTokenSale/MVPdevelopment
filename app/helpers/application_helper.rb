@@ -17,10 +17,10 @@ module ApplicationHelper
   def errors_in_block_for(object)
     return unless object&.errors&.any?
 
-    message = '<div class="row">'
+    message = '<div class="form-alert danger"><div id="error_explanation"><ul>'
     (object&.errors&.full_messages || []).each do |m|
       message += "<li>#{m}</li>"
     end
-    "#{message}</div>"
+    "#{message}</ul></div></div>"
   end
 end

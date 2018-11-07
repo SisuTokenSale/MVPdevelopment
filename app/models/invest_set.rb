@@ -1,16 +1,29 @@
 class InvestSet < ApplicationRecord
   FREQUENCIES = %w[once daily weekly monthly lowest algo].freeze
   MIN_AMOUNT = 5.0
+  MAX_AMOUNT = 5000.0
 
   attribute :frequency, :string, default: FREQUENCIES[1]
   attribute :amount, :decimal, default: MIN_AMOUNT
+  attribute :rel_min_balance, :decimal, default: 5.0
 
   enum frequency: FREQUENCIES.each_with_object({}) { |val, hash| hash[val.to_sym] = val }
 
   validates :user_id,
             :source_account_id,
             :invest_account_id, presence: true
-  validates :amount, numericality: { greater_than_or_equal_to: MIN_AMOUNT }
+
+  validates :amount,
+            numericality: {
+              greater_than_or_equal_to: MIN_AMOUNT,
+              less_than_or_equal_to: MAX_AMOUNT
+            }
+
+  validates :rel_min_balance,
+            numericality: {
+              greater_than_or_equal_to: 5.0,
+              less_than_or_equal_to: 90
+            }
 
   belongs_to :user
   belongs_to :source_account

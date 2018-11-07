@@ -28,6 +28,8 @@ gem 'recaptcha'
 gem 'settingslogic'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
+gem 'loofah', '>= 2.2.3'
+
 # INFO: Debug tools
 gem 'rollbar'
 

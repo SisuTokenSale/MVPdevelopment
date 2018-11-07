@@ -6,19 +6,21 @@ module DashboardHelper
     return 3 if @source_account&.ready? && @invest_account&.ready?
   end
 
-  def source_icon_step_class
+  def source_block_class
     current_step.in?([1]) ? 'new' : 'show'
   end
 
-  def invest_icon_step_class
-    current_step.in?([1, 2]) ? 'new' : 'show'
+  def invest_block_class
+    current_step.in?([1, 2]) ? "new #{'active' if current_step.in?([2])}" : 'show'
   end
 
-  def invest_set_icon_step_class
-    current_step.in?([1, 2, 3]) ? 'new' : 'show'
+  def invest_set_block_class
+    current_step.in?([1, 2, 3]) ? "new #{'active' if current_step.in?([3])}" : 'show'
   end
 
   def invest_set_btn_state
+    return if @invest_set&.errors&.any? || @invest_transaction&.errors&.any?
+
     'disabled' unless current_step.in?([0, 3])
   end
 
