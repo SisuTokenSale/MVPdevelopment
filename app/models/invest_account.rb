@@ -7,7 +7,6 @@ class InvestAccount < Account
   def assign_to_invest_set
     return unless current_invest_set
 
-    current_invest_set.invest_account = self
-    current_invest_set.save
+    current_invest_set.update(invest_account_id: id)
   end
 end

@@ -16,7 +16,7 @@
       <li class="widget-list__item">
         <span class="widget-list__label">Balance:&nbsp;</span>
         <span class="widget-list__value">
-          <%= @invest_account.currency.symbol %><%= @invest_account.balance %>
+          <%= @invest_account.human_balance %>
         </span>
       </li>
       <li class="widget-list__item">
@@ -32,5 +32,5 @@
   </div>
 </div>
 <!-- Source Transactions block -->
-<%= render template: 'invest_accounts/transactions/index' %>
+<%= render(template: 'invest_accounts/transactions/index') %>
 <!-- /Source Transactions block -->

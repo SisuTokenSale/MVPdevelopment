@@ -7,7 +7,6 @@ class SourceAccount < Account
   def assign_to_invest_set
     return unless current_invest_set
 
-    current_invest_set.source_account = self
-    current_invest_set.save
+    current_invest_set.update(source_account_id: id)
   end
 end

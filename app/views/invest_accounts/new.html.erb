@@ -1,7 +1,6 @@
 <%= render 'invest_accounts/step_icon' %>
 <%= form_for :invest_account, url: '/invest_accounts', method: :post, remote: true,
              html: { id: 'js-invest-create', class: 'widget-card new' } do |f| %>
-  <%= render 'invest_accounts/form'%>
   <div class="widget-header text-center">
     <span>Add Investment Account</span>
   </div>

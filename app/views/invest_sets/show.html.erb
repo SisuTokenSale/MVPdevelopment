@@ -10,10 +10,10 @@
         <% if @invest_set.lowest? %>
           Percentage of lowest balance of the month - <%= @invest_set.rel_min_balance %>%
         <% else %>
-          <%= @invest_set.frequency.camelize %> amount - $<%= @invest_set.amount %>
+          <%= @invest_set.frequency.camelize %> amount - <%= @invest_set.human_amount %>
         <% end %>
       </label>
-      <a href="#"> Cancel selected investments</a>
+      <a href="#" class="js-cancel-selected-investments" data-id="<%= @invest_set&.id %>"> Cancel selected investments</a>
     </div>
     <div class="form-item">
       <span class="widget-list__controls">
@@ -24,7 +24,9 @@
 
   <div class="widget-footer text-center">
     <div class="widget-body__title">One time investment</div>
-      <%= render template: 'invest_transactions/new' %>
+      <div class="js-one-time-investment-container">
+        <%= render template: 'invest_transactions/new' %>
+      </div>
     </div>
   </div>
 

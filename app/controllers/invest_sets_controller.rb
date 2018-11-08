@@ -10,12 +10,9 @@ class InvestSetsController < ApplicationController
     )
     @invest_set = iss&.invest_set
     @invest_transaction = iss&.invest_transaction
+    head(:no_content, status: :created) && return if iss.valid?
 
-    if iss.valid?
-      render template: 'invest_sets/show'
-    else
-      render template: 'invest_sets/new', status: :unprocessable_entity
-    end
+    render template: 'invest_sets/new', status: :unprocessable_entity
   end
 
   def transactions

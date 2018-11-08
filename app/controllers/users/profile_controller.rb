@@ -21,7 +21,7 @@ module Users
 
     def profile_params
       params.require(:profile).permit(:first_name, :last_name, :street, :city,
-                                      :state, :zip, :birth_date, :document, :ssn)
+                                      :state, :zip, :dob, :document, :ssn)
     end
   end
 end

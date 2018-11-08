@@ -19,10 +19,6 @@ class PlaidService
       attrs[:available_balance] = acc[:balances][:available] || 0.0
       attrs[:current_balance] = acc[:balances][:current] || 0.0
       attrs[:iso_currency_code] = acc[:balances][:iso_currency_code]
-      institution = self.class.institution_by_id(id: auth_res[:item][:institution_id])
-      attrs[:institution_id] = institution[:institution_id]
-      attrs[:institution_name] = institution[:name]
-      attrs[:dwolla_token] = self.class.fetch_dwolla_processor_token(access_token, attrs[:uid])
       PlaidAccount.new(attrs)
     end
   rescue StandardError => error
@@ -30,19 +26,19 @@ class PlaidService
   end
 
   def account_data(opts = {})
-    raise(ArgumentError, 'Option :account_id required!') unless opts[:account_id]
+    raise(ArgumentError, 'Option :uid required!') unless opts[:uid]
 
-    accounts.detect { |acc| acc.account_id == opts[:account_id] }
+    accounts.detect { |acc| acc.uid == opts[:uid] }
   end
 
   def balance(opts = {})
-    raise(ArgumentError, 'Option :account_id required!') unless opts[:account_id]
+    raise(ArgumentError, 'Option :uid required!') unless opts[:uid]
 
     type = opts[:type] || :current
 
     raise(ArgumentError, "Option :type should be in range [#{ACCOUNT_TYPES.join(',')}]!") unless type.in?(ACCOUNT_TYPES)
 
-    accounts.detect { |acc| acc.account_id == opts[:account_id] }[:balances][type]
+    accounts.detect { |acc| acc.uid == opts[:uid] }[:balances][type]
   end
 
   def transactions(opts = {})
@@ -54,7 +50,7 @@ class PlaidService
               .client.transactions
               .get(access_token, from, to)[:transactions]
     # INFO: Filters
-    trs.select { |trn| trn[:account_id] == opts[:account_id] } if opts[:account_id]
+    trs.select { |trn| trn[:account_id] == opts[:uid] } if opts[:uid]
     trs
   end
 
@@ -82,10 +78,10 @@ class PlaidService
             .dwolla
             .processor_token
             .create(plaid_token, uid)['processor_token']
-    rescue StandardError => e
-      # TODO: Need add Errors Handler
-      Rails.logger.debug e
-      nil
+    rescue StandardError => error
+      # TODO: Should be fixed raise AppExceptions::PlaidError, error
+      # Rollbar.error(error) && nil
+      raise AppExceptions::PlaidError, error
     end
 
     def institution_by_id(opts = {})

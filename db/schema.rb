@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_07_112617) do
+ActiveRecord::Schema.define(version: 2018_11_08_105300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2018_11_07_112617) do
 
   create_table "accounts", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "plaid_token", null: false
+    t.string "plaid_token"
     t.string "uid"
     t.string "dwolla_token"
     t.string "type"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 2018_11_07_112617) do
     t.string "account_type"
     t.string "iso_currency_code"
     t.text "plaid_identity"
+    t.string "institution_id"
+    t.string "mask"
     t.index ["plaid_token", "uid", "dwolla_token"], name: "index_accounts_on_plaid_token_and_uid_and_dwolla_token", unique: true
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(version: 2018_11_07_112617) do
     t.string "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "iso_currency_code"
     t.index ["invest_set_id"], name: "index_invest_transactions_on_invest_set_id"
   end
 
@@ -66,11 +69,12 @@ ActiveRecord::Schema.define(version: 2018_11_07_112617) do
     t.string "city"
     t.string "state"
     t.string "zip"
-    t.date "birth_date"
+    t.date "dob"
     t.string "ssn"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "document"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
