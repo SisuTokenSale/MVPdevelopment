@@ -117,8 +117,8 @@
       </div>
     </div>
 
-    <div class="user-profile-info__item documents-wrap">
-      <div class="documents-item <%= @profile.document.present? ? '' : 'unselected' %>">
+    <div class="user-profile-info__item documents-wrap <%= @profile.document.present? ? 'selected' : 'unselected' %>">
+      <div class="documents-item">
         <div class="user-profile-list__icon">
           <div class="info-icon folder"></div>
         </div>
@@ -173,7 +173,7 @@
       </div>
     </div>
 
-    <div class="user-profile-info__item documents-wrap">
+    <div class="user-profile-info__item documents-wrap <%= @profile.document.present? ? 'selected' : 'unselected' %>">
       <div class="documents-item">
         <div class="user-profile-list__icon">
           <div class="info-icon folder"></div>

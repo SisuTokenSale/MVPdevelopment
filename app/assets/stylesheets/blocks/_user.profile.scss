@@ -13,7 +13,7 @@
         flex: 0 0 48.3333333333%;
         max-width: 48.3333333333%;
         margin: 0.8%;
-        min-width: 285px;
+        min-width: 375px;
         border: none;
         background-color: $color-white;
         box-shadow: 0 2px 8px 0 rgba($color-black, 0.15);
@@ -48,6 +48,27 @@
             background-color: $color-light-grey2;
             box-shadow: none;
             min-height: 160px;
+          }
+        }
+
+
+
+        &:not(.unselected){
+          .documents{
+            &-item{
+              border: none;
+              background-color: $color-white;
+              box-shadow: 0 2px 8px 0 rgba($color-black, 0.15);
+            }
+          }
+        }
+        &.unselected{
+          .documents{
+            &-item{
+              background-color: $color-light-grey2;
+              border: 2px dotted rgba($color-purple-2, 0.38);
+              box-shadow: none;
+            }
           }
         }
 
@@ -156,6 +177,12 @@
 
       &__value{
         color: $color-dark;
+
+        .input{
+          width: 100%;
+          flex: 1 0 auto;
+          max-width: 100%;
+        }
       }
 
       &__icon{
@@ -312,8 +339,35 @@
       }
     }
   }
+
+  @media all and (max-width: 991px){
+    &-profile {
+      &-info {
+        justify-content: center;
+
+        &__item {
+          flex: 0 0 99.99999%;
+          max-width: 500px;
+
+          &.selected + &{
+            margin-top: 55px;
+          }
+        }
+      }
+    }
+  }
+  @media all and (max-width: 767px){
+    &-profile {
+      &-info {
+
+      }
+    }
+  }
 }
 
+.ui-datepicker{
+  z-index: 999;
+}
 
 .preview{
   &-footer{
