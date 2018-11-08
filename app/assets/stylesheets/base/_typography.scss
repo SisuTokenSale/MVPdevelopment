@@ -20,9 +20,18 @@ h6 {
 
 p {
   margin: 0 0 $small-spacing;
+  font: 12px/1.2 $font-default;
+  font-weight: 300;
+  color: $color-grey4;
+
+  &:last-child{
+    margin-bottom: 0;
+  }
 }
 
 a {
+  font: 12px/1.2 $font-default;
+  font-weight: 300;
   color: $color-purple;
   text-decoration-skip: ink;
   transition: color $base-duration $base-timing;
@@ -30,6 +39,21 @@ a {
   &:hover,
   &:focus {
     color: shade($color-purple-dark, 25%);
+  }
+}
+
+.link-style{
+  a{
+    display: inline-block;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover,
+    &:active{
+      text-decoration: underline;
+    }
   }
 }
 

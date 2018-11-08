@@ -10,6 +10,10 @@
   box-shadow: 0 0 9px 0 rgba($color-black, 0.25);
   overflow: hidden;
 
+  form{
+    max-width: 480px;
+  }
+
   > .col,
   > [class*="col-"] {
     padding: 70px 15px 45px;

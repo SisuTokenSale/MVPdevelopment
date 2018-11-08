@@ -1,160 +1,241 @@
-<div class="row col-sm-12">
-  <div class="col-sm-12">
-    <h1 class="text-center">User Profile</h1>
+<%= simple_form_for(@profile, url: update_profile_path, html: { method: :put }) do |f| %>
+  <div class="user-profile-info">
+    <div class="user-profile-info__item">
+      <div class="user-profile-list__icon">
+        <div class="info-icon personal"></div>
+      </div>
+      <div class="user-profile-list-outer">
+        <div class="user-profile-list__wrap">
+          <div class="user-profile-list">
+            <div class="user-profile-list__item">
+              <label class="user-profile-list__label" for="<%= :first_name %>">
+                First Name:&nbsp;
+              </label>
+              <div class="user-profile-list__value">
+                <%= f.input :first_name, id: :first_name, label: false, input_html: { class: 'form-control' } %>
+              </div>
+            </div>
 
-    <%= simple_form_for(@profile, url: update_profile_path, html: { method: :put }) do |f| %>
-      <div class="row col-sm-12 ml-auto mr-auto">
-        <div class="col-sm-6">
-         <div class="card">
-           <div class="card-body">
-             <div class="form-row">
-               <div class="form-check col-sm-3">
-                 <label class="form-check-label">
-                   <small>First Name:&nbsp;</small>
-                 </label>
-               </div>
-               <div class="form-input col-sm-9">
-                 <%= f.input :first_name, label: false, input_html: { class: 'form-control form-control-sm' } %>
-               </div>
-             </div>
+            <div class="user-profile-list__item">
+              <label class="user-profile-list__label" for="<%= :last_name %>">
+                Last Name:
+              </label>
+              <div class="user-profile-list__value">
+                <%= f.input :last_name, id: :last_name, label: false, input_html: { class: 'form-control' } %>
+              </div>
+            </div>
 
-             <div class="form-row">
-               <div class="form-check col-sm-3">
-                 <label class="form-check-label">
-                   <small>Last Name:&nbsp;</small>
-                 </label>
-               </div>
-               <div class="form-input col-sm-9">
-                 <%= f.input :last_name, label: false, input_html: { class: 'form-control form-control-sm' } %>
-               </div>
-             </div>
-
-             <div class="form-row">
-               <div class="form-check col-sm-3">
-                 <label class="form-check-label">
-                   <small>Email:&nbsp;</small>
-                 </label>
-               </div>
-               <div class="form_input col-sm-9">
-                 <%= f.simple_fields_for :user, current_user do |usr| %>
-                   <%= usr.input :email, disabled: true, label: false, input_html: { class: 'form-control form-control-sm' } %>
-                 <% end %>
-               </div>
-             </div>
-
-             <div class="form-row">
-               <div class="form-check col-sm-3">
-                 <label class="form-check-label">
-                   <small>Documents:&nbsp;</small>
-                 </label>
-               </div>
-               <div class="form_input col-sm-9">
-                 <%= f.input :documents, as: :file, label: false, input_html: { class: 'form-control form-control-sm' } %>
-               </div>
-             </div>
-           </div>
-         </div>
-        </div>
-
-        <div class="col-sm-6">
-          <div class="card">
-           <div class="card-body">
-             <div class="form-row">
-               <div class="form-check col-sm-3">
-                 <label class="form-check-label">
-                   <small>Street:&nbsp;</small>
-                 </label>
-               </div>
-               <div class="form-input col-sm-9">
-                 <%= f.input :street, label: false, input_html: { class: 'form-control form-control-sm' } %>
-               </div>
-             </div>
-
-             <div class="form-row">
-               <div class="form-check col-sm-3">
-                 <label class="form-check-label">
-                   <small>City:&nbsp;</small>
-                 </label>
-               </div>
-               <div class="form-input col-sm-9">
-                 <%= f.input :city, label: false, input_html: { class: 'form-control form-control-sm' } %>
-               </div>
-             </div>
-
-             <div class="form-row">
-               <div class="form-check col-sm-3">
-                 <label class="form-check-label">
-                   <small>State:&nbsp;</small>
-                 </label>
-               </div>
-               <div class="form-input col-sm-9">
-                 <%= f.input :state, label: false, input_html: { class: 'form-control form-control-sm' } %>
-               </div>
-             </div>
-           </div>
+            <div class="user-profile-list__item">
+              <label class="user-profile-list__label" for="<%= :email %>">
+                Email:
+              </label>
+              <div class="user-profile-list__value">
+                <%= f.simple_fields_for :user, current_user do |usr| %>
+                  <%= usr.input :email, id: :email, disabled: true, label: false, input_html: { class: 'form-control form-control-sm' } %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <br />
+    <div class="user-profile-info__item">
+      <div class="user-profile-list__icon">
+        <div class="info-icon location"></div>
+      </div>
+      <div class="user-profile-list-outer">
+        <div class="user-profile-list__wrap">
+          <div class="user-profile-list">
+            <div class="user-profile-list__item">
+              <label class="user-profile-list__label" for="<%= :street %>">
+                Street:
+              </label>
+              <div class="user-profile-list__value">
+                <%= f.input :street, id: :street, label: false, input_html: { class: 'form-control' } %>
+              </div>
+            </div>
 
-      <div class="row col-sm-12 ml-auto mr-auto">
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <div class="form-row">
-                <div class="form-check col-sm-3">
-                  <label class="form-check-label">
-                    <small>Zip:&nbsp;</small>
-                  </label>
-                </div>
-                <div class="form-input col-sm-9">
-                  <%= f.input :zip, label: false, input_html: { class: 'form-control form-control-sm' } %>
+            <div class="user-profile-list__item">
+              <label class="user-profile-list__label" for="<%= :city %>">
+                City:
+              </label>
+              <div class="user-profile-list__value">
+                <%= f.input :city, id: :city, label: false, input_html: { class: 'form-control' } %>
+              </div>
+            </div>
+
+            <div class="user-profile-list__item">
+              <label class="user-profile-list__label" for="<%= :state %>">
+                State:
+              </label>
+              <div class="user-profile-list__value">
+                <%= f.input :state, id: :state, label: false, input_html: { class: 'form-control' } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-profile-info__item">
+      <div class="user-profile-list__icon">
+        <div class="info-icon folder"></div>
+      </div>
+      <div class="user-profile-list-outer">
+        <div class="user-profile-list__wrap">
+          <div class="user-profile-list">
+            <div class="user-profile-list__item">
+              <label class="user-profile-list__label" for="<%= :zip %>">
+                Zip:
+              </label>
+              <div class="user-profile-list__value">
+                <%= f.input :zip, id: :zip, label: false, input_html: { class: 'form-control' } %>
+              </div>
+            </div>
+
+            <div class="user-profile-list__item">
+              <label class="user-profile-list__label" for="<%= :birth_date %>">
+                Birth Date:
+              </label>
+              <div class="user-profile-list__value">
+                <%= f.input :birth_date, id: :birth_date, as: :string, label: false,
+                            input_html: { class: 'form-control datepicker', :value => f.object.birth_date&.strftime("%d/%m/%Y") } %>
+              </div>
+            </div>
+
+            <div class="user-profile-list__item">
+              <label class="user-profile-list__label" for="<%= :ssn %>">
+                Social Number:
+              </label>
+              <div class="user-profile-list__value">
+                <%= f.input :ssn, id: :ssn, label: false, input_html: { class: 'form-control ssn-mask' } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-profile-info__item documents-wrap">
+      <div class="documents-item <%= @profile.document.present? ? '' : 'unselected' %>">
+        <div class="user-profile-list__icon">
+          <div class="info-icon folder"></div>
+        </div>
+        <div class="user-profile-list-outer">
+          <div class="user-profile-list__wrap">
+          <% if @profile.document.present? %>
+            <div class="user-profile-list">
+              <div class="user-profile-list__item">
+                <label class="user-profile-list__label">
+                  Licence:
+                </label>
+                <div class="user-profile-list__value">
+                  Nameimage1.png
                 </div>
               </div>
-
-              <div class="form-row">
-                <div class="form-check col-sm-3">
-                  <label class="form-check-label">
-                    <small>Birth Date:&nbsp;</small>
-                  </label>
-                </div>
-                <div class="form- col-sm-9">
-                  <%= f.input :birth_date, as: :string, label: false,
-                    input_html: { class: 'form-control form-control-sm datepicker', :value => f.object.birth_date&.strftime("%d-%m-%Y") } %>
+            </div>
+          <% else %>
+            <div class="user-profile-list__title">
+              Additional identification
+            </div>
+            <div class="user-profile-list">
+              <div class="user-profile-list__item control-item">
+                <div class="user-profile-list__controls">
+                  <div class="select2-field__outer">
+                    <select class="select2-control">
+                      <option value="" selected disabled>Please select</option>
+                      <option value="planned">Passport</option>
+                      <option value="pending">License</option>
+                      <option value="processed">idCard</option>
+                      <option value="cancelled">Other</option>
+                    </select>
+                  </div>
                 </div>
               </div>
-
-              <div class="form-row">
-                <div class="form-check col-sm-3">
-                  <label class="form-check-label">
-                    <small>Social Number:&nbsp;</small>
-                  </label>
+              <div class="user-profile-list__item">
+                <div class="user-profile-list__controls">
+                  <div class="btn btn-invert btn-file">
+                    <span>Upload document</span>
+                    <%= f.input :document, id: :document, as: :file, label: false, input_html: {class: 'form-control'} %>
+                  </div>
                 </div>
-                <div class="form-input col-sm-9">
-                  <%= f.input :ssn, label: false, input_html: { class: 'form-control form-control-sm' } %>
+              </div>
+            </div>
+          <% end %>
+          </div>
+        </div>
+
+        <% if @profile.document.present? %>
+          <%= render 'document_preview'%>
+        <% end %>
+
+      </div>
+    </div>
+
+    <div class="user-profile-info__item documents-wrap">
+      <div class="documents-item">
+        <div class="user-profile-list__icon">
+          <div class="info-icon folder"></div>
+        </div>
+        <div class="user-profile-list-outer">
+          <div class="user-profile-list__wrap custom-scrollbar">
+            <div class="user-profile-list">
+              <div class="user-profile-list__item">
+                <label class="user-profile-list__label">
+                  Licence:
+                </label>
+                <div class="user-profile-list__value">
+                  Nameimage1.png
+                </div>
+              </div>
+              <div class="user-profile-list__item">
+                <label class="user-profile-list__label">
+                  &nbsp;
+                </label>
+                <div class="user-profile-list__value">
+                  Nameimage2.png
+                </div>
+              </div>
+              <div class="user-profile-list__item">
+                <label class="user-profile-list__label">
+                  &nbsp;
+                </label>
+                <div class="user-profile-list__value">
+                  Nameimage3.png
+                </div>
+              </div>
+              <div class="user-profile-list__item">
+                <label class="user-profile-list__label">
+                  &nbsp;
+                </label>
+                <div class="user-profile-list__value">
+                  Nameimage4.png
+                </div>
+              </div>
+              <div class="user-profile-list__item">
+                <label class="user-profile-list__label">
+                  &nbsp;
+                </label>
+                <div class="user-profile-list__value">
+                  Nameimage5.png
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="col-sm-6">
-        </div>
+        <%= render 'document_preview'%>
       </div>
-
-      <br />
-
-      <div class="row col-sm-12 ">
-        <div class="mr-2">
-          <%= f.submit "Update", class: 'btn btn-sm btn-block btn-primary' %>
-        </div>
-        <div class="mr-2">
-          <%= link_to('Cancel', dashboard_index_path, class: 'btn btn-sm btn-secondary') %>
-        </div>
-      </div>
-
-      <br />
-    <% end %>
+    </div>
   </div>
-</div>
+
+  <div class="user-profile-controls">
+    <div class="user-profile-controls__item">
+      <%= f.submit "Update", class: 'btn' %>
+    </div>
+    <div class="user-profile-controls__item">
+      <%= link_to('Cancel', dashboard_index_path, class: 'btn') %>
+    </div>
+  </div>
+<% end %>

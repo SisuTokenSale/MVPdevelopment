@@ -1,9 +1,13 @@
-<div class="text-center">
-  Filter by status:&nbsp;&nbsp;
-  <select style="width: 100px" class="js-filter-set-transaction_status">
-    <option value="">All</option>
-    <% InvestTransaction::STATUSES.each do |st| %>
-      <option value="<%= st %>"><%= st.camelize %></option>
-    <% end %>
-  </select>
+<div class="transactions-filters">
+  <div class="transactions-filters__label">Filter by status:&nbsp;&nbsp;</div>
+  <div class="transactions-filters__control">
+    <div class="select2-field__outer">
+      <select class="select2-control js-filter-set-transaction_status">
+        <option value="">All</option>
+        <% InvestTransaction::STATUSES.each do |st| %>
+          <option value="<%= st %>"><%= st.camelize %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,256 @@
+<div class="widget-card show">
+  <div class="widget-header text-center">
+    <span>Selected investment frequency STATUS</span>
+  </div>
+  <div class="widget-body">
+    <div class="form-item flex-nowrap">
+      <label class="form-label">
+        Daily amount - $95
+      </label>
+      <a href="#"> Cancel selected investments</a>
+    </div>
+    <div class="form-item">
+      <span class="widget-list__controls">
+          <button type="button" class="btn js-set-change-btn">CHANGE</button>
+        </span>
+    </div>
+  </div>
+
+  <div class="widget-footer text-center">
+    <div class="widget-body__title">One time investment</div>
+
+    <%= form_for :invest_set, url: '/invest_transactions', method: :post do |f| %>
+      <div class="form-item">
+        <label class="form-label">
+          <span>Make one time transfer:&nbsp;$&nbsp;</span>
+          <div class="form-input">
+            <input type="text" class="form-control form-control-sm" name="invest_transaction[amount]" value="100.00">
+          </div>
+        </label>
+      </div>
+      <div class="form-item">
+        <button type="button" class="btn btn-outline-success" disabled>SAVE</button>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="transactions-footer">
+  <div class="transactions-footer__inner">
+    <div class="transactions-footer__head drop-footer">
+      <div class="head-label">History of investments</div>
+      <a href="javascript:void(0);" class="show-more">Show more</a>
+    </div>
+    <div class="transactions-footer__body">
+      <%= render 'invest_sets/transactions/filters' %>
+      <div class="transactions-list-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+          <tr>
+            <th class="head-cell date">Date</th>
+            <th class="head-cell status">Status</th>
+            <th class="head-cell amount">Amount</th>
+            <th class="head-cell action">Action</th>
+          </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="transactions-list-outer custom-scrollbar">
+        <table class="transactions-list">
+          <tr class="transactions-list__item status-planned">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell status">
+              <span class="item-cell__inner">Planned</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+            <td class="item-cell action">
+              <span class="item-cell__inner">
+                <button class="transactions-delete"></button>
+              </span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item status-planned">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell status">
+              <span class="item-cell__inner">Planned</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+            <td class="item-cell action">
+              <span class="item-cell__inner">
+                <button class="transactions-delete"></button>
+              </span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item status-pending">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell status">
+              <span class="item-cell__inner">Pending</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+            <td class="item-cell action">
+              <span class="item-cell__inner">
+                <button class="transactions-delete"></button>
+              </span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item status-pending">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell status">
+              <span class="item-cell__inner">Pending</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+            <td class="item-cell action">
+              <span class="item-cell__inner">
+                <button class="transactions-delete"></button>
+              </span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item status-failed">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell status">
+              <span class="item-cell__inner">Failed</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+            <td class="item-cell action">
+              <span class="item-cell__inner">
+                <button class="transactions-delete"></button>
+              </span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item status-failed">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell status">
+              <span class="item-cell__inner">Failed</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+            <td class="item-cell action">
+              <span class="item-cell__inner">
+                <button class="transactions-delete"></button>
+              </span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item status-processed">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell status">
+              <span class="item-cell__inner">Done</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+            <td class="item-cell action">
+              <span class="item-cell__inner">
+                <button class="transactions-delete"></button>
+              </span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item status-processed">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell status">
+              <span class="item-cell__inner">Done</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+            <td class="item-cell action">
+              <span class="item-cell__inner">
+                <button class="transactions-delete"></button>
+              </span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item status-processed">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell status">
+              <span class="item-cell__inner">Done</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+            <td class="item-cell action">
+              <span class="item-cell__inner">
+                <button class="transactions-delete"></button>
+              </span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item status-processed">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell status">
+              <span class="item-cell__inner">Done</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+            <td class="item-cell action">
+              <span class="item-cell__inner">
+                <button class="transactions-delete"></button>
+              </span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item status-processed">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell status">
+              <span class="item-cell__inner">Done</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+            <td class="item-cell action">
+              <span class="item-cell__inner">
+                <button class="transactions-delete"></button>
+              </span>
+            </td>
+          </tr>
+          <tr class="transactions-list__item status-processed">
+            <td class="item-cell date">
+              <span class="item-cell__inner">08/24/2018</span>
+            </td>
+            <td class="item-cell status">
+              <span class="item-cell__inner">Done</span>
+            </td>
+            <td class="item-cell amount">
+              <span class="item-cell__inner">$54.00</span>
+            </td>
+            <td class="item-cell action">
+              <span class="item-cell__inner">
+                <button class="transactions-delete"></button>
+              </span>
+            </td>
+          </tr>
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

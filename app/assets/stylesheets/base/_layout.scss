@@ -45,24 +45,3 @@ body {
   -webkit-tap-highlight-color: rgba($color-purple-dark, 0);
 }
 
-p{
-  font: 12px/1.2 $font-default;
-  font-weight: 300;
-  color: $color-grey4;
-}
-
-.link-style{
-  a{
-    display: inline-block;
-    font: inherit;
-    color: inherit;
-    cursor: pointer;
-    text-decoration: none;
-
-    &:hover,
-    &:active{
-      text-decoration: underline;
-    }
-  }
-}
-

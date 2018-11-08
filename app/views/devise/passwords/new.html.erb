@@ -22,7 +22,7 @@
           </div>
         <% end %>
 
-        <div class="form-item">
+        <div class="form-item <%= resource.errors['email'].any? ? 'form-error' : '' %>">
           <label for="<%= :email %>" class="control-label">Email Address</label>
           <%= f.email_field :email, autofocus: true, class: 'form-control' %>
         </div>

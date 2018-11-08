@@ -1,7 +1,6 @@
 form{
   width: 100%;
   padding: 0;
-  max-width: 480px;
   margin: 0 auto;
 }
 .form-submit{
@@ -217,10 +216,10 @@ label {
   &-control {
     width: 100%;
 
-    @include placeholder-style($color-grey, $font-default, 15px, 400);
+    @include placeholder-style($color-grey, $font-default, 13px, 300);
 
     @media all and (max-width: 767px){
-      @include placeholder-style($color-grey, $font-default, 15px, 400);
+      @include placeholder-style($color-grey, $font-default, 13px, 300);
     }
 
     &::-webkit-credentials-auto-fill-button{
@@ -451,11 +450,10 @@ label {
     @extend label;
   }
   &-error{
-    font-family: $font-default;
-    color: $color-red;
-    font-size: 14px;
-    display: flex;
-    flex-direction: column-reverse;
+    input:not([type="submit"]):not([type="file"]):not([type="range"]):not([type="checkbox"]):not([type="radio"]), textarea, select {
+      color: $color-red;
+      border-color: $color-red;
+    }
   }
 }
 .check-field{
@@ -544,22 +542,23 @@ label {
       height: 100%;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       border-radius: 0;
       overflow: hidden;
+      border-bottom: 1px solid $color-purple-dark;
 
       .select2-selection__rendered {
-        font: 15px/17px $font-default;
+        font: 12px/15px $font-default;
         font-weight: 300;
         text-decoration: none !important;
         border-radius: 0;
         border: none;
         letter-spacing: -0.01em;
-        padding: 5px 15px 5px 5px;
-        min-height: 25px;
+        padding: 4px 15px 4px 7px;
+        min-height: 23px;
         height: auto !important;
         background: $color-white;
-        color: $color-black;
+        color: $color-dark;
         transition: all 0.3s ease;
         position: relative;
         display: inline-block;
@@ -572,12 +571,12 @@ label {
 
         .select2-selection {
           &__rendered {
-            color: $color-black !important;
+            color: $color-dark !important;
           }
 
           &__arrow {
             b {
-              border-color: $color-black transparent transparent transparent;
+              border-color: $color-purple-dark transparent transparent transparent;
             }
           }
         }
@@ -586,23 +585,21 @@ label {
 
     &--default {
       .select2-results__option{
-        text-align: center;
-        &[aria-selected] {
-          font: 12px/14px $font-default;
-          font-weight: 300;
-          color: $color-black;
-          transition: all 0.2s ease-in-out;
-        }
+        text-align: left;
+        font: 12px/14px $font-default;
+        font-weight: 300;
+        color: $color-dark;
+        transition: all 0.2s ease-in-out;
+        padding: 4px 7px;
+
         &[aria-selected=true]{
-          background-color: $color-red;
-          color: $color-black;
-          transition: all 0.2s ease-in-out;
+          background-color: rgba($color-purple-dark, 0.51);
+          color: $color-white;
         }
 
         &--highlighted[aria-selected] {
-          background-color: $color-black;
-          color: $color-black;
-          transition: all 0.2s ease-in-out;
+          background-color: rgba($color-purple-dark, 0.51);
+          color: $color-white;
         }
       }
       .select2-selection--single .select2-selection__arrow {
@@ -614,8 +611,8 @@ label {
 
         b {
           transition: all 0.2s ease-in-out;
-          border-color: $color-black transparent transparent transparent;
-          border-width: 7px 4px 0 4px;
+          border-color: $color-purple-dark transparent transparent transparent;
+          border-width: 4px 4px 0 4px;
           margin: 0;
           transform: translateX(-7px) translateY(-3px);
         }
@@ -624,8 +621,8 @@ label {
       &.select2-container--open{
         .select2-selection--single .select2-selection__arrow{
           b {
-            border-color: transparent transparent $color-black transparent;
-            border-width: 0 4px 7px 4px;
+            border-color: transparent transparent $color-purple-dark transparent;
+            border-width: 0 4px 4px 4px;
           }
         }
       }
@@ -639,138 +636,21 @@ label {
       border-radius: 0 !important;
       height: 30px !important;
       line-height: 30px !important;
-      background-color: rgba($color-black, 0.75) !important;
-      color: $color-black !important;
-    }
-  }
-  &-field{
-    &.day + .select2-container{
-      &:after,
-      &:before{
-        content: "";
-        position: absolute;
-        height: 24px;
-        width: 1px;
-        background: #C2C2C2;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      &:before{
-        left: -10%;
-      }
-
-      &:after{
-        right: -10%;
-      }
+      background-color: $color-light-grey !important;
+      color: $color-dark !important;
     }
   }
   &-dropdown{
-    border: 1px solid $color-black;
-    background: rgba($color-black, 0.95);
+    border: none;
+    border-radius: 0 !important;
+    background: $color-white;
+    box-shadow: 0 2px 8px 0 rgba($color-black, 0.15);
   }
 
-  &-dark{
-    & + .select2-container {
-      .select2-selection--single  {
-        background-color: $color-black;
-      }
-      .select2-selection--single .select2-selection__rendered {
-        background: $color-black;
-        color: $color-black;
-      }
-
-      &.selected{
-        .select2-selection--single{
-          .select2-selection {
-            &__rendered {
-              color: $color-black !important;
-            }
-
-            &__arrow {
-              b {
-                border-color: $color-black transparent transparent transparent;
-              }
-            }
-          }
-        }
-      }
-
-      &--default {
-        .select2-results__option{
-          text-align: center;
-          &[aria-selected] {
-            color: $color-black;
-          }
-          &[aria-selected=true]{
-            background-color: $color-red;
-            color: $color-black;
-          }
-
-          &--highlighted[aria-selected] {
-            background-color: $color-purple-dark;
-            color: $color-black;
-          }
-        }
-        .select2-selection--single .select2-selection__arrow {
-          b {
-            border-color: $color-black transparent transparent transparent;
-          }
-        }
-
-        &.select2-container--open{
-          .select2-selection--single .select2-selection__arrow{
-            b {
-              border-color: transparent transparent $color-black transparent;
-            }
-          }
-        }
-      }
-    }
-
-    &-droplist{
-      background: rgba($color-black, 0.95);
-
-      .select2-results__option{
-        &[aria-selected] {
-          background-color: rgba($color-black, 0.95);
-          color: $color-white;
-        }
-        &[aria-selected=true]{
-          background-color: $color-purple-dark;
-          color: $color-white;
-        }
-
-        &--highlighted[aria-selected] {
-          background-color: $color-white;
-          color: $color-black;
-        }
-      }
-    }
-
-    .select2{
-      &-field{
-        &.day + .select2-container{
-          &:after,
-          &:before{
-            content: "";
-            position: absolute;
-            height: 24px;
-            width: 1px;
-            background: #C2C2C2;
-            top: 50%;
-            transform: translateY(-50%);
-          }
-
-          &:before{
-            left: -7%;
-          }
-
-          &:after{
-            right: -7%;
-          }
-        }
-      }
+  &-field{
+    &__outer{
+      max-width: 220px;
+      width: 100%;
     }
   }
 }

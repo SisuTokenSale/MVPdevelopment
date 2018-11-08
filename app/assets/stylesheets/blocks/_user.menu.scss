@@ -117,13 +117,13 @@
       }
     }
   }
-}
 
-.icon-user{
-  display: inline-block;
-  width: 13px;
-  height: 15px;
-  margin: 0 7px 0 0;
-  background: image_url('icons/ico-user-profile.svg') no-repeat 0 0;
-  background-size: auto 15px;
+  &-icon{
+    display: inline-block;
+    width: 13px;
+    height: 15px;
+    margin: 0 7px 0 0;
+    background: image_url('icons/ico-user-profile.svg') no-repeat 0 0;
+    background-size: auto 15px;
+  }
 }

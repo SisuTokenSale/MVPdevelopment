@@ -17,6 +17,7 @@ module Sisu
       generate.test_framework :rspec
       generate.view_specs false
     end
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag.html_safe }
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.load_defaults 5.2
     config.generators.system_tests = nil

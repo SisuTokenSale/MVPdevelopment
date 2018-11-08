@@ -1,0 +1,25 @@
+<!--DRAFT LAYOUTS-->
+<div class="dashboard-widget">
+  <div class="dashboard-widget__item js-source-content show">
+    <div class="widget-step-sign show">
+      <div class="icon source"></div>
+      <span class="num">1.</span>
+    </div>
+    <%= render 'source_accounts/show_temp' %>
+  </div>
+  <div class="dashboard-widget__item js-invest-content show">
+    <div class="widget-step-sign show">
+      <div class="icon invest"></div>
+      <span class="num">2.</span>
+    </div>
+    <%= render 'invest_accounts/show_temp' %>
+  </div>
+  <div class="dashboard-widget__item js-set-content show">
+    <div class="widget-step-sign show">
+      <div class="icon invest_set"></div>
+      <span class="num">3.</span>
+    </div>
+    <%= render 'invest_sets/show_temp' %>
+    <%#= render 'invest_sets/index_preview' %>
+  </div>
+</div>

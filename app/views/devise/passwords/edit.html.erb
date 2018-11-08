@@ -19,7 +19,7 @@
         <%= f.hidden_field :reset_password_token %>
 
         <div class="form-group">
-          <div class="form-item">
+          <div class="form-item <%= resource.errors['password'].any? ? 'form-error' : '' %>">
             <label for="<%= :password %>" class="control-label">Password</label>
             <%= f.password_field :password, id: :password, autofocus: true, autocomplete: "off", class: 'form-control'%>
             <span class="show-password" data-toggle="<%= :password %>">Show</span>
@@ -29,7 +29,7 @@
           <% end %>
         </div>
 
-        <div class="form-item">
+        <div class="form-item <%= resource.errors['password_confirmation'].any? ? 'form-error' : '' %>">
           <label for="<%= :password_confirmation %>" class="control-label">Confirm Password</label>
           <%= f.password_field :password_confirmation, id: :password_confirmation, autocomplete: "off", class: 'form-control' %>
           <span class="show-password" data-toggle="<%= :password_confirmation %>">Show</span>
