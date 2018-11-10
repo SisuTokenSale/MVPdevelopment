@@ -3,9 +3,9 @@
 production:
   :concurrency: 2
 :queues:
-  - dwolla_fetch_tokens
+  - rollbar
+  - plaid_fetch_account_info
   - plaid_fetch_transactions
-  - plaid_fetch_identity
 :schedule:
   fetch_plaid_transactions:
     cron: '0 */15 * * * *'

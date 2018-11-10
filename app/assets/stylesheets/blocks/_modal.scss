@@ -79,6 +79,16 @@
         background-size: auto 14px;
       }
     }
+
+    &.warning{
+      background: $color-orange-3;
+
+      &:before{
+        display: inline-block;
+        background: image_url('icons/ico-alert-warning.svg') no-repeat 0 0;
+        background-size: auto 14px;
+      }
+    }
   }
 
   &-form-text{

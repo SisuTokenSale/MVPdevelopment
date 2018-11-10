@@ -6,7 +6,7 @@ class PlaidAccount
                 :type, :subtype, :official_name, :institution_id, :institution_name, :dwolla_token
 
   def currency_symbol
-    Currency.symbol_by_iso(iso_currency_code)
+    Money::Currency.new(iso_currency_code).symbol
   end
 
   def attributes

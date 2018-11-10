@@ -6,6 +6,6 @@ class AccountsController < ApplicationController
   private
 
   def permitted_attrs
-    %i[plaid_token uid name institution account_type iso_currency_code balance]
+    %i[uid name institution institution_id mask account_type public_token]
   end
 end

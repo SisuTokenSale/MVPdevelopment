@@ -28,3 +28,6 @@ Recaptcha.configure do |config|
   config.site_key = ENV['RECAPTCHA_SITE_KEY']
   config.secret_key = ENV['RECAPTCHA_SECRET_KEY']
 end
+
+Money.locale_backend = :i18n
+Money.default_currency = Money::Currency.new('USD')

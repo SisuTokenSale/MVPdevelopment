@@ -16,8 +16,6 @@ Rails.application.routes.draw do
   root to: redirect('/users/sign_in')
   resources :dashboard, only: %i[index]
 
-  resources :plaid, only: %i[create]
-
   resources :invest_sets, only: %i[new create]
   get '/invest_sets/transactions', to: 'invest_sets#transactions', as: :invest_set_transactions
 

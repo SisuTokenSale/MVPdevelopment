@@ -30,6 +30,12 @@ class InvestSet < ApplicationRecord
   belongs_to :invest_account
   has_many :invest_transactions, dependent: :destroy
 
+  delegate :currency, to: :source_account, allow_nil: true
+
+  def human_amount
+    Money.new(amount * 100, currency.iso_code).format
+  end
+
   def ready?
     source_account&.ready? && invest_account&.ready? && !new_record?
   end

@@ -59,7 +59,7 @@ describe InvestSet, type: :model do
 
   context 'Instance methods' do
     describe '#ready?' do
-      specify 'true if it has ready source & Invest accounts, and if it is not new record' do
+      specify 'true if it has ready source & Invest accounts, and if it is not new record and has dwolla_token' do
         expect(invest_set.ready?).to be true
       end
 

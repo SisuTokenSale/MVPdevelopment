@@ -13,9 +13,16 @@ en:
         "%b %-d, %Y"
       short:
         "%B %d"
+  number:
+    currency:
+      format:
+        delimiter: ","
+        separator: "."
+    format:
+      delimiter: ","
+      separator: "."
   titles:
     application: Sisu-poc
-en:
   activerecord:
     attributes:
       invest_set:

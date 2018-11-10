@@ -53,6 +53,43 @@
       });
     },
 
+    cancelSelectedInvestmentsListener: function(){
+      let modalWindow = $('#confirm-cancel-selected-investments');
+      $('.js-cancel-selected-investments').on('click', function(e){
+        let invest_set_id = e.target.dataset.id;
+        modalWindow.modal("show");
+
+        modalWindow.on('hide.bs.modal', function(e){
+          let activeElement = $(document.activeElement);
+
+          if(activeElement.data().action === 'proceed'){
+            console.log(`DELETE: /invest_sets/${invest_set_id}`)
+            App.shared.goToDashboard();
+          }
+        });
+      })
+    },
+
+    deleteTransactionListener: function(){
+      let modalWindow = $('#confirm-delete-transaction');
+      $('.js-delete-transaction').on('click', function(e){
+        let trxId = e.target.dataset.id;
+
+        modalWindow.modal('show')
+
+        modalWindow.on('hide.bs.modal', function(e){
+          let activeElement = $(document.activeElement);
+
+          if(activeElement.data().action === 'proceed'){
+            console.log(`POST: /invest_transactions/${trxId}`)
+            App.shared.goToDashboard();
+          }
+        });
+      })
+    },
+
+
+
     renderNewForm: function(){
       $.get(`/invest_sets/new`, {}, function(data, status, xhr) {
         $(`.js-set-content`).html(data);
@@ -65,6 +102,8 @@
 
 // INFO: Shared CallBacks
 $(document).ready(function(){
+  App.iset.cancelSelectedInvestmentsListener();
+  App.iset.deleteTransactionListener();
   App.iset.applyOneTimeInvestmentFormListener();
   App.iset.applyChangeListener();
   App.iset.applyFormListener();

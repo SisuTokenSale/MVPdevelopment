@@ -8,11 +8,14 @@
         <span class="item-cell__inner"><%= trx.status.camelize %></span>
       </td>
       <td class="item-cell amount">
-        <span class="item-cell__inner"><%= trx.currency&.symbol %><%= trx.amount %></span>
+        <span class="item-cell__inner"><%= trx.human_amount %></span>
       </td>
       <td class="item-cell action">
         <span class="item-cell__inner">
-          <button class="transactions-delete"></button>
+          <button class="transactions-delete js-delete-transaction"
+            data-id="<%= trx.id %>"
+            data-description="<%= trx.human_amount %>"
+          />
         </span>
       </td>
     </tr>

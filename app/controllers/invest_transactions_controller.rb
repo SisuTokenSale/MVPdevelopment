@@ -4,11 +4,8 @@ class InvestTransactionsController < ApplicationController
 
   def create
     @invest_transaction = invest_set.invest_transactions.new(invest_transaction_params)
-    if @invest_transaction.save
-      head :no_content, status: :created
-    else
-      render template: 'invest_transactions/new', status: :unprocessable_entity
-    end
+    head(:no_content, status: :created) && return if @invest_transaction.save
+    render template: 'invest_transactions/new', status: :unprocessable_entity
   end
 
   private

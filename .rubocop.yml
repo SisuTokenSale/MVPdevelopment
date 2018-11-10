@@ -10,7 +10,6 @@ AllCops:
     - config/initializers/*_bootstrap.rb
 Style/FrozenStringLiteralComment:
   Enabled: false
-
 Documentation:
   Enabled: false
 
@@ -40,6 +39,9 @@ IndentationWidth:
 
 Rails:
   Enabled: true
+
+Rails/OutputSafety:
+  Enabled: false
 
 GlobalVars:
   AllowedVariables:

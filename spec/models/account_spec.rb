@@ -3,13 +3,15 @@ require 'rails_helper'
 describe Account, type: :model do
   describe 'database' do
     it { is_expected.to have_db_column(:user_id).of_type(:integer).with_options(null: false, foreign_key: true) }
-    it { is_expected.to have_db_column(:plaid_token).of_type(:string).with_options(null: false) }
     it { is_expected.to have_db_column(:uid).of_type(:string) }
-    it { is_expected.to have_db_column(:dwolla_token).of_type(:string) }
+    it { is_expected.to have_db_column(:plaid_token).of_type(:string).with_options(null: true) }
+    it { is_expected.to have_db_column(:dwolla_token).of_type(:string).with_options(null: true) }
     it { is_expected.to have_db_column(:type).of_type(:string) }
     it { is_expected.to have_db_column(:balance).of_type(:decimal).with_options(null: false, default: 0.0) }
     it { is_expected.to have_db_column(:name).of_type(:string) }
     it { is_expected.to have_db_column(:institution).of_type(:string) }
+    it { is_expected.to have_db_column(:institution_id).of_type(:string) }
+    it { is_expected.to have_db_column(:mask).of_type(:string) }
     it { is_expected.to have_db_column(:account_type).of_type(:string) }
     it { is_expected.to have_db_column(:iso_currency_code).of_type(:string) }
     it { is_expected.to have_db_column(:created_at).of_type(:datetime) }
@@ -22,9 +24,15 @@ describe Account, type: :model do
     it { is_expected.to have_db_index(%i[plaid_token uid dwolla_token]).unique(true) }
   end
 
+  context 'attributes' do
+    describe 'accessors' do
+      it { is_expected.to respond_to(:public_token) }
+      it { is_expected.to respond_to(:'public_token=') }
+    end
+  end
+
   describe 'validators' do
     it { is_expected.to validate_presence_of(:user_id) }
-    it { is_expected.to validate_presence_of(:plaid_token) }
   end
 
   describe 'associations' do
@@ -38,8 +46,9 @@ describe Account, type: :model do
   let(:gbp_account) { build :account, :with_gbp }
 
   context 'Instance methods' do
-    describe '#currency_symbol' do
-      specify 'return currency_symbol by iso_currency_code' do
+    describe '#currency' do
+      specify 'return currency by iso_currency_code' do
+        expect(usd_account).is_a? Money::Currency
         expect(usd_account.currency.symbol).to eq('$')
         expect(eur_account.currency.symbol).to eq('€')
         expect(gbp_account.currency.symbol).to eq('£')

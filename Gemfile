@@ -25,8 +25,8 @@ gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'recaptcha'
-gem 'settingslogic'
 gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'money'
 
 gem 'loofah', '>= 2.2.3'
 
