@@ -11,6 +11,8 @@ describe InvestSet, type: :model do
     it { is_expected.to have_db_column(:rel_min_balance).of_type(:decimal).with_options(null: false, default: 5.0) }
     it { is_expected.to have_db_column(:created_at).of_type(:datetime) }
     it { is_expected.to have_db_column(:updated_at).of_type(:datetime) }
+    it { is_expected.to have_db_column(:status).of_type(:string).with_options(null: false, default: InvestSet::STATUSES[0]) }
+    it { is_expected.to have_db_column(:cancelled_at).of_type(:datetime) }
   end
 
   describe 'indexes' do

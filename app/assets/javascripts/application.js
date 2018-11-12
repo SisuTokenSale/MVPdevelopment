@@ -20,4 +20,33 @@ $(function(){
       }
     }
   });
+
+  jQuery.each( [ "put", "delete" ], function( i, method ) {
+    jQuery[ method ] = function( url, data, callback, type ) {
+      if ( jQuery.isFunction( data ) ) {
+        type = type || callback;
+        callback = data;
+        data = undefined;
+      }
+
+      return jQuery.ajax({
+        url: url,
+        type: method,
+        dataType: type,
+        data: data,
+        success: callback
+      });
+    };
+  });
+
+  // TODO: Need add Globar AJAX progress
+  // $.ajaxSetup({
+  //     beforeSend: function(){
+  //       // $(".button").button("disable");
+  //       alert('IAM IN BEFORE');
+  //     },
+  //     complete: function(){
+  //       alert('IAM IN PAST');
+  //     }
+  // });
 });

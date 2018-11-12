@@ -6,6 +6,9 @@ describe InvestTransaction, type: :model do
     it { is_expected.to have_db_column(:status).of_type(:string).with_options(null: false, default: InvestTransaction::STATUSES[0]) }
     it { is_expected.to have_db_column(:amount).of_type(:decimal).with_options(null: false, default: InvestSet::MIN_AMOUNT) }
     it { is_expected.to have_db_column(:description).of_type(:string) }
+    it { is_expected.to have_db_column(:investment_type).of_type(:string) }
+    it { is_expected.to have_db_column(:uid).of_type(:string) }
+    it { is_expected.to have_db_column(:cancelled_at).of_type(:datetime) }
     it { is_expected.to have_db_column(:created_at).of_type(:datetime) }
     it { is_expected.to have_db_column(:updated_at).of_type(:datetime) }
   end
@@ -18,6 +21,12 @@ describe InvestTransaction, type: :model do
     describe 'STATUSES' do
       specify 'exist' do
         expect(InvestTransaction::STATUSES).to match_array(%w[planned pending processed cancelled failed])
+      end
+    end
+
+    describe 'INVESTMENT_TYPES' do
+      specify 'exist' do
+        expect(InvestTransaction::INVESTMENT_TYPES).to match_array(%w[one_time periodical])
       end
     end
   end

@@ -1,46 +1,42 @@
 <!-- Learn More modal -->
 <div class="modal fade" id="security-info" tabindex="-1" role="dialog" aria-labelledby="security-info" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-      <div class="modal-header">
-        <h5 class="modal-title">Provide your security information</h5>
-      </div>
-      <div class="modal-body">
-        <p class="modal-text">Please enter last 4 digits of your social security number</p>
-
-        <div class="form-alert danger">
-          Please try again and enter valid information
+  <%= form_for :profile, url: '/users/profile', method: :put, remote: true, html: { id: 'js-profile-create-form' } do |f| %>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-header">
+          <h5 class="modal-title">Provide your security information</h5>
         </div>
-
-        <div class="d-flex">
-          <div class="col-12 col-sm-5 no-padding">
-            <div class="form-item">
-              <label for="soc_sec_num" class="control-label">SSN XXX-XX-XXXX</label>
-              <input class="form-control ssn-mask-num" type="text" name="soc_sec_num" id="soc_sec_num">
+        <div class="modal-body">
+          <p class="modal-text">Please enter your social security number</p>
+          <div class="d-flex">
+            <div class="col-12 col-sm-5 no-padding">
+              <div class="form-item">
+                <label for="ssn" class="control-label">SSN (XXX-XX-XXXX)</label>
+                <input class="form-control ssn-mask-num js-profile-ssn" type="text" name="profile[ssn]" id="ssn">
+              </div>
+            </div>
+            <div class="col-12 col-sm-2 d-flex align-items-center justify-content-center">
+              <p class="text-center">and</p>
+            </div>
+            <div class="col-12 col-sm-5 no-padding">
+              <div class="form-item">
+                <label for="dob" class="control-label">Date of birth (MM/DD/YYYY)</label>
+                <input class="form-control js-profile-dob" type="text" name="profile[dob]" id="dob">
+              </div>
             </div>
           </div>
-          <div class="col-12 col-sm-2 d-flex align-items-center justify-content-center">
-            <p class="text-center">and</p>
-          </div>
-          <div class="col-12 col-sm-5 no-padding">
-            <div class="form-item">
-              <label for="dob" class="control-label">Date of birth(MM/DD/YYYY)</label>
-              <input class="form-control datepicker" type="text" name="dob" id="dob">
+          <div class="d-flex">
+            <div class="col-12 col-sm-4 no-padding">
+              <button class="btn js-profile-create-btn" type="submit">Continue</button>
             </div>
-          </div>
-        </div>
-
-        <div class="d-flex">
-          <div class="col-12 col-sm-4 no-padding">
-            <button class="btn" type="button" data-dismiss="modal">Continue</button>
-          </div>
-          <div class="col-12 col-sm-8 d-flex align-items-center">
-            <p class="modal-form-text text-left">Why do we need this? Regulations require this identity verification. We store all data in encrypted form</p>
+            <div class="col-12 col-sm-8 d-flex align-items-center">
+              <p class="modal-form-text text-left">Why do we need this? Regulations require this identity verification. We store all data in encrypted form</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
 <!--/ Learn More modal -->

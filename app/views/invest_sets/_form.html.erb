@@ -5,7 +5,7 @@
     <span class="checkmark"></span>
   </label>
   <label class="form-label" for="algo">
-    <span>Let SISU determine on appropriate monthly investment amount. <a href="#" data-toggle="modal" data-target="#learn-more">Lear more</a></span>
+    <span>Let SISU determine an appropriate monthly investment amount. <a href="#" data-toggle="modal" data-target="#learn-more">Learn more</a></span>
   </label>
 </div>
 <div class="form-item check-field">
@@ -15,10 +15,9 @@
   </label>
 
   <label class="form-label" for="daily">
-    Daily(<%= currency.symbol %>5 - <%= currency.symbol %>100):&nbsp;
-
+    Daily - (<%= currency.symbol %>5 - <%= currency.symbol %>100)&nbsp;
     <div class="form-input">
-      <%= f.text_field :amount %>
+      <%= f.text_field :amount, class: 'js-money_input' %>
     </div>
   </label>
 
@@ -47,7 +46,10 @@
     <span class="checkmark"></span>
   </label>
   <label class="form-label" for="lowest">
-    Percentage of lowest balance of the month (5% - 90%)
+    Percentage of lowest balance of the month:
+  </label>
+  <label class="form-label" for="lowest">
+    (5% - 90%)&nbsp;
     <div class="form-input">
       <%= f.text_field :rel_min_balance %>
     </div>
@@ -70,6 +72,7 @@
   <label class="form-label" for="once">
     Make one time transfer&nbsp; <%= currency.symbol %>
     <div class="form-input">
+      <input type="hidden" name="invest_transaction[investment_type]" value="one_time">
       <input type="text" name="invest_transaction[amount]" value="<%= @invest_transaction&.amount %>">
     </div>
   </label>

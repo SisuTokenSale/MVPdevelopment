@@ -8,8 +8,10 @@ describe Profile, type: :model do
     it { is_expected.to have_db_column(:city).of_type(:string) }
     it { is_expected.to have_db_column(:state).of_type(:string) }
     it { is_expected.to have_db_column(:zip).of_type(:string) }
-    it { is_expected.to have_db_column(:dob).of_type(:date) }
-    it { is_expected.to have_db_column(:ssn).of_type(:string) }
+    it { is_expected.to have_db_column(:encrypted_dob).of_type(:string) }
+    it { is_expected.to have_db_column(:encrypted_dob_iv).of_type(:string) }
+    it { is_expected.to have_db_column(:encrypted_ssn).of_type(:string) }
+    it { is_expected.to have_db_column(:encrypted_ssn_iv).of_type(:string) }
     it { is_expected.to have_db_column(:created_at).of_type(:datetime) }
     it { is_expected.to have_db_column(:updated_at).of_type(:datetime) }
   end

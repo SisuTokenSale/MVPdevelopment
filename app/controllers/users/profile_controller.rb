@@ -1,7 +1,7 @@
 module Users
   class ProfileController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_profile, only: %i[index update]
+    before_action :set_profile, only: %i[index update status]
 
     def index; end
 
@@ -11,6 +11,10 @@ module Users
       else
         render :index
       end
+    end
+
+    def status
+      render json: { profile: { status: @profile.status } }.to_json
     end
 
     private

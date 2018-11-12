@@ -10,6 +10,7 @@ class Account < ApplicationRecord
   validates :balance, numericality: true
 
   belongs_to :user
+  has_many :account_transactions, dependent: :destroy
 
   serialize :plaid_identity, PlaidIdentity
 

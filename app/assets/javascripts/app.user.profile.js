@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
   //navbar user menu
   var $userToggle = $("#user-menu-toggle");
   var $userDrop = $("#user-menu-dropdown");

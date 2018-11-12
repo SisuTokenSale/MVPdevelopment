@@ -27,6 +27,9 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'recaptcha'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'money'
+gem 'attr_encrypted'
+gem 'activerecord-import'
+gem 'date_validator'
 
 gem 'loofah', '>= 2.2.3'
 

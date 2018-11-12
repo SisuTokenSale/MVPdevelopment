@@ -61,10 +61,22 @@
 
         modalWindow.on('hide.bs.modal', function(e){
           let activeElement = $(document.activeElement);
+          let data = activeElement.data();
+          let params = { options: { cancel: [] } };
 
-          if(activeElement.data().action === 'proceed'){
-            console.log(`DELETE: /invest_sets/${invest_set_id}`)
-            App.shared.goToDashboard();
+          if (data.cancelInvestments){
+            params.options.cancel.push('investments');
+          }
+
+          if (data.cancelTransaction){
+            params.options.cancel.push('transactions');
+          }
+
+          if(data.action === 'proceed'){
+            $.delete(`/invest_sets/${invest_set_id}`,
+              params, function(data, status, xhr) {
+              App.shared.goToDashboard();
+            });
           }
         });
       })
@@ -74,15 +86,20 @@
       let modalWindow = $('#confirm-delete-transaction');
       $('.js-delete-transaction').on('click', function(e){
         let trxId = e.target.dataset.id;
+        let description = e.target.dataset.description;
+
+        if(description){
+          modalWindow.children().find('.modal-text').html(description);
+        }
 
         modalWindow.modal('show')
-
         modalWindow.on('hide.bs.modal', function(e){
           let activeElement = $(document.activeElement);
 
           if(activeElement.data().action === 'proceed'){
-            console.log(`POST: /invest_transactions/${trxId}`)
-            App.shared.goToDashboard();
+            $.delete(`/invest_transactions/${trxId}`, {}, function(data, status, xhr) {
+              App.shared.goToDashboard();
+            });
           }
         });
       })
@@ -102,6 +119,7 @@
 
 // INFO: Shared CallBacks
 $(document).ready(function(){
+  // TODO: Will implemented after MVP $('.js-money_input').mask('#.##0,00', { reverse: true });
   App.iset.cancelSelectedInvestmentsListener();
   App.iset.deleteTransactionListener();
   App.iset.applyOneTimeInvestmentFormListener();

@@ -8,5 +8,5 @@ production:
   - plaid_fetch_transactions
 :schedule:
   fetch_plaid_transactions:
-    cron: '0 */15 * * * *'
+    cron: '0 23 * * * *' # Run avery day at 23:00
     class: PlaidFetchTransactionsJob
