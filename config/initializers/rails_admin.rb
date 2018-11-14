@@ -11,7 +11,7 @@ RailsAdmin.config do |config|
   #   warden.authenticate! scope: :user
   # end
   config.current_user_method(&:current_user)
-  config.excluded_models = [Account, Currency, InvestAccount, InvestSet, InvestTransaction, PlaidAccount,
+  config.excluded_models = [Account, InvestAccount, InvestSet, InvestTransaction, PlaidAccount,
                             PlaidIdentity, Profile, SourceAccount]
 
   ## == Cancan ==
