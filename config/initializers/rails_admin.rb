@@ -1,4 +1,5 @@
 require Rails.root.join('lib', 'rails_admin', 'role_setter.rb')
+require Rails.root.join('lib', 'rails_admin', 'dashboard.rb')
 
 RailsAdmin::Config::Actions.register(RailsAdmin::Config::Actions::RoleSetter)
 
@@ -10,6 +11,8 @@ RailsAdmin.config do |config|
   #   warden.authenticate! scope: :user
   # end
   config.current_user_method(&:current_user)
+  config.excluded_models = [Account, InvestAccount, InvestSet, InvestTransaction, PlaidAccount,
+                            PlaidIdentity, Profile, SourceAccount]
 
   ## == Cancan ==
   # config.authorize_with :cancan
@@ -31,10 +34,10 @@ RailsAdmin.config do |config|
     index                         # mandatory
     new
     export
-    bulk_delete
+    # bulk_delete
     show
-    edit
-    delete
+    # edit
+    # delete
     show_in_app
 
     role_setter do
