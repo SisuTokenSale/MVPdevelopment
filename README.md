@@ -1,4 +1,6 @@
 # SISU
+## Requirements
+- PostgreSQL (9.5+) (related to support 'on_duplicate_key_ignore', gem: activerecord-import)
 
 ## Links
 - [Docs Folder](https://drive.google.com/drive/u/3/folders/1hm6s3MCKh15aBEJrzI13Uz2nFGiBDIG6?ogsrc=32)
@@ -6,6 +8,9 @@
 - [Prototypes](https://projects.invisionapp.com/share/DMNV0HIBEFV#/screens/317951060)
 - [Estimates](https://docs.google.com/spreadsheets/d/11xuN_goyHp8Yz2HC-zeLeU5SnRhh0GsHMW6NuIw1rNs/edit#gid=947080547)
 - [Mockups](https://www.figma.com/proto/W0U6m5sqDqMV5jA4gBZKMpRB/Sisu?node-id=2%3A141&viewport=-163%2C-2047%2C0.253616&scaling=scale-down-width)
+- [GIST](https://gist.github.com/anerhan/cf1e6b57a5205d2a1b6516841264ba24)
+- [DWOLLA](https://developers.dwolla.com/guides/transfer-money-between-users/)
+- [DWOLLA](https://docsv2.dwolla.com/#create-a-customer)
 
 ## Getting Started
 - **Clone:**

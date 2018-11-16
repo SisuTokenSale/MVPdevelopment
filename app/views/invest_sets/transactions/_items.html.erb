@@ -1,5 +1,9 @@
 <% if @invest_set_transactions.count > 0 %>
   <% @invest_set_transactions.each do |trx| %>
+    <%
+      source_account = trx.source_account;
+      invest_account = trx.invest_account
+    %>
     <tr class="transactions-list__item <%= transaction_class_by_status(trx.status) %>">
       <td class="item-cell date">
         <span class="item-cell__inner"><%= l trx.created_at.to_date, format: :default %></span>
@@ -11,12 +15,17 @@
         <span class="item-cell__inner"><%= trx.human_amount %></span>
       </td>
       <td class="item-cell action">
-        <span class="item-cell__inner">
-          <button class="transactions-delete js-delete-transaction"
-            data-id="<%= trx.id %>"
-            data-description="<%= trx.human_amount %>"
-          />
-        </span>
+        <% if trx.can_be_cancelled? %>
+          <span class="item-cell__inner">
+            <button class="transactions-delete js-delete-transaction"
+              data-id="<%= trx.id %>"
+              data-description="
+              A transfer order of <b><%= trx.human_amount %></b> will be sent from <b><%= source_account.name %>, <%= source_account.institution %> </b> account to <b><%= invest_account.name %>, <%= invest_account.institution %></b> account. Please press <b>'Confirm'</b> again to finalize
+              "
+              data-description="<%= trx.human_amount %>"
+            />
+          </span>
+        <% end %>
       </td>
     </tr>
   <% end %>

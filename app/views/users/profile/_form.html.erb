@@ -99,14 +99,18 @@
                 Birth Date:
               </label>
               <div class="user-profile-list__value">
-                <%= f.input :dob, id: :dob, as: :string, label: false,
-                            input_html: { class: 'form-control datepicker', :value => f.object.dob&.strftime("%d/%m/%Y") } %>
+                <%= f.input :dob, as: :string, id: :dob, label: false,
+                            input_html: {
+                              class: 'form-control datepicker js-profile-dob',
+                              value:  parsed_dob(f.object.dob)
+                            }
+                %>
               </div>
             </div>
 
             <div class="user-profile-list__item">
               <label class="user-profile-list__label" for="<%= :ssn %>">
-                Social Number:
+                Social Security Number:
               </label>
               <div class="user-profile-list__value">
                 <%= f.input :ssn, id: :ssn, label: false, input_html: { class: 'form-control ssn-mask' } %>

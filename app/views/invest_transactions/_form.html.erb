@@ -4,10 +4,11 @@
   <label class="form-label">
     <span>Make one time transfer:&nbsp;$&nbsp;</span>
     <div class="form-input">
-      <input type="text" class="form-control" name="invest_transaction[amount]" value="<%= @invest_set.amount %>">
+      <input type="hidden" name="invest_transaction[investment_type]" value="one_time">
+      <input type="text" class="form-control js-money_input" name="invest_transaction[amount]" value="<%= @invest_set.amount %>">
     </div>
   </label>
 </div>
 <div class="form-item">
-  <button type="submit" class="btn">SAVE</button>
+  <button type="submit" class="btn">CONFIRM</button>
 </div>

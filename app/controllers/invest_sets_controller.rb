@@ -27,6 +27,17 @@ class InvestSetsController < ApplicationController
     invest_set && invest_transaction
   end
 
+  def destroy
+    param! :options, Hash do |a|
+      a.param! :cancel, Array do |array, index|
+        array.param! index, String, in: %w[investments transactions]
+      end
+    end
+    @invest_set = current_user.invest_sets.for_cancelling.find(params[:id])
+    @invest_set.cancel_with_options!(params[:options])
+    head :no_content, status: :deleted
+  end
+
   private
 
   def invest_set_params
@@ -34,6 +45,6 @@ class InvestSetsController < ApplicationController
   end
 
   def invest_transaction_params
-    params.require(:invest_transaction).permit(%i[amount required])
+    params.require(:invest_transaction).permit(%i[amount required investment_type])
   end
 end

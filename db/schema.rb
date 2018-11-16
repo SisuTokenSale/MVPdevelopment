@@ -10,11 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_08_105300) do
+ActiveRecord::Schema.define(version: 2018_11_12_105139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "postgis"
+
+  create_table "account_transactions", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.string "uid", null: false
+    t.date "processed_on", null: false
+    t.string "iso_currency_code"
+    t.string "name"
+    t.decimal "deposit", precision: 15, scale: 10, default: "0.0", null: false
+    t.decimal "credit", precision: 15, scale: 10, default: "0.0", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["account_id", "uid"], name: "index_account_transactions_on_account_id_and_uid", unique: true
+    t.index ["account_id"], name: "index_account_transactions_on_account_id"
+  end
 
   create_table "accounts", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -46,6 +59,8 @@ ActiveRecord::Schema.define(version: 2018_11_08_105300) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal "rel_min_balance", precision: 15, scale: 10, default: "5.0", null: false
+    t.string "status", default: "active", null: false
+    t.datetime "cancelled_at"
     t.index ["invest_account_id"], name: "index_invest_sets_on_invest_account_id"
     t.index ["source_account_id"], name: "index_invest_sets_on_source_account_id"
     t.index ["user_id"], name: "index_invest_sets_on_user_id"
@@ -59,6 +74,9 @@ ActiveRecord::Schema.define(version: 2018_11_08_105300) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "iso_currency_code"
+    t.datetime "cancelled_at"
+    t.string "uid"
+    t.string "investment_type"
     t.index ["invest_set_id"], name: "index_invest_transactions_on_invest_set_id"
   end
 
@@ -69,12 +87,14 @@ ActiveRecord::Schema.define(version: 2018_11_08_105300) do
     t.string "city"
     t.string "state"
     t.string "zip"
-    t.date "dob"
-    t.string "ssn"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "document"
+    t.string "encrypted_dob"
+    t.string "encrypted_ssn"
+    t.string "encrypted_dob_iv"
+    t.string "encrypted_ssn_iv"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

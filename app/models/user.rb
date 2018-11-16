@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validates :terms, acceptance: true
 
   def current_invest_set
-    invest_sets&.last
+    invest_sets&.active&.last
   end
 
   def last_source_account

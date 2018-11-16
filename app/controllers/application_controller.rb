@@ -13,20 +13,28 @@ class ApplicationController < ActionController::Base
     @invest_set ||= current_user.current_invest_set || current_user.invest_sets.new
   end
 
-  def invest_set_transactions
-    @invest_set_transactions ||= current_user.invest_set_transactions.limit(10).order(created_at: :desc)
-  end
-
-  def invest_transaction
-    @invest_transaction ||= invest_set.invest_transactions.new
-  end
-
   def source_account
     @source_account ||= invest_set&.source_account || current_user.last_source_account
   end
 
+  def source_account_transactions
+    @source_account_transactions = source_account&.account_transactions&.order(processed_on: :desc)&.limit(50) || []
+  end
+
   def invest_account
     @invest_account ||= invest_set&.invest_account || current_user.last_invest_account
+  end
+
+  def invest_account_transactions
+    @invest_account_transactions = invest_account&.account_transactions&.order(processed_on: :desc)&.limit(50) || []
+  end
+
+  def invest_set_transactions
+    @invest_set_transactions ||= current_user.invest_set_transactions.includes(:source_account, :invest_account).limit(50).order(created_at: :desc)
+  end
+
+  def invest_transaction
+    @invest_transaction ||= invest_set.invest_transactions.new
   end
 
   def render_error_response(error)

@@ -7,17 +7,74 @@
         <h5 class="modal-title">Ary you sure You want to cancelling investments?</h5>
       </div>
       <div class="modal-body">
-        <h3>The following operations will be performed:</h3>
+        <h3>The following operations selections should then be performed:</h3>
         <ul class="modal-text">
-          <li>1. Discard investments.</li>
-          <li>2. Discard planing & pending transactions.</li>
+          <div class="form-item check-field">
+            <div class="form-group">
+              <label class="checkbox">
+                <input type="checkbox" id="cancel-periodic-investments-checkbox" class="form-check-input">
+                <span class="checkmark"></span>
+              </label>
+              <label class="form-label" for="cancel-periodic-investments-checkbox">
+                  <span>Cancel ongoing periodic investments</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-item check-field">
+            <div class="form-group">
+              <label class="checkbox">
+                <input type="checkbox" id="cancel-transactions-checkbox" class="form-check-input">
+                <span class="checkmark"></span>
+              </label>
+              <label class="form-label" for="cancel-transactions-checkbox">
+                  <span>Cancel any pending transactions that are in process.</span>
+              </label>
+            </div>
+          </div>
         </ul>
       </div>
       <div class="modal-footer">
         <a href="#" data-dismiss="modal">CANCEL</a>
-        <button class="btn" type="button" data-dismiss="modal" data-action="proceed">PROCEED</button>
+        <button class="btn" type="button" data-dismiss="modal" id="proceed-cancelling-transactions-model-btn" data-action="proceed">PROCEED</button>
       </div>
     </div>
   </div>
 </div>
+
+<% content_for :javascript do %>
+  <script>
+    (function($) {
+      let cancelPeriodicInvestments = $('#cancel-periodic-investments-checkbox');
+      let cancelTransactions = $('#cancel-transactions-checkbox');
+      let proceedBtn = $('#proceed-cancelling-transactions-model-btn');
+      let cancelPeriodicInvestmentsChecked = true;
+      let cancelTransactionsChecked = true;
+
+      cancelPeriodicInvestments.prop('checked', cancelPeriodicInvestmentsChecked)
+      cancelTransactions.prop('checked', cancelTransactionsChecked)
+
+      let cancelTransaction = function(){
+        let btnState = !cancelPeriodicInvestmentsChecked && !cancelTransactionsChecked
+        proceedBtn.data('cancel-investments', cancelPeriodicInvestmentsChecked);
+        proceedBtn.data('cancel-transaction', cancelTransactionsChecked);
+        proceedBtn.prop('disabled', btnState);
+      }
+
+      cancelPeriodicInvestments.on('click', function(e){
+        cancelPeriodicInvestmentsChecked = e.target.checked;
+        cancelTransaction();
+      });
+
+      cancelTransactions.on('click', function(e){
+        cancelTransactionsChecked = e.target.checked;
+        cancelTransaction();
+      });
+
+      cancelTransaction()
+
+    })(jQuery);
+  </script>
+<% end %>
 <!--/ Confirm cancel selected investments modal -->
+
+
