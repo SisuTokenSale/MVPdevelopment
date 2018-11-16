@@ -5,7 +5,7 @@ Rollbar.configure do |config|
   config.access_token = String(ENV.fetch('ROLLBAR_TOKEN', 'invalid-token'))
 
   # Here we'll disable in 'test':
-  config.enabled = !Rails.env.test?
+  config.enabled = !Rails.env.in?(%w[test development])
 
   # By default, Rollbar will try to call the `current_user` controller method
   # to fetch the logged-in user object, and then call that object's `id`

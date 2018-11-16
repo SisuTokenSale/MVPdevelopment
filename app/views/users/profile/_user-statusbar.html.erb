@@ -1,16 +1,22 @@
 <div class="user-statusbar">
-  <div class="user-statusbar__item">
-    <div class="user-statusbar__label">Status: </div>
-    <div class="user-statusbar__message status-pending">Pending approval</div>
-  </div>
+  <% if @profile.pending? %>
+    <div class="user-statusbar__item">
+      <div class="user-statusbar__label">Status: </div>
+      <div class="user-statusbar__message status-pending">Pending approval</div>
+    </div>
+  <% end %>
 
-  <div class="user-statusbar__item">
-    <div class="user-statusbar__label">Status: </div>
-    <div class="user-statusbar__message status-waiting-docs">Waiting for additional information (scan identification)</div>
-  </div>
+  <% if @profile.waiting? %>
+    <div class="user-statusbar__item">
+      <div class="user-statusbar__label">Status: </div>
+      <div class="user-statusbar__message status-waiting-docs">Waiting for additional information (scan identification)</div>
+    </div>
+  <% end %>
 
-  <div class="user-statusbar__item">
-    <div class="user-statusbar__label">Status: </div>
-    <div class="user-statusbar__message status-approved">Approved</div>
-  </div>
+  <% if @profile.approved? %>
+    <div class="user-statusbar__item">
+      <div class="user-statusbar__label">Status: </div>
+      <div class="user-statusbar__message status-approved">Approved</div>
+    </div>
+  <% end %>
 </div>

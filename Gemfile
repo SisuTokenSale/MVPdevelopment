@@ -32,6 +32,7 @@ gem 'activerecord-import'
 gem 'date_validator'
 
 gem 'loofah', '>= 2.2.3'
+gem 'rack', '>= 2.0.6'
 
 # INFO: Debug tools
 gem 'rollbar'

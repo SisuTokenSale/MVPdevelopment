@@ -35,7 +35,7 @@ class InvestSet < ApplicationRecord
   has_many :invest_transactions, dependent: :destroy
 
   scope :for_cancelling, -> { where(status: %w[active]) }
-  scope :active, -> { where(status: 'active') }
+  scope :activated, -> { where(status: 'active') }
 
   delegate :currency, to: :source_account, allow_nil: true
 

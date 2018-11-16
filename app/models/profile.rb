@@ -13,6 +13,20 @@ class Profile < ApplicationRecord
     'ssn_dob_completed' if ssn && dob
   end
 
+  def pending?
+    # TODO: have unverified sent to Dwolla customer && !waiting?
+    false
+  end
+
+  def waiting?
+    [ssn, dob, first_name, last_name, zip, street, city, state].detect(&:blank?)
+  end
+
+  def approved?
+    # TODO: have verified customer & !waiting?
+    !waiting?
+  end
+
   private
 
   def convert_dob
