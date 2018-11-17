@@ -4,7 +4,7 @@ module Processors
       def initialize(opts = {}); end
 
       def process!
-        InvestSet.active.includes(:source_account, :invest_account).find_each(batch_size: 30).each do |is|
+        InvestSet.activated.includes(:source_account, :invest_account).find_each(batch_size: 30).each do |is|
           next unless is.ready?
 
           # INFO: Delete transactions oldest then 2 years
