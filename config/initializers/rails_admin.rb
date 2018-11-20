@@ -11,9 +11,10 @@ RailsAdmin.config do |config|
   #   warden.authenticate! scope: :user
   # end
   config.current_user_method(&:current_user)
-  config.excluded_models = [Account, InvestAccount, InvestSet, InvestTransaction, PlaidAccount,
-                            PlaidIdentity, Profile, SourceAccount]
 
+  config.included_models = %w[User]
+
+  config.main_app_name = %w[Admin Panel]
   ## == Cancan ==
   # config.authorize_with :cancan
 
@@ -32,28 +33,41 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
-    new
+    # new
     export
     # bulk_delete
     show
-    # edit
+    edit
     # delete
     show_in_app
-
-    role_setter do
-      only [User]
-    end
-
     ## With an audit adapter, you can add:
     # history_index
     # history_show
   end
 
   config.model User do
+    export do
+      field :first_name
+      field :last_name
+      field :email
+    end
+
+    list do
+      field :email
+      field :role
+      field :last_sign_in_at
+      field :last_sign_in_ip
+      field :confirmed_at
+    end
+    show do
+      field :role
+      field :email
+      field :last_sign_in_at
+      field :last_sign_in_ip
+      field :confirmed_at
+    end
     edit do
-      configure :role do
-        hide
-      end
+      field :role
     end
   end
 end

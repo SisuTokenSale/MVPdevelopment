@@ -4,6 +4,10 @@ FactoryBot.define do
     password { 'password' }
     password_confirmation(&:password)
 
+    after(:build) do |user|
+      create(:profile, user: user)
+    end
+
     trait :with_source_accounts do
       after(:create) do |user|
         create_list(:source_account, 2, user: user)

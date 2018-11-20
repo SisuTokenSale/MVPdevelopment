@@ -24,9 +24,9 @@ describe InvestTransaction, type: :model do
       end
     end
 
-    describe 'INVESTMENT_TYPES' do
+    describe 'TYPES' do
       specify 'exist' do
-        expect(InvestTransaction::INVESTMENT_TYPES).to match_array(%w[one_time periodical])
+        expect(InvestTransaction::TYPES).to match_array(%w[one_time periodical])
       end
     end
   end
@@ -34,9 +34,14 @@ describe InvestTransaction, type: :model do
   describe 'validators' do
     it { is_expected.to validate_presence_of(:invest_set_id) }
     it { is_expected.to validate_numericality_of(:amount).is_greater_than_or_equal_to(InvestSet::MIN_AMOUNT) }
+    it { is_expected.to validate_inclusion_of(:investment_type).in_array(InvestTransaction::TYPES) }
   end
 
   describe 'associations' do
     it { is_expected.to belong_to(:invest_set) }
+  end
+
+  describe 'delegators' do
+    it { should delegate_method(:currency).to(:source_account).with_arguments(allow_nil: true) }
   end
 end

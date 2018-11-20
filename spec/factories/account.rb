@@ -4,6 +4,7 @@ FactoryBot.define do
     balance { 0.0 }
     plaid_token { PLAID_CFG[:access_token] }
     dwolla_token { SecureRandom.hex(30) }
+
     trait :with_usd do
       after(:build) do |account|
         account.iso_currency_code = 'USD'
@@ -26,6 +27,11 @@ FactoryBot.define do
     balance { 0.0 }
     plaid_token { PLAID_CFG[:access_token] }
     dwolla_token { SecureRandom.hex(30) }
+    trait :with_funding_source do
+      after(:build) do |account|
+        account.funding_source = build(:funding_source, :with_customer)
+      end
+    end
   end
 
   factory :invest_account do
@@ -33,5 +39,10 @@ FactoryBot.define do
     balance { 0.0 }
     plaid_token { PLAID_CFG[:access_token] }
     dwolla_token { SecureRandom.hex(30) }
+    trait :with_funding_source do
+      after(:build) do |account|
+        account.funding_source = build(:funding_source, :with_customer)
+      end
+    end
   end
 end

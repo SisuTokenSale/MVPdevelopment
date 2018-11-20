@@ -38,6 +38,7 @@ describe Account, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to have_many(:account_transactions) }
+    it { is_expected.to have_one(:funding_source) }
   end
 
   let(:user) { create :user, :with_invest_sets }

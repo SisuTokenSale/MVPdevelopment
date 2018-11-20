@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_12_105139) do
+ActiveRecord::Schema.define(version: 2018_11_17_144343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,11 +49,37 @@ ActiveRecord::Schema.define(version: 2018_11_12_105139) do
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.string "uid"
+    t.string "type"
+    t.string "link"
+    t.string "status", default: "unverified", null: false
+    t.string "customer_type", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["profile_id", "uid"], name: "index_customers_on_profile_id_and_uid", unique: true
+    t.index ["profile_id"], name: "index_customers_on_profile_id"
+  end
+
+  create_table "funding_sources", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.bigint "account_id", null: false
+    t.string "link"
+    t.string "uid"
+    t.string "status", default: "pending", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["account_id", "uid"], name: "index_funding_sources_on_account_id_and_uid", unique: true
+    t.index ["account_id"], name: "index_funding_sources_on_account_id"
+    t.index ["customer_id"], name: "index_funding_sources_on_customer_id"
+  end
+
   create_table "invest_sets", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "source_account_id", null: false
     t.bigint "invest_account_id", null: false
-    t.string "frequency", default: "once", null: false
+    t.string "frequency", default: "daily", null: false
     t.integer "lowest"
     t.decimal "amount", precision: 15, scale: 10, default: "0.0", null: false
     t.datetime "created_at"
@@ -122,6 +148,9 @@ ActiveRecord::Schema.define(version: 2018_11_12_105139) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "customers", "profiles"
+  add_foreign_key "funding_sources", "accounts"
+  add_foreign_key "funding_sources", "customers"
   add_foreign_key "invest_sets", "users"
   add_foreign_key "invest_transactions", "invest_sets"
   add_foreign_key "profiles", "users"
