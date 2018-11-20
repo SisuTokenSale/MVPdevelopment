@@ -3,6 +3,14 @@ module Users
     before_action :configure_permitted_parameters, only: %i[create update]
     prepend_before_action :check_captcha, only: %i[create]
 
+    def create
+      super
+    end
+
+    def update
+      super
+    end
+
     protected
 
     def configure_permitted_parameters
