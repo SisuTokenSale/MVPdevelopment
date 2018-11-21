@@ -5,7 +5,7 @@ describe InvestSet, type: :model do
     it { is_expected.to have_db_column(:user_id).of_type(:integer).with_options(null: false) }
     it { is_expected.to have_db_column(:source_account_id).of_type(:integer).with_options(null: false) }
     it { is_expected.to have_db_column(:invest_account_id).of_type(:integer).with_options(null: false) }
-    it { is_expected.to have_db_column(:frequency).of_type(:string).with_options(null: false, default: InvestSet::FREQUENCIES[1]) }
+    it { is_expected.to have_db_column(:frequency).of_type(:string).with_options(null: false, default: InvestSet::FREQUENCIES[0]) }
     it { is_expected.to have_db_column(:lowest).of_type(:integer) }
     it { is_expected.to have_db_column(:amount).of_type(:decimal).with_options(null: false, default: InvestSet::MIN_AMOUNT) }
     it { is_expected.to have_db_column(:rel_min_balance).of_type(:decimal).with_options(null: false, default: 5.0) }
@@ -24,7 +24,7 @@ describe InvestSet, type: :model do
   context 'constants' do
     describe 'FREQUENCIES' do
       specify 'exist' do
-        expect(InvestSet::FREQUENCIES).to match_array(%w[once daily weekly monthly lowest algo])
+        expect(InvestSet::FREQUENCIES).to match_array(%w[daily weekly monthly lowest algo])
       end
     end
 
@@ -47,12 +47,17 @@ describe InvestSet, type: :model do
     it { is_expected.to validate_presence_of(:invest_account_id) }
     it { is_expected.to validate_numericality_of(:amount).is_greater_than_or_equal_to(InvestSet::MIN_AMOUNT) }
     it { is_expected.to validate_numericality_of(:rel_min_balance).is_greater_than_or_equal_to(5.0).is_less_than_or_equal_to(90) }
+    it { is_expected.to validate_inclusion_of(:frequency).in_array(InvestSet::FREQUENCIES) }
   end
 
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:source_account) }
     it { is_expected.to belong_to(:invest_account) }
+  end
+
+  describe 'delegators' do
+    it { should delegate_method(:currency).to(:source_account).with_arguments(allow_nil: true) }
   end
 
   let(:user) { create :user, :with_invest_sets }

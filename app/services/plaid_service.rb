@@ -31,14 +31,14 @@ class PlaidService
     accounts.detect { |acc| acc.uid == opts[:uid] }
   end
 
-  def balance(opts = {})
-    raise(ArgumentError, 'Option :uid required!') unless opts[:uid]
+  def find_by(opts = {})
+    raise(ArgumentError, 'Opts conditions required!') if opts.empty?
 
-    type = opts[:type] || :current
-
-    raise(ArgumentError, "Option :type should be in range [#{ACCOUNT_TYPES.join(',')}]!") unless type.in?(ACCOUNT_TYPES)
-
-    accounts.detect { |acc| acc.uid == opts[:uid] }[:balances][type]
+    accounts.detect do |acc|
+      opts.map { |k, v| acc.public_send(:"#{k}") == v }.uniq.exclude?(false)
+    end
+  rescue StandardError
+    nil
   end
 
   def transactions(opts = {})

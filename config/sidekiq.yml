@@ -4,9 +4,15 @@ production:
   :concurrency: 2
 :queues:
   - rollbar
+  - mailers
   - plaid_fetch_account_info
+  - plaid_fetch_balances
   - plaid_fetch_transactions
+  - register_invest_set_customers
 :schedule:
   fetch_plaid_transactions:
-    cron: '0 23 * * * *' # Run avery day at 23:00
+    cron: '0 23 * * *' # Run avery day at 23:00
     class: PlaidFetchTransactionsJob
+  fetch_plaid_balance:
+    cron: '0 * * * *' # Run every Hour (hourly)
+    class: PlaidFetchBalancesJob

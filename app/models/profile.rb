@@ -4,10 +4,15 @@ class Profile < ApplicationRecord
   before_validation :convert_dob
 
   validates :dob, :ssn, presence: true
-  validates :dob, date: true
+  validates :dob, date: { before_or_equal_to: proc { 18.years.ago.to_date } }
+
+  delegate :email, to: :user, allow_nil: true
 
   attr_encrypted :dob, key: :encryption_key, marshal: true, marshaler: DateMarshaler
   attr_encrypted :ssn, key: :encryption_key
+
+  has_one :source_customer, dependent: :destroy
+  has_one :invest_customer, dependent: :destroy
 
   def status
     'ssn_dob_completed' if ssn && dob

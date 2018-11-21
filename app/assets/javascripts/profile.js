@@ -7,6 +7,7 @@
     btn: $('.js-profile-create-btn'),
     dobIsValid: false,
     ssnIsValid: false,
+    dobRegexp: /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i,
 
     dobListener: function(){
       App.profile.dobEl.datepicker({
@@ -16,13 +17,12 @@
         changeMonth: true,
         changeYear: true,
       }).mask('00/00/0000', {
-        selectOnFocus: true,
-        onComplete: function(){
-          App.profile.dobIsValid = true;
-          App.profile.setFormState();
-        }
+        selectOnFocus: true
       }).on('keydown', function(event){
         event.preventDefault();
+      }).on('change', function(e){
+        App.profile.dobIsValid = App.profile.dobRegexp.test($(e.target).val())
+        App.profile.setFormState();
       });
     },
 

@@ -23,4 +23,8 @@ describe Profile, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
   end
+
+  describe 'delegators' do
+    it { should delegate_method(:email).to(:user).with_arguments(allow_nil: true) }
+  end
 end

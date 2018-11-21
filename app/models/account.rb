@@ -11,6 +11,7 @@ class Account < ApplicationRecord
 
   belongs_to :user
   has_many :account_transactions, dependent: :destroy
+  has_one :funding_source, dependent: :destroy
 
   serialize :plaid_identity, PlaidIdentity
 

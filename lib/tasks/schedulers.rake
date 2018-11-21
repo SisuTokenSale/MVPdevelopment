@@ -4,5 +4,10 @@ namespace :plaid do
     task transactions: :environment do
       PlaidFetchTransactionsJob.perform_now
     end
+
+    desc 'Fetch Balances of Accounts in active InvestSets [evey hour, HEROKU scheduller]'
+    task balances: :environment do
+      PlaidFetchBalancesJob.perform_now
+    end
   end
 end

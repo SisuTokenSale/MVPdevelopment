@@ -1,13 +1,13 @@
 class InvestTransaction < ApplicationRecord
   STATUSES = %w[planned pending processed cancelled failed].freeze
-  INVESTMENT_TYPES = %w[one_time periodical].freeze
+  TYPES = %w[one_time periodical].freeze
 
   attribute :status, :string, default: STATUSES[0]
   attribute :amount, :decimal, default: InvestSet::MIN_AMOUNT
 
   enum status: STATUSES.each_with_object({}) { |val, hash| hash[val.to_sym] = val }
-  enum investment_type: INVESTMENT_TYPES.each_with_object({}) { |val, hash| hash[val.to_sym] = val }
 
+  validates :investment_type, inclusion: { in: TYPES }
   validates :amount, numericality: { greater_than_or_equal_to: InvestSet::MIN_AMOUNT }
 
   validates :invest_set_id, presence: true

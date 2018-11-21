@@ -18,6 +18,11 @@
             <li class="user-menu__dropdown__item">
               <%= link_to 'Dashboard', dashboard_index_path %>
             </li>
+            <% if current_user.admin? %>
+              <li class="user-menu__dropdown__item">
+                <%= link_to('Admin Panel', '/admin') %>
+              </li>
+            <% end %>
             <li class="user-menu__dropdown__item">
               <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
             </li>

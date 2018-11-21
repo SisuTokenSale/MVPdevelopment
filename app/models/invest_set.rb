@@ -1,17 +1,15 @@
 class InvestSet < ApplicationRecord
-  FREQUENCIES = %w[once daily weekly monthly lowest algo].freeze
   STATUSES = %w[active cancelled].freeze
+  FREQUENCIES = %w[daily weekly monthly lowest algo].freeze
   MIN_AMOUNT = 5.0
   MAX_AMOUNT = 5000.0
 
-  attribute :status, :string, default: STATUSES[0]
-
-  attribute :frequency, :string, default: FREQUENCIES[1]
   attribute :amount, :decimal, default: MIN_AMOUNT
   attribute :rel_min_balance, :decimal, default: 5.0
 
-  enum frequency: FREQUENCIES.each_with_object({}) { |val, hash| hash[val.to_sym] = val }
   enum status: STATUSES.each_with_object({}) { |val, hash| hash[val.to_sym] = val }
+
+  validates :frequency, inclusion: { in: FREQUENCIES }
 
   validates :user_id,
             :source_account_id,
@@ -39,14 +37,14 @@ class InvestSet < ApplicationRecord
 
   delegate :currency, to: :source_account, allow_nil: true
 
-  after_create :cancelling_others
+  after_commit :cancelling_others, :check_and_register_customers!, on: :create
 
   def human_amount
     Money.new(amount * 100, currency.iso_code).format
   end
 
   def ready?
-    source_account&.ready? && invest_account&.ready? && !new_record?
+    source_account&.ready? && invest_account&.ready? && !new_record? && active?
   end
 
   def cascade_cancel!
@@ -75,9 +73,13 @@ class InvestSet < ApplicationRecord
 
   private
 
+  def check_and_register_customers!
+    RegisterInvestSetCustomersJob.perform_later(id: id)
+  end
+
   def cancel_invest_transactions!
     # TODO: Will do that in BG JOB
-    user.invest_set_transactions.for_cancelling.find_each(batch_size: 5).each(&:cancelled!)
+    invest_transactions.find_each(batch_size: 5).each(&:cancelled!)
   end
 
   def cancel_invest_set!

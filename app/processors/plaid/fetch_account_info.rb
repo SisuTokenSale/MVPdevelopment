@@ -24,17 +24,18 @@ module Processors
 
         # TODO: Maybe need handle get plaid identity info for creating customer
         plaid_identity = PlaidService.account_identity(account.plaid_token, account.uid)
+
         if plaid_identity
           account.plaid_identity = plaid_identity
           if account.is_a?(SourceAccount)
             user_profile = account.user.profile || account.user.build_profile
             account.plaid_identity.profile_info.each do |k, v|
-              user_profile.send(:"#{k}=", v) if user_profile.send(:"#{k}")&.blank?
+              user_profile.send(:"#{k}=", v) if user_profile.send(:"#{k}").blank?
             end
-            user_profile.save if user_profile.changed?
+            user_profile.save! if user_profile.changed?
           end
         end
-        account.save if account.changed?
+        account.save! if account.changed?
       end
     end
   end
