@@ -79,7 +79,7 @@ class InvestSet < ApplicationRecord
 
   def cancel_invest_transactions!
     # TODO: Will do that in BG JOB
-    invest_transactions.find_each(batch_size: 5).each(&:cancelled!)
+    invest_transactions.where(status: 'planned').find_each(batch_size: 5).each(&:cancelled!)
   end
 
   def cancel_invest_set!

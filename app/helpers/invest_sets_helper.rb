@@ -20,6 +20,7 @@ module InvestSetsHelper
   private
 
   def status_span(status)
-    '[<span class="text-' + (status ? 'success">Ready' : 'danger">Pending') + '</span>]'
+    # TODO: need for debug state
+    # '[<span class="text-' + (status ? 'success">Ready' : 'danger">Pending') + '</span>]'
   end
 end

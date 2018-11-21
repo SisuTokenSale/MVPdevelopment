@@ -7,6 +7,10 @@ class InvestTransaction < ApplicationRecord
 
   enum status: STATUSES.each_with_object({}) { |val, hash| hash[val.to_sym] = val }
 
+  before_save do
+    self.uid ||= link.split('/').last if link.present?
+  end
+
   validates :investment_type, inclusion: { in: TYPES }
   validates :amount, numericality: { greater_than_or_equal_to: InvestSet::MIN_AMOUNT }
 
@@ -23,8 +27,15 @@ class InvestTransaction < ApplicationRecord
 
   before_create :assign_iso_currency_code
 
+  # INFO: Init after create if it is One Time transaction
+  after_commit :init_dwolla_transaction!, on: :create, if: :one_time?
+
   def human_amount
     Money.new(amount * 100, iso_currency_code).format
+  end
+
+  def one_time?
+    investment_type == 'one_time'
   end
 
   def can_be_cancelled?
@@ -32,12 +43,14 @@ class InvestTransaction < ApplicationRecord
   end
 
   def cancelled!
-    self.cancelled_at = Time.current if planned?
-    super
-    # TODO: Run inside Job if pending?
-    # - request to dwolla for discard transaction
-    # - Set cancelled_at after up operations
-    # INFO: All manipukations should be in Transaction block
+    return unless can_be_cancelled?
+
+    if planned?
+      self.cancelled_at = Time.current
+      super
+    elsif pending?
+      CancelTransactionJob.perform_later(id: id)
+    end
   end
 
   def correlation_id
@@ -49,6 +62,10 @@ class InvestTransaction < ApplicationRecord
   end
 
   private
+
+  def init_dwolla_transaction!
+    InitTransactionJob.perform_later(id: id)
+  end
 
   def assign_iso_currency_code
     self.iso_currency_code = currency.iso_code

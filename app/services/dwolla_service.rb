@@ -5,6 +5,27 @@ class DwollaService
     self.class.client.auths.client
   end
 
+  def cancel_transaction(opts = {})
+    raise(ArgumentError, 'Option :body required!') unless opts[:body]
+    raise(ArgumentError, 'Option :link required!') unless opts[:link]
+
+    transfer = app_token.post opts[:link], opts[:body]
+    transfer.status
+  rescue DwollaV2::ValidationError => error
+    @error = error
+    nil
+  end
+
+  def init_transaction(opts = {})
+    raise(ArgumentError, 'Option :body required!') unless opts[:body]
+
+    transfer = app_token.post 'transfers', opts[:body]
+    transfer.response_headers[:location]
+  rescue DwollaV2::ValidationError => error
+    @error = error
+    nil
+  end
+
   # INFO: Return funding_source link
   def register_funding_source(opts = {})
     raise(ArgumentError, 'Option :customer_link required!') unless opts[:customer_link]
