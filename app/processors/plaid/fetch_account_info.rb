@@ -1,14 +1,12 @@
 module Processors
   module Plaid
     class FetchAccountInfo
-      attr_reader :id, :account, :opts
+      attr_reader :account
 
       def initialize(opts = {})
-        @opts = opts.with_indifferent_access
-        @id = @opts[:id]
-        raise(ArgumentError, 'Option :id required!') unless @id
+        raise(ArgumentError, 'Option :id or :account required!') if opts[:account].blank? && opts[:id].blank?
 
-        @account = Account.find(@id)
+        @account = opts[:account] || Account.find(opts[:id])
       end
 
       def process!
@@ -30,7 +28,7 @@ module Processors
           if account.is_a?(SourceAccount)
             user_profile = account.user.profile || account.user.build_profile
             account.plaid_identity.profile_info.each do |k, v|
-              user_profile.send(:"#{k}=", v) if user_profile.send(:"#{k}").blank?
+              user_profile.public_send(:"#{k}=", v) if user_profile.public_send(:"#{k}").blank?
             end
             user_profile.save! if user_profile.changed?
           end

@@ -6,8 +6,10 @@ class InvestAccountsController < AccountsController
     # Should be moved to background job in the future
     dwolla_token = PlaidService.fetch_dwolla_processor_token(account.plaid_token, account.uid)
     account.dwolla_token = dwolla_token
+    return unless account.save
 
-    head :no_content, status: :created if account.save
+    PlaidFetchAccountInfoJob.perform_later(id: account.id)
+    head :no_content, status: :created
   end
 
   def new

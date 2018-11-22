@@ -34,10 +34,11 @@ class InvestSet < ApplicationRecord
 
   scope :for_cancelling, -> { where(status: %w[active]) }
   scope :activated, -> { where(status: 'active') }
+  scope :planned_periodical_transactions, -> { invest_transactions.periodical.where('will_processed_at > ?', Time.current) }
 
   delegate :currency, to: :source_account, allow_nil: true
 
-  after_commit :cancelling_others, :check_and_register_customers!, on: :create
+  after_commit :cancelling_others, on: :create
 
   def human_amount
     Money.new(amount * 100, currency.iso_code).format
@@ -71,11 +72,11 @@ class InvestSet < ApplicationRecord
     end
   end
 
-  private
-
-  def check_and_register_customers!
-    RegisterInvestSetCustomersJob.perform_later(id: id)
+  def planned_periodical_transactions?
+    planned_periodical_transactions.count.positive?
   end
+
+  private
 
   def cancel_invest_transactions!
     # TODO: Will do that in BG JOB

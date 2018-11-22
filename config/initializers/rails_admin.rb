@@ -12,7 +12,7 @@ RailsAdmin.config do |config|
   # end
   config.current_user_method(&:current_user)
 
-  config.included_models = %w[User]
+  config.included_models = %w[User Event DwollaWebhook]
 
   config.main_app_name = %w[Admin Panel]
   ## == Cancan ==
@@ -33,16 +33,35 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
-    # new
-    export
+    new do
+      only ['DwollaWebhook']
+    end
+
+    export do
+      only ['User']
+    end
     # bulk_delete
     show
-    edit
+    edit do
+      only ['User']
+    end
+
+    delete do
+      only ['DwollaWebhook']
+    end
     # delete
     show_in_app
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+  end
+
+  config.model DwollaWebhook do
+    list do
+      field :url
+      field :active
+      field :created_at
+    end
   end
 
   config.model User do
@@ -59,6 +78,7 @@ RailsAdmin.config do |config|
       field :last_sign_in_ip
       field :confirmed_at
     end
+
     show do
       field :role
       field :email
@@ -66,8 +86,19 @@ RailsAdmin.config do |config|
       field :last_sign_in_ip
       field :confirmed_at
     end
+
     edit do
       field :role
+    end
+  end
+
+  config.model Event do
+    list do
+      field :object_class
+      field :status
+      field :topic
+      field :uid
+      field :created_at
     end
   end
 end

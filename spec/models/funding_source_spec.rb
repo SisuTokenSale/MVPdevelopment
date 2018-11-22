@@ -5,7 +5,7 @@ describe FundingSource, type: :model do
     it { is_expected.to have_db_column(:account_id).of_type(:integer).with_options(null: false, foreign_key: true) }
     it { is_expected.to have_db_column(:link).of_type(:string) }
     it { is_expected.to have_db_column(:uid).of_type(:string) }
-    it { is_expected.to have_db_column(:status).of_type(:string).with_options(null: false, default: 'pending') }
+    it { is_expected.to have_db_column(:status).of_type(:string).with_options(null: false, default: 'unverified') }
     it { is_expected.to have_db_column(:created_at).of_type(:datetime) }
     it { is_expected.to have_db_column(:updated_at).of_type(:datetime) }
   end

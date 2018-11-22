@@ -7,7 +7,9 @@ module Users
 
     def update
       if @profile.update(profile_params)
-        redirect_to dashboard_index_path, notice: 'Profile successfully updated'
+        DwollaRegisterProfileCustomersJob.perform_later(id: @profile.id)
+        DwollaUpdateProfileCustomersJob.perform_later(id: @profile.id)
+        redirect_to users_profile_index_path, notice: 'Profile successfully updated'
       else
         render :index
       end

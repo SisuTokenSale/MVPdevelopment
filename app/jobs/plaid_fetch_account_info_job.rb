@@ -2,8 +2,14 @@ class PlaidFetchAccountInfoJob < ApplicationJob
   queue_as :plaid_fetch_account_info
 
   def perform(opts = {})
-    Processors::Plaid::FetchAccountInfo.new(opts).process!
-    # TODO: Should be applyed in the much more right place
-    Processors::Dwolla::RegisterCustomer.new(account_id: opts[:id]).process!
+    return unless opts[:id]
+
+    account = Account.find(opts[:id])
+
+    Processors::Plaid::FetchAccountInfo.new(account: account).process!
+    Processors::Plaid::FetchAccountBalance.new(account: account).process!
+    Processors::Plaid::FetchAccountTransactions.new(account: account).process!
+    Processors::Dwolla::RegisterCustomer.new(account: account).process!
+    Processors::Dwolla::RegisterFundingSource.new(account: account).process!
   end
 end

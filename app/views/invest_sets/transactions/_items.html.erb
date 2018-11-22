@@ -6,7 +6,7 @@
     %>
     <tr class="transactions-list__item <%= transaction_class_by_status(trx.status) %>">
       <td class="item-cell date">
-        <span class="item-cell__inner"><%= l trx.created_at.to_date, format: :default %></span>
+        <span class="item-cell__inner"><%= l trx.human_processed_at.to_date, format: :default %></span>
       </td>
       <td class="item-cell status">
         <span class="item-cell__inner"><%= trx.status.camelize %></span>

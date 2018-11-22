@@ -9,4 +9,14 @@ FactoryBot.define do
       end
     end
   end
+
+  factory :source_customer do
+    link { File.join('https://api-sandbox.dwolla.com/customers', SecureRandom.uuid) }
+    status { 'verified' }
+  end
+
+  factory :invest_customer do
+    link { File.join('https://api-sandbox.dwolla.com/customers', SecureRandom.uuid) }
+    status { 'unverified' }
+  end
 end

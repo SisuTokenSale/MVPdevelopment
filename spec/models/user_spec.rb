@@ -36,7 +36,11 @@ describe User, type: :model do
     it { is_expected.to have_many(:invest_sets) }
   end
 
-  let!(:user) { create :user, :with_invest_sets }
+  describe 'delegators' do
+    it { should delegate_method(:full_name).to(:profile).with_arguments(allow_nil: true) }
+  end
+
+  let!(:user) { create :user }
   let(:last_invest_set) { InvestSet.last }
   let(:last_source_account) { user.source_accounts.last }
   let(:last_invest_account) { user.invest_accounts.last }

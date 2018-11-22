@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_21_150736) do
+ActiveRecord::Schema.define(version: 2018_11_28_195429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,12 +62,24 @@ ActiveRecord::Schema.define(version: 2018_11_21_150736) do
     t.index ["profile_id"], name: "index_customers_on_profile_id"
   end
 
+  create_table "events", force: :cascade do |t|
+    t.string "topic", null: false
+    t.string "resource_id", null: false
+    t.string "object_class", null: false
+    t.string "status", null: false
+    t.string "uid", null: false
+    t.string "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["uid"], name: "index_events_on_uid", unique: true
+  end
+
   create_table "funding_sources", force: :cascade do |t|
     t.bigint "customer_id", null: false
     t.bigint "account_id", null: false
     t.string "link"
     t.string "uid"
-    t.string "status", default: "pending", null: false
+    t.string "status", default: "unverified", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["account_id", "uid"], name: "index_funding_sources_on_account_id_and_uid", unique: true
@@ -104,6 +116,9 @@ ActiveRecord::Schema.define(version: 2018_11_21_150736) do
     t.string "uid"
     t.string "investment_type"
     t.string "link"
+    t.datetime "will_processed_at"
+    t.datetime "processed_at"
+    t.decimal "rel_min_balance", precision: 15, scale: 10, default: "0.0", null: false
     t.index ["invest_set_id"], name: "index_invest_transactions_on_invest_set_id"
   end
 
@@ -146,6 +161,17 @@ ActiveRecord::Schema.define(version: 2018_11_21_150736) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "webhooks", force: :cascade do |t|
+    t.string "type"
+    t.string "link"
+    t.string "uid"
+    t.string "url", null: false
+    t.string "secret", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean "paused", default: false
   end
 
   add_foreign_key "accounts", "users"
