@@ -26,4 +26,6 @@ Rails.application.routes.draw do
   get '/terms', to: 'pages#terms', as: :terms
   put '/users/profile', to: 'users/profile#update', as: :update_profile
   get '/users/profile/status', to: 'users/profile#status', as: :profile_status
+
+  resources :webhooks, only: %i[create]
 end
