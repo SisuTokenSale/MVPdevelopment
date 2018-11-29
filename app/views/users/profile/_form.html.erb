@@ -1,4 +1,8 @@
-<%= simple_form_for(@profile, url: update_profile_path, html: { method: :put }) do |f| %>
+<%
+  path = @profile.new_record? ? create_profile_path : update_profile_path
+  meth = @profile.new_record? ? :post : :put
+%>
+<%= simple_form_for(@profile, url: path, html: { method: meth }) do |f| %>
   <div class="user-profile-info">
     <div class="user-profile-info__item">
       <div class="user-profile-list__icon">

@@ -4,6 +4,10 @@ class DwollaUpdateProfileCustomersJob < ApplicationJob
   def perform(opts = {})
     return unless opts[:id]
 
-    Processors::Dwolla::UpdateCustomer.new(profile: Profile.find(opts[:id])).process!
+    Customer.transaction do
+      profile = Profile.find(opts[:id])
+      Processors::Dwolla::UpdateCustomer.new(customer: profile.source_customer).process!
+      Processors::Dwolla::UpdateCustomer.new(customer: profile.invest_customer).process!
+    end
   end
 end

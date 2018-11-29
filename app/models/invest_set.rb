@@ -34,7 +34,6 @@ class InvestSet < ApplicationRecord
 
   scope :for_cancelling, -> { where(status: %w[active]) }
   scope :activated, -> { where(status: 'active') }
-  scope :planned_periodical_transactions, -> { invest_transactions.periodical.where('will_processed_at > ?', Time.current) }
 
   delegate :currency, to: :source_account, allow_nil: true
 
@@ -73,7 +72,9 @@ class InvestSet < ApplicationRecord
   end
 
   def planned_periodical_transactions?
-    planned_periodical_transactions.count.positive?
+    invest_transactions.periodical
+                       .where('will_processed_at > ?', Time.current)
+                       .count.positive?
   end
 
   private

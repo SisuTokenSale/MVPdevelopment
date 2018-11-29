@@ -107,7 +107,7 @@ class DwollaService
 
   # INFO: Return customer link
   def register_customer(opts = {})
-    customer = app_token.post 'customers', opts[:request_body]
+    customer = app_token.post 'customers', opts[:body]
     customer.response_headers[:location]
   rescue DwollaV2::Error => error
     @error = error

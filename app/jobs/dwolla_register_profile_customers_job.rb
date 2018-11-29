@@ -4,6 +4,11 @@ class DwollaRegisterProfileCustomersJob < ApplicationJob
   def perform(opts = {})
     return unless opts[:id]
 
-    Processors::Dwolla::RegisterCustomer.new(profile: Profile.find(opts[:id])).process!
+    Customer.transaction do
+      profile = Profile.find(opts[:id])
+
+      Processors::Dwolla::RegisterCustomer.new(profile: profile, customer_type: 'source').process!
+      Processors::Dwolla::RegisterCustomer.new(profile: profile, customer_type: 'invest').process!
+    end
   end
 end

@@ -118,7 +118,6 @@ ActiveRecord::Schema.define(version: 2018_11_28_195429) do
     t.string "link"
     t.datetime "will_processed_at"
     t.datetime "processed_at"
-    t.decimal "rel_min_balance", precision: 15, scale: 10, default: "0.0", null: false
     t.index ["invest_set_id"], name: "index_invest_transactions_on_invest_set_id"
   end
 

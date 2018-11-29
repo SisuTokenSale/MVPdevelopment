@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   }
 
   namespace :users do
-    resources :profile, only: %i[index update]
+    resources :profile, only: %i[index create update]
   end
 
   root to: redirect('/users/sign_in')
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   get '/terms', to: 'pages#terms', as: :terms
   put '/users/profile', to: 'users/profile#update', as: :update_profile
+  post '/users/profile', to: 'users/profile#create', as: :create_profile
   get '/users/profile/status', to: 'users/profile#status', as: :profile_status
 
   resources :webhooks, only: %i[create]
