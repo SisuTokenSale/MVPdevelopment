@@ -62,6 +62,6 @@ $(document).ready(function(){
   });
 
   $('.js-invest-create-btn, .js-invest-change-btn').on('click', function(e) {
-    App.plaid.openWidget('invest', ['auth', 'transactions', 'identity', 'assets', 'income']);
+    App.plaid.openWidget('invest', ['transactions']);
   });
 });

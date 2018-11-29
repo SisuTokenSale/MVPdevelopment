@@ -23,7 +23,12 @@ class InvestTransaction < ApplicationRecord
 
   scope :for_cancelling, -> { where(status: %w[planned pending]) }
 
+  scope :periodical, -> { where investment_type: 'periodical' }
+
+  scope :periodical_will_processed, -> { periodical.where('will_processed_at <= ? ', Time.current) }
+
   delegate :currency, to: :source_account, allow_nil: true
+  delegate :rel_min_balance, to: :invest_set, allow_nil: true
 
   before_create :assign_iso_currency_code
 
@@ -31,7 +36,20 @@ class InvestTransaction < ApplicationRecord
   after_commit :init_dwolla_transaction!, on: :create, if: :one_time?
 
   def human_amount
+    # TODO: Need optimize
+    return 'N/A' if calc_amount_later?
+
     Money.new(amount * 100, iso_currency_code).format
+  end
+
+  def calc_amount_later?
+    (planned? || cancelled?) &&
+      investment_type == 'periodical' &&
+      invest_set.frequency.in?(%w[lowest algo])
+  end
+
+  def human_processed_at
+    processed_at || will_processed_at || created_at
   end
 
   def one_time?
@@ -40,6 +58,11 @@ class InvestTransaction < ApplicationRecord
 
   def can_be_cancelled?
     planned? || pending?
+  end
+
+  def processed!
+    self.processed_at = Time.current
+    super
   end
 
   def cancelled!

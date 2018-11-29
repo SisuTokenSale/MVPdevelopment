@@ -1,8 +1,6 @@
 module Processors
   module Plaid
     class FetchBalances
-      attr_reader :service
-
       def initialize(opts = {}); end
 
       def process!
@@ -10,17 +8,10 @@ module Processors
           next unless is.ready?
 
           InvestSet.transaction do
-            is.source_account.update! balance: balance_for(is.source_account)
-            is.invest_account.update! balance: balance_for(is.invest_account)
+            Processors::Plaid::FetchAccountBalance.new(account: is.source_account).process!
+            Processors::Plaid::FetchAccountBalance.new(account: is.invest_account).process!
           end
         end
-      end
-
-      private
-
-      def balance_for(account)
-        service = PlaidService.new(access_token: account.plaid_token)
-        service.find_by(uid: account.uid)&.available_balance || account.balance
       end
     end
   end

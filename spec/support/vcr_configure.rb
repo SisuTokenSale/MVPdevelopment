@@ -40,6 +40,8 @@ VCR.configure do |config|
       VCR.use_cassette('plaid/exchange', &request)
     when 'https://sandbox.plaid.com/transactions/get'
       VCR.use_cassette('plaid/transactions', &request)
+    else
+      request
     end
   end
 end

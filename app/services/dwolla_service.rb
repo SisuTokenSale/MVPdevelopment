@@ -5,6 +5,37 @@ class DwollaService
     self.class.client.auths.client
   end
 
+  def webhooks
+    @webhooks ||= app_token.get 'webhook-subscriptions'
+    # INFO: Can be using return [] if @webhooks.total.zero?
+
+    @webhooks['_embedded']['webhook-subscriptions'].map do |ws|
+      {
+        link: ws['_links']['self']['href'],
+        uid: ws['id'],
+        url: ws['url'],
+        paused: ws['paused'],
+        created_at: ws['created']
+      }
+    end
+  rescue DwollaV2::Error => error
+    @error = error
+    []
+  rescue StandardError => error
+    @error = error
+    []
+  end
+
+  def init_webhook(opts = {})
+    raise(ArgumentError, 'Option :body required!') unless opts[:body]
+
+    subscription = app_token.post 'webhook-subscriptions', request_body
+    subscription.response_headers[:location]
+  rescue DwollaV2::ValidationError => error
+    @error = error
+    nil
+  end
+
   def cancel_transaction(opts = {})
     raise(ArgumentError, 'Option :body required!') unless opts[:body]
     raise(ArgumentError, 'Option :link required!') unless opts[:link]
@@ -68,7 +99,20 @@ class DwollaService
   def register_customer(opts = {})
     customer = app_token.post 'customers', opts[:request_body]
     customer.response_headers[:location]
-  rescue StandardError => error
+  rescue DwollaV2::Error => error
+    @error = error
+    nil
+  end
+
+  # INFO: Return customer UID
+  def update_customer(opts = {})
+    raise(ArgumentError, 'Option :link required!') unless opts[:link]
+
+    raise(ArgumentError, 'Option :body required!') unless opts[:body]
+
+    customer = app_token.post opts[:link], opts[:body]
+    customer.id
+  rescue DwollaV2::Error => error
     @error = error
     nil
   end

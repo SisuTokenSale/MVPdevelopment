@@ -11,6 +11,6 @@ class InvestCustomer < Customer
   end
 
   def business_name
-    "IC:#{user.id}:#{id}"
+    "[Invest] #{user.human_name}"
   end
 end

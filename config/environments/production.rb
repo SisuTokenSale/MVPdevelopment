@@ -29,7 +29,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: ENV.fetch('APPLICATION_HOST') }
+  config.action_mailer.default_url_options = { host: ENV.fetch('APPLICATION_HOST'), protocol: 'https' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: ENV.fetch('SMTP_ADDRESS'), # INFO: example: "smtp.sendgrid.net"
@@ -40,6 +40,6 @@ Rails.application.configure do
     port: ENV.fetch('SMTP_PORT'),
     user_name: ENV.fetch('SMTP_USERNAME')
   }
-  config.action_mailer.asset_host = ENV.fetch('ASSET_HOST', ENV.fetch('APPLICATION_HOST'))
+  config.action_mailer.asset_host = "https://#{ENV.fetch('ASSET_HOST', ENV.fetch('APPLICATION_HOST'))}"
   config.force_ssl = true
 end

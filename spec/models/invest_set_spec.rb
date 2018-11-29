@@ -60,8 +60,8 @@ describe InvestSet, type: :model do
     it { should delegate_method(:currency).to(:source_account).with_arguments(allow_nil: true) }
   end
 
-  let(:user) { create :user, :with_invest_sets }
-  let(:invest_set) { user.current_invest_set }
+  let(:user) { create :user }
+  let(:invest_set) { create :invest_set, :with_accounts, user: user }
   let(:new_invest_set) { InvestSet.new }
 
   context 'Instance methods' do

@@ -20,6 +20,12 @@ FactoryBot.define do
         account.iso_currency_code = 'GBP'
       end
     end
+    trait :with_funding_source do
+      after(:build) do |account|
+        customer = account.user.profile.source_customer
+        account.funding_source = build(:funding_source, account: account, customer: customer)
+      end
+    end
   end
 
   factory :source_account do
@@ -29,7 +35,8 @@ FactoryBot.define do
     dwolla_token { SecureRandom.hex(30) }
     trait :with_funding_source do
       after(:build) do |account|
-        account.funding_source = build(:funding_source, :with_customer)
+        customer = account.user.profile.source_customer
+        account.funding_source = build(:funding_source, account: account, customer: customer)
       end
     end
   end
@@ -41,7 +48,8 @@ FactoryBot.define do
     dwolla_token { SecureRandom.hex(30) }
     trait :with_funding_source do
       after(:build) do |account|
-        account.funding_source = build(:funding_source, :with_customer)
+        customer = account.user.profile.invest_customer
+        account.funding_source = build(:funding_source, account: account, customer: customer)
       end
     end
   end

@@ -1,6 +1,6 @@
 class Customer < ApplicationRecord
   # INFO: https://docsv2.dwolla.com/#customers
-  STATUSES = %w[unverified verified retry document suspended deactivated].freeze
+  STATUSES = %w[unverified created verify_needed verify_uploaded verify_failed verify_approved verified suspended activated deactivated].freeze
   TYPES = %w[unverified personal business receive-only].freeze
 
   enum status: STATUSES.each_with_object({}) { |val, hash| hash[val.to_sym] = val }

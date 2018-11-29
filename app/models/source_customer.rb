@@ -3,6 +3,6 @@ class SourceCustomer < Customer
   attribute :customer_type, :string, default: 'personal'
 
   def business_name
-    "SC:#{user.id}:#{id}"
+    "[Source] #{user.human_name}"
   end
 end

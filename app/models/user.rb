@@ -20,6 +20,12 @@ class User < ApplicationRecord
 
   validates :terms, acceptance: true
 
+  delegate :full_name, to: :profile, allow_nil: true
+
+  def human_name
+    full_name.presence || email
+  end
+
   def current_invest_set
     invest_sets&.activated&.last
   end

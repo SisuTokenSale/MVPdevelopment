@@ -1,5 +1,6 @@
 class FundingSource < ApplicationRecord
-  STATUSES = %w[pending processed failed].freeze
+  # STATUSES = %w[pending processed failed].freeze
+  STATUSES = %w[unverified added removed verified negative updated].freeze
 
   enum status: STATUSES.each_with_object({}) { |val, hash| hash[val.to_sym] = val }
 

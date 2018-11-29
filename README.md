@@ -78,6 +78,7 @@ If you have previously run the `./bin/setup` script,
 you can deploy to staging and production with:
 
 ```bash
+./bin/deploy dev
 ./bin/deploy staging
 ./bin/deploy production
 ```
@@ -93,11 +94,18 @@ rubocop
 
 ## Add Heroku staging and production
 ```bash
+git remote add dev https://git.heroku.com/sisu-dev.git
 git remote add staging https://git.heroku.com/sisu-staging.git
 git remote add production https://git.heroku.com/sisu-prod.git    
 ```
 
 ## Deploy 
+
+- **Dev:**
+```bash
+git push -f dev current-branch-name:master
+```
+
 - **Staging:**
 ```bash
 git push -f staging current-branch-name:master

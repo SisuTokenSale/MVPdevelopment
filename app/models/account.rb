@@ -15,7 +15,7 @@ class Account < ApplicationRecord
 
   serialize :plaid_identity, PlaidIdentity
 
-  after_commit :assign_to_invest_set, :fetch_account_info, on: :create
+  after_commit :assign_to_invest_set, on: :create
 
   def ready?
     plaid_token.present? && dwolla_token.present? && !new_record?
@@ -40,23 +40,4 @@ class Account < ApplicationRecord
   def current_invest_set
     user&.current_invest_set
   end
-
-  def fetch_account_info
-    PlaidFetchAccountInfoJob.perform_later(id: id)
-  end
 end
-
-# TODO: Customer
-# Unverified - for every new signup
-# Transitions to [pending]
-# Pending - verification in process
-# Transitions to [document, retry, verified, suspended]
-# Document - ID document scan required for verification
-# Transitions to [pending (-> [retry, verified])]
-# Retry - Full SSN required for verification.
-# Transitions to [pending (-> [suspended, verified])]
-# Suspended - Customer can be also suspended manually but you'll need to contact Dwolla to unsuspend the Customer
-# Verified - customer passed all verifications
-# Transitions to [deactivated]
-# Deactivated - can be deactivated by Dwolla if certain ACH return codes are triggered on bank transfer failures
-# Transitions to previous state

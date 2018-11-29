@@ -35,7 +35,7 @@
     },
 
     ssnListener: function(){
-      App.profile.ssnEl.mask('000-00-0000', {
+      App.profile.ssnEl.mask('0000', {
         selectOnFocus: true,
         onComplete: function(){
           App.profile.ssnIsValid = true;

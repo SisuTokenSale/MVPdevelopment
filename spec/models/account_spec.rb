@@ -41,7 +41,7 @@ describe Account, type: :model do
     it { is_expected.to have_one(:funding_source) }
   end
 
-  let(:user) { create :user, :with_invest_sets }
+  let(:user) { create :user }
   let(:account) { build :account, user: user }
   let(:usd_account) { build :account, :with_usd }
   let(:eur_account) { build :account, :with_eur }
@@ -70,12 +70,5 @@ describe Account, type: :model do
         expect(account.send(:current_invest_set)).to eq(user.current_invest_set)
       end
     end
-
-    # TODO: Should be covered like callback in Invest and Source account models
-    # describe '#dwolla_fetch_token' do
-    #   specify 'should be return DwollaFetchTokensJob' do
-    #     expect(account).to respond_to(:dwolla_fetch_token)
-    #   end
-    # end
   end
 end

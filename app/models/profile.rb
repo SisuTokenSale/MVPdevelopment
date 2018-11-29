@@ -14,6 +14,10 @@ class Profile < ApplicationRecord
   has_one :source_customer, dependent: :destroy
   has_one :invest_customer, dependent: :destroy
 
+  def full_name
+    [first_name, last_name].compact.join(' ')
+  end
+
   def status
     'ssn_dob_completed' if ssn && dob
   end
