@@ -5,6 +5,16 @@ class DwollaService
     self.class.client.auths.client
   end
 
+  def remove_webhook(opts = {})
+    app_token.delete opts[:link]
+  rescue DwollaV2::Error => error
+    @error = error
+    []
+  rescue StandardError => error
+    @error = error
+    []
+  end
+
   def webhooks
     @webhooks ||= app_token.get 'webhook-subscriptions'
     # INFO: Can be using return [] if @webhooks.total.zero?
@@ -29,7 +39,7 @@ class DwollaService
   def init_webhook(opts = {})
     raise(ArgumentError, 'Option :body required!') unless opts[:body]
 
-    subscription = app_token.post 'webhook-subscriptions', request_body
+    subscription = app_token.post 'webhook-subscriptions', opts[:body]
     subscription.response_headers[:location]
   rescue DwollaV2::ValidationError => error
     @error = error

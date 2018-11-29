@@ -78,7 +78,9 @@ class WebhookService
   private
 
   def verify_signature!
-    signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), ENV['DWOLLA_WEBHOOK_SECRET'], webhook.to_json)
+    raise(StandardError, 'Webhook not registered!') unless DwollaWebhook.current&.secret
+
+    signature = OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), DwollaWebhook.current&.secret, webhook.to_json)
 
     raise(StandardError, 'Invalid signature!') unless Rack::Utils.secure_compare(signature, request_signature)
   end
