@@ -4,9 +4,9 @@ module Processors
       attr_reader :account
 
       def initialize(opts = {})
-        raise(ArgumentError, 'Option :account or :account_id required!') if opts[:account].blank? && opts[:account_id].blank?
+        raise(ArgumentError, 'Option :account or :id required!') if opts[:account].blank? && opts[:id].blank?
 
-        @account = opts[:account] || Account.find(opts[:account_id])
+        @account = opts[:account] || Account.find(opts[:id])
       end
 
       def process!

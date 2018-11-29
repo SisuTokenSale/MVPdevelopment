@@ -1,13 +1,21 @@
 module Users
   class ProfileController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_profile, only: %i[index update status]
+    before_action :set_profile, only: %i[index create update status]
 
     def index; end
 
-    def update
+    def create
       if @profile.update(profile_params)
         DwollaRegisterProfileCustomersJob.perform_later(id: @profile.id)
+        redirect_to users_profile_index_path, notice: 'Profile successfully updated'
+      else
+        render :index
+      end
+    end
+
+    def update
+      if @profile.update(profile_params)
         DwollaUpdateProfileCustomersJob.perform_later(id: @profile.id)
         redirect_to users_profile_index_path, notice: 'Profile successfully updated'
       else

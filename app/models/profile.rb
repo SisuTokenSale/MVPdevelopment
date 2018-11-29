@@ -28,7 +28,7 @@ class Profile < ApplicationRecord
   end
 
   def waiting?
-    [ssn, dob, first_name, last_name, zip, street, city, state].detect(&:blank?)
+    [ssn, dob, first_name, last_name, zip, street, city, state].any?(&:blank?)
   end
 
   def approved?
