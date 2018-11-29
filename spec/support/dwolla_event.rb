@@ -28,5 +28,5 @@ end
 def build_dwolla_signature(payload)
   return if payload.blank?
 
-  OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), ENV['DWOLLA_WEBHOOK_SECRET'], payload&.to_json)
+  OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha256'), DwollaWebhook.current&.secret, payload&.to_json)
 end

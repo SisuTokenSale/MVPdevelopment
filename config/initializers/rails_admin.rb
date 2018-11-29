@@ -59,8 +59,25 @@ RailsAdmin.config do |config|
   config.model DwollaWebhook do
     list do
       field :url
-      field :active
+      field :active?
+      field :dwolla_registered?
       field :created_at
+      field :updated_at
+      field :current?
+    end
+
+    show do
+      field :url
+      field :active?
+      field :dwolla_registered?
+      field :created_at
+      field :updated_at
+      field :current?
+    end
+
+    edit do
+      field :url
+      field :secret
     end
   end
 

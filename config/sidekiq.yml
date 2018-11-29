@@ -10,6 +10,7 @@ production:
   - plaid_fetch_transactions
   - dwolla_init_webhook
   - dwolla_fetch_webhooks
+  - dwolla_remove_webhook
   - dwolla_update_profile_customers
   - dwolla_register_profile_customers
   - init_transaction
