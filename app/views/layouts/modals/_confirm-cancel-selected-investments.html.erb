@@ -1,5 +1,5 @@
 <!-- Confirm cancel selected investments modal -->
-<div class="modal fade" id="confirm-cancel-selected-investments" tabindex="-1" role="dialog" aria-labelledby="external-service-unavailable" aria-hidden="true">
+<div class="modal fade" id="cancel-invst-modal" tabindex="-1" role="dialog" aria-labelledby="external-service-unavailable" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
@@ -12,10 +12,10 @@
           <div class="form-item check-field">
             <div class="form-group">
               <label class="checkbox">
-                <input type="checkbox" id="cancel-periodic-investments-checkbox" class="form-check-input">
+                <input type="checkbox" id="cancel-investments" class="form-check-input">
                 <span class="checkmark"></span>
               </label>
-              <label class="form-label" for="cancel-periodic-investments-checkbox">
+              <label class="form-label" for="cancel-investments">
                   <span>Cancel future periodic investments related to your previous investment frequency selection.</span>
               </label>
             </div>
@@ -23,10 +23,10 @@
           <div class="form-item check-field">
             <div class="form-group">
               <label class="checkbox">
-                <input type="checkbox" id="cancel-transactions-checkbox" class="form-check-input">
+                <input type="checkbox" id="cancel-transactions" class="form-check-input">
                 <span class="checkmark"></span>
               </label>
-              <label class="form-label" for="cancel-transactions-checkbox">
+              <label class="form-label" for="cancel-transactions">
                   <span>Cancel pending transactions that are still being processed.</span>
               </label>
             </div>
@@ -35,46 +35,9 @@
       </div>
       <div class="modal-footer">
         <a href="#" data-dismiss="modal">CANCEL</a>
-        <button class="btn" type="button" data-dismiss="modal" id="proceed-cancelling-transactions-model-btn" data-action="proceed">PROCEED</button>
+        <button class="btn js-cancel-invst-proceed-btn" type="button" data-dismiss="modal">PROCEED</button>
       </div>
     </div>
   </div>
 </div>
-
-<% content_for :javascript do %>
-  <script>
-    (function($) {
-      let cancelPeriodicInvestments = $('#cancel-periodic-investments-checkbox');
-      let cancelTransactions = $('#cancel-transactions-checkbox');
-      let proceedBtn = $('#proceed-cancelling-transactions-model-btn');
-      let cancelPeriodicInvestmentsChecked = true;
-      let cancelTransactionsChecked = true;
-
-      cancelPeriodicInvestments.prop('checked', cancelPeriodicInvestmentsChecked)
-      cancelTransactions.prop('checked', cancelTransactionsChecked)
-
-      let cancelTransaction = function(){
-        let btnState = !cancelPeriodicInvestmentsChecked && !cancelTransactionsChecked
-        proceedBtn.data('cancel-investments', cancelPeriodicInvestmentsChecked);
-        proceedBtn.data('cancel-transaction', cancelTransactionsChecked);
-        proceedBtn.prop('disabled', btnState);
-      }
-
-      cancelPeriodicInvestments.on('click', function(e){
-        cancelPeriodicInvestmentsChecked = e.target.checked;
-        cancelTransaction();
-      });
-
-      cancelTransactions.on('click', function(e){
-        cancelTransactionsChecked = e.target.checked;
-        cancelTransaction();
-      });
-
-      cancelTransaction()
-
-    })(jQuery);
-  </script>
-<% end %>
 <!--/ Confirm cancel selected investments modal -->
-
-

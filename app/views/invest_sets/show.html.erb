@@ -7,8 +7,10 @@
   <div class="widget-body">
     <div class="form-item flex-nowrap">
       <label class="form-label">
-        <% if @invest_set.lowest? %>
+        <% if @invest_set.frequency == 'lowest' %>
           Percentage of lowest balance of the month - <%= @invest_set.rel_min_balance %>%
+        <% elsif (@invest_set.frequency == 'algo') %>
+          SISU determine an appropriate monthly investment amount.
         <% else %>
           <%= @invest_set.frequency.camelize %> amount - <%= @invest_set.human_amount %>
         <% end %>

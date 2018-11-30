@@ -2,7 +2,7 @@ module InvestSetsHelper
   def frequency_checked?(value)
     return unless @invest_set
 
-    value == @invest_set&.frequency ? 'checked' : ''
+    value == @invest_set&.frequency ? 'checked' : nil
   end
 
   def account_status(account)
