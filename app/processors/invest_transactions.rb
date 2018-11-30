@@ -21,7 +21,7 @@ module Processors
     end
 
     def calc_amount(trx)
-      algo_class(trx.frequency).classify.new(trx: trx).calc_amount
+      algo_class(trx.frequency).constantize.new(trx: trx).calc_amount
     end
 
     def algo_class(frequency)
