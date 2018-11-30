@@ -1,0 +1,111 @@
+<div class="user-profile-info__item documents-wrap <%= @profile.document.present? ? 'selected' : 'unselected' %>">
+  <div class="documents-item">
+    <div class="user-profile-list__icon">
+      <div class="info-icon folder"></div>
+    </div>
+    <div class="user-profile-list-outer">
+      <div class="user-profile-list__wrap">
+      <% if @profile.document.present? %>
+        <div class="user-profile-list">
+          <div class="user-profile-list__item">
+            <label class="user-profile-list__label">
+              Licence:
+            </label>
+            <div class="user-profile-list__value">
+              Nameimage1.png
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="user-profile-list__title">
+          Additional identification
+        </div>
+        <div class="user-profile-list">
+          <div class="user-profile-list__item control-item">
+            <div class="user-profile-list__controls">
+              <div class="select2-field__outer">
+                <select class="select2-control">
+                  <option value="" selected disabled>Please select</option>
+                  <option value="planned">Passport</option>
+                  <option value="pending">License</option>
+                  <option value="processed">idCard</option>
+                  <option value="cancelled">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="user-profile-list__item">
+            <div class="user-profile-list__controls">
+              <div class="btn btn-invert btn-file">
+                <span>Upload document</span>
+                <%= f.input :document, id: :document, as: :file, label: false, input_html: {class: 'form-control'} %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+
+    <% if @profile.document.present? %>
+      <%= render 'document_preview'%>
+    <% end %>
+
+  </div>
+</div>
+
+<div class="user-profile-info__item documents-wrap <%= @profile.document.present? ? 'selected' : 'unselected' %>">
+  <div class="documents-item">
+    <div class="user-profile-list__icon">
+      <div class="info-icon folder"></div>
+    </div>
+    <div class="user-profile-list-outer">
+      <div class="user-profile-list__wrap custom-scrollbar">
+        <div class="user-profile-list">
+          <div class="user-profile-list__item">
+            <label class="user-profile-list__label">
+              Licence:
+            </label>
+            <div class="user-profile-list__value">
+              Nameimage1.png
+            </div>
+          </div>
+          <div class="user-profile-list__item">
+            <label class="user-profile-list__label">
+              &nbsp;
+            </label>
+            <div class="user-profile-list__value">
+              Nameimage2.png
+            </div>
+          </div>
+          <div class="user-profile-list__item">
+            <label class="user-profile-list__label">
+              &nbsp;
+            </label>
+            <div class="user-profile-list__value">
+              Nameimage3.png
+            </div>
+          </div>
+          <div class="user-profile-list__item">
+            <label class="user-profile-list__label">
+              &nbsp;
+            </label>
+            <div class="user-profile-list__value">
+              Nameimage4.png
+            </div>
+          </div>
+          <div class="user-profile-list__item">
+            <label class="user-profile-list__label">
+              &nbsp;
+            </label>
+            <div class="user-profile-list__value">
+              Nameimage5.png
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%= render 'document_preview'%>
+  </div>
+</div>
