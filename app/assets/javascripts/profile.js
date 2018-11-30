@@ -5,6 +5,7 @@
     dobEl: $('.js-profile-dob'),
     ssnEl: $('.js-profile-ssn'),
     btn: $('.js-profile-create-btn'),
+    securityInfoModal: $('#security-info'),
     dobIsValid: false,
     ssnIsValid: false,
     dobRegexp: /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i,
@@ -49,13 +50,15 @@
     },
 
     withSSNDOBModal: function(callback){
-      let securityInfoModal = $('#security-info');
-      securityInfoModal.modal('show');
+      // INFO: This hook need for works datepicker under FireFox
+      $('#ui-datepicker-div').appendTo(App.profile.securityInfoModal);
+
+      App.profile.securityInfoModal.modal('show');
 
       App.profile.securityInfoListener();
 
       $('form#js-profile-create-form').on('ajax:success', function(event) {
-        securityInfoModal.modal('hide');
+        App.profile.securityInfoModal.modal('hide');
         callback();
       })
     },

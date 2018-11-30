@@ -1,4 +1,5 @@
 <%= raw errors_in_block_for(@invest_set) %>
+<%= f.text_field :amount, class: 'js-money_input', style: 'display: none;' %>
 <div class="form-item check-field">
   <label class="checkbox radio">
     <%= f.radio_button :frequency, 'algo', id: 'algo', class: 'form-check-input', checked: frequency_checked?('algo') %>
@@ -17,10 +18,8 @@
   <label class="form-label" for="daily">
     Daily - (<%= currency.symbol %>5 - <%= currency.symbol %>100)&nbsp;
     <div class="form-input">
-      <%= f.text_field :amount, class: 'js-money_input' %>
     </div>
   </label>
-
 </div>
 <div class="form-item check-field">
   <label class="checkbox radio">
@@ -29,6 +28,8 @@
   </label>
   <label class="form-label" for="weekly">
     Weekly - (<%=  currency.symbol %>5 - <%= currency.symbol %>4,000)
+    <div class="form-input">
+    </div>
   </label>
 </div>
 <div class="form-item check-field">
@@ -38,6 +39,8 @@
   </label>
   <label class="form-label" for="monthly">
     Monthly - (<%= currency.symbol %>5 - <%= currency.symbol %>5,000)
+    <div class="form-input">
+    </div>
   </label>
 </div>
 <div class="form-item check-field">
@@ -51,7 +54,7 @@
   <label class="form-label" for="lowest">
     (5% - 90%)&nbsp;
     <div class="form-input">
-      <%= f.text_field :rel_min_balance %>
+      <%= f.text_field :rel_min_balance, class: 'js-lowest_input' %>
     </div>
   </label>
 </div>

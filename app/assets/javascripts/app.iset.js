@@ -13,27 +13,17 @@
     applyFormListener: function(){
       $('form#js-set-create').on('ajax:success', function(event) {
         App.shared.goToDashboard();
-        // TODO: Will use this for Full Async I-face
-        // let xhr = event.detail[2];
-        // $('.js-set-content').html(xhr.responseText);
-        // App.iset.applyChangeListener();
-        // App.dashboard.applyGlobalListeners();
       }).on('ajax:error', function(event) {
         let xhr = event.detail[2];
         $('.js-set-content').html(xhr.responseText);
         App.iset.applyFormListener();
-        App.dashboard.applyGlobalListeners();
+        App.iset_form.init();
       });
     },
 
     applyOneTimeInvestmentFormListener: function(){
       $('form#js-set-one-time-investment').on('ajax:success', function(event) {
         App.shared.goToDashboard();
-        // TODO: Will use this for Full Async I-face
-        // let xhr = event.detail[2];
-        // $('.js-one-time-investment-container').html(xhr.responseText);
-        // App.iset.getAndApplyTransactions('');
-        // App.iset.applyOneTimeInvestmentFormListener();
       }).on('ajax:error', function(event) {
         let xhr = event.detail[2];
         $('.js-one-time-investment-container').html(xhr.responseText);
@@ -54,65 +44,52 @@
     },
 
     cancelSelectedInvestmentsListener: function(){
-      let modalWindow = $('#confirm-cancel-selected-investments');
       $('.js-cancel-selected-investments').on('click', function(e){
-        let invest_set_id = e.target.dataset.id;
-        modalWindow.modal("show");
+        App.modals.cancelInvst.show({
+          investSetId: e.target.dataset.id,
+        });
+      })
 
-        modalWindow.on('hide.bs.modal', function(e){
-          let activeElement = $(document.activeElement);
-          let data = activeElement.data();
-          let params = { options: { cancel: [] } };
+      App.modals.cancelInvst.onProceed(function(state){
+        let opts = [];
+        if (state.periodic){opts.push('investments');}
+        if (state.transactions){opts.push('transactions');}
+        App.modals.cancelInvst.setState({status: 'started'});
 
-          if (data.cancelInvestments){
-            params.options.cancel.push('investments');
-          }
-
-          if (data.cancelTransaction){
-            params.options.cancel.push('transactions');
-          }
-
-          if(data.action === 'proceed'){
-            $.delete(`/invest_sets/${invest_set_id}`,
-              params, function(data, status, xhr) {
-              App.shared.goToDashboard();
-            });
-          }
+        $.delete(`/invest_sets/${state.investSetId}`,
+          {options: {cancel: opts}},
+          function(data, status, xhr) {
+          App.modals.cancelInvst.setState({status: 'finished', action: 'dismiss'});
+          App.shared.goToDashboard();
         });
       })
     },
 
     deleteTransactionListener: function(){
-      let modalWindow = $('#confirm-delete-transaction');
       $('.js-delete-transaction').on('click', function(e){
-        let trxId = e.target.dataset.id;
-        let description = e.target.dataset.description;
-
-        if(description){
-          modalWindow.children().find('.modal-text').html(description);
-        }
-
-        modalWindow.modal('show')
-        modalWindow.on('hide.bs.modal', function(e){
-          let activeElement = $(document.activeElement);
-
-          if(activeElement.data().action === 'proceed'){
-            $.delete(`/invest_transactions/${trxId}`, {}, function(data, status, xhr) {
-              App.shared.goToDashboard();
-            });
-          }
+        let data = e.target.dataset;
+        App.modals.deleteTrx.show({
+          trxId: data.id,
+          desc: data.description,
         });
-      })
+      });
+
+      App.modals.deleteTrx.onProceed(function(state){
+        App.modals.deleteTrx.setState({status: 'started'});
+
+        $.delete(`/invest_transactions/${state.trxId}`, {}, function(data, status, xhr) {
+          App.modals.deleteTrx.setState({status: 'finished', action: 'dismiss'});
+          App.shared.goToDashboard();
+        });
+      });
     },
-
-
 
     renderNewForm: function(){
       $.get(`/invest_sets/new`, {}, function(data, status, xhr) {
         $(`.js-set-content`).html(data);
         App.iset.applyFormListener();
-        App.dashboard.applyGlobalListeners();
-      });
+        App.iset_form.init();
+      })
     }
   };
 }).call(this);

@@ -1,6 +1,6 @@
 <!-- Learn More modal -->
 <div class="modal fade" id="security-info" tabindex="-1" role="dialog" aria-labelledby="security-info" aria-hidden="true">
-  <%= form_for :profile, url: '/users/profile', method: :put, remote: true, html: { id: 'js-profile-create-form' } do |f| %>
+  <%= form_for :profile, url: '/users/profile', method: :post, remote: true, html: { id: 'js-profile-create-form' } do |f| %>
     <div class="modal-dialog">
       <div class="modal-content">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>

@@ -29,6 +29,29 @@ textarea {
   font-size: 16px;
 }
 
+form#js-set-create{
+  [for=daily] .form-input {
+    margin-left: 38px !important;
+  }
+
+  [for=weekly] .form-input {
+    margin-left: 20px !important;
+  }
+
+  [for=monthly] .form-input {
+    margin-left: 15px !important;
+  }
+
+  [for=lowest] .form-input {
+    margin-left: 72px !important;
+  }
+
+  [for=once] .form-input {
+    margin-left: 0px !important;
+  }
+}
+
+
 #{$all-text-inputs} {
   appearance: none;
   background-color: $_form-background-color;
@@ -78,6 +101,10 @@ textarea {
 [type="file"] {
   margin-bottom: $small-spacing;
   width: 100%;
+}
+
+[type="text"] {
+  padding-left: 5px !important;
 }
 
 select {

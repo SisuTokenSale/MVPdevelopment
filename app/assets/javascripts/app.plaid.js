@@ -42,10 +42,7 @@
         'account[account_type]': accountInfo['account']['type']
       }).then(function(){
         App.plaid.accountSuccess.modal('show').on('hide.bs.modal', function(e){
-          let activeElement = $(document.activeElement);
-          if(activeElement.data().action === 'proceed'){
-            App.shared.goToDashboard();
-          }
+          App.shared.goToDashboard();
         });
       }).fail(function(result){
         // TODO: Should be better if standart Alert
