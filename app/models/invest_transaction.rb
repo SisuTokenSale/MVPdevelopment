@@ -29,6 +29,7 @@ class InvestTransaction < ApplicationRecord
 
   delegate :currency, to: :source_account, allow_nil: true
   delegate :rel_min_balance, to: :invest_set, allow_nil: true
+  delegate :frequency, to: :invest_set, allow_nil: true
 
   before_create :assign_iso_currency_code
 

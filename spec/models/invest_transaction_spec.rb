@@ -44,5 +44,6 @@ describe InvestTransaction, type: :model do
   describe 'delegators' do
     it { should delegate_method(:currency).to(:source_account).with_arguments(allow_nil: true) }
     it { should delegate_method(:rel_min_balance).to(:invest_set).with_arguments(allow_nil: true) }
+    it { should delegate_method(:frequency).to(:invest_set).with_arguments(allow_nil: true) }
   end
 end
