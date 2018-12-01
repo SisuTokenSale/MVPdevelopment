@@ -47,7 +47,6 @@
     show: function(id){
       let moneyInput = App.iset_form.moneyInput.remove();
       let lowestInput = App.iset_form.lowestInput.remove();
-      console.log('ID', id);
 
       if(id === 'lowest'){
         moneyInput.hide();
