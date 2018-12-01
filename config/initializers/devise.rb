@@ -3,6 +3,7 @@
 Devise.setup do |config|
   config.secret_key = ENV['SECRET_KEY_BASE']
   config.mailer_sender = "no-reply@#{ENV['APPLICATION_HOST']}"
+  config.mailer.layout 'mailer'
   require 'devise/orm/active_record'
   config.case_insensitive_keys = [:email]
   config.strip_whitespace_keys = [:email]

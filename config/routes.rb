@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :invest_transactions, only: %i[create destroy]
 
   get '/terms', to: 'pages#terms', as: :terms
+  get '/privacy', to: 'pages#privacy', as: :privacy
   put '/users/profile', to: 'users/profile#update', as: :update_profile
   post '/users/profile', to: 'users/profile#create', as: :create_profile
   get '/users/profile/status', to: 'users/profile#status', as: :profile_status

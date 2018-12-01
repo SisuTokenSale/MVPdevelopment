@@ -22,6 +22,7 @@ class InvestSetService
       end
     end
     valid!
+    Mailer.recurring_payment_initiated(invest_set).deliver_later
     self
   rescue StandardError => _e
     self

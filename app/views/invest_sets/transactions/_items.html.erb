@@ -1,7 +1,7 @@
 <% if @invest_set_transactions.count > 0 %>
   <% @invest_set_transactions.each do |trx| %>
     <%
-      source_account = trx.source_account;
+      source_account = trx.source_account
       invest_account = trx.invest_account
     %>
     <tr class="transactions-list__item <%= transaction_class_by_status(trx.status) %>">
