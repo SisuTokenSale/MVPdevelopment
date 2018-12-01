@@ -19,7 +19,10 @@ module Processors
       # INFO: Can't use trx.cancelled! method, because can be start infinit recursion
       def cancel_transaction!
         status = dwolla.cancel_transaction(link: trx.link, body: request_body)
-        trx.update(cancelled_at: Time.current, status: 'cancelled') if status == 'cancelled'
+        return unless status == 'cancelled'
+
+        trx.update(cancelled_at: Time.current, status: 'cancelled')
+        NoticeService.transfer(trx, :cancelled)
       end
 
       private

@@ -16,16 +16,16 @@ production:
   - init_transaction
   - invest_transactions
   - cancel_transaction
-:schedule:
-  fetch_plaid_transactions:
-    cron: '0 23 * * *' # Run avery day at 23:00
-    class: PlaidFetchTransactionsJob
-  fetch_plaid_balance:
-    cron: '0 * * * *' # Run every Hour (hourly)
-    class: PlaidFetchBalancesJob
-  invest_transactions:
-    cron: '*/10 * * * *' # Run every 10 Minutes
-    class: InvestTransactionsJob
-  fetch_webhooks:
-    cron: '*/1 * * * *' # Run every 1 Minute
-    class: DwollaFetchWebhooksJob
+# :schedule:
+#   fetch_plaid_transactions:
+#     cron: '0 23 * * *' # Run avery day at 23:00
+#     class: PlaidFetchTransactionsJob
+#   fetch_plaid_balance:
+#     cron: '0 * * * *' # Run every Hour (hourly)
+#     class: PlaidFetchBalancesJob
+#   invest_transactions:
+#     cron: '*/10 * * * *' # Run every 10 Minutes
+#     class: InvestTransactionsJob
+#   fetch_webhooks:
+#     cron: '*/1 * * * *' # Run every 1 Minute
+#     class: DwollaFetchWebhooksJob

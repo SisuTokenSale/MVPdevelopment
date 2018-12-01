@@ -1,0 +1,4 @@
+<%= render 'mailer/shared/customer_info' do %>
+  Unfortunately, a verification document has been rejected at SISU and your account cannot be approved at this time.<br />
+  To load additional documents, you can access your account <%= link_to 'account', new_user_session_url, target: '_blank' %> and go to the profile tab for instructions.
+<% end %>

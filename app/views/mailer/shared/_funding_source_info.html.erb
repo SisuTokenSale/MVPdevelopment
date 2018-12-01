@@ -1,0 +1,39 @@
+<tr class="content">
+  <td valign="top" height="auto">
+    <div class="container">
+      <div class="_wrap">&nbsp;</div>
+      <span class="title">
+        Hi <%= @user.human_name %>
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <%= yield %>
+        Details are below:
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <strong>Name:</strong> <%= @account.name %>
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <strong>Bank Identifier:</strong> <%= @account.institution %>
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <strong>Account:</strong> <%= @account.account_type %> ***<%= @account.mask %>
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <strong>Date Added:</strong> <%= l @date, format: :default %>
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <strong>On Demand Added:</strong> <%= @funding_source.dwolla_registered? ? 'Yes' : 'No' %>
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <%= link_to 'You can make changes at', new_user_session_url, target: '_blank' %>.
+      </span>
+    </div>
+  </td>
+</tr>

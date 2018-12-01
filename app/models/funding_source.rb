@@ -1,5 +1,4 @@
 class FundingSource < ApplicationRecord
-  # STATUSES = %w[pending processed failed].freeze
   STATUSES = %w[unverified added removed verified negative updated].freeze
 
   enum status: STATUSES.each_with_object({}) { |val, hash| hash[val.to_sym] = val }
@@ -18,6 +17,11 @@ class FundingSource < ApplicationRecord
 
   def dwolla_registered?
     uid.present? && link.present?
+  end
+
+  def verified!
+    super
+    NoticeService.funding_source(self, :verified)
   end
 
   def business_name

@@ -1,0 +1,4 @@
+<%= render 'mailer/shared/customer_info' do %>
+  A Verification document has been successfully approved uploaded at SISU and will be processed shortly.<br />
+  You can access your <%= link_to 'account', new_user_session_url, target: '_blank' %>.
+<% end %>

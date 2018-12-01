@@ -1,0 +1,28 @@
+<tr class="content">
+  <td valign="top" height="auto">
+    <div class="container">
+      <div class="_wrap">&nbsp;</div>
+      <span class="title">
+        Hi <%= @user.human_name %>
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        Congratulations, you have successfully initiated an online account with Sisu Capital LLC.!
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        By doing so, you have confirmed our <%= link_to 'Terms of Use', terms_url, target: '_blank' %> and <%= link_to 'Privacy Policy', privacy_url, target: '_blank' %>.
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        This also confirms that you have read and accepted our payment partner Dwolla’s
+        <%= link_to 'Terms of Service', dwolla_terms_url, target: '_blank' %> and
+        <%= link_to 'Privacy Policy', dwolla_privacy_url, target: '_blank' %>.
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        Here is a link to login to your <%= link_to 'account', new_user_session_url, target: '_blank' %>.
+      </span>
+    </div>
+  </td>
+</tr>
