@@ -66,6 +66,11 @@ class InvestTransaction < ApplicationRecord
     super
   end
 
+  def pending!
+    super
+    Mailer.transfer_was_initiated(self).deliver_later
+  end
+
   def cancelled!
     return unless can_be_cancelled?
 

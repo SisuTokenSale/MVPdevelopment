@@ -3,14 +3,14 @@
       <div style="background-color: #EDF0F5; padding: 10px 25px; width: 500px; margin: 10px 25px;">
         <div style="height: 5px; line-height: 5px; font-size: 7px;">&nbsp;</div>
         <span style="font-family: 'Roboto', Arial, Tahoma, 'Times New Roman', sans-serif; font-size: 14px; color: #828386;">
-        If you didn't register for SISU, please <%= link_to 'contact SISU here', '#', target: '_blank', style: "color: #5B8EFF;" %>.</span>
+          For Questions or Assistance please contact us at
+          <a href="mailto:<%= ENV['SUPPORT_EMAIL'] %>"><%= ENV['SUPPORT_EMAIL'] %></a>.
+        </span>
         <div style="height: 5px; line-height: 5px; font-size: 7px;">&nbsp;</div>
       </div>
     </td>
   </tr>
 </table>
-
-
 <!--[if (gte mso 9)|(IE)]>
 </td>
 </tr>
