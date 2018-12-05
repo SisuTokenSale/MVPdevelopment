@@ -64,6 +64,17 @@ class InvestTransaction < ApplicationRecord
   def processed!
     self.processed_at = Time.current
     super
+    NoticeService.transfer(self, :processed)
+  end
+
+  def failed!
+    super
+    NoticeService.transfer(self, :failed)
+  end
+
+  def pending!
+    super
+    NoticeService.transfer(self, :initiated)
   end
 
   def pending!

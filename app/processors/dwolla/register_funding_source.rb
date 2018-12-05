@@ -34,8 +34,7 @@ module Processors
           business_name: funding_source.business_name,
           dwolla_token: account.dwolla_token
         )
-
-        funding_source.save!
+        NoticeService.funding_source(funding_source, :added) if funding_source.save!
       end
     end
   end

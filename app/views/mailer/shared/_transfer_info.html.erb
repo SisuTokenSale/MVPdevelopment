@@ -1,0 +1,51 @@
+<tr class="content">
+  <td valign="top" height="auto">
+    <div class="container">
+      <div class="_wrap">&nbsp;</div>
+      <span class="title">
+        Hi <%= @user.human_name %>
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <%= yield %>
+        Details are below:
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <strong>Type:</strong> ACH Transfer
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <strong>Identification number:</strong> <%= @trx.id %>
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <strong>Amount:</strong> <%= @trx.human_amount %>
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <strong>Date:</strong> <%= l @date, format: :default %>
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <strong>Originating Account:</strong> <%= @source_account.account_type %> ***<%= @source_account.mask %>
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <strong>Bank Identifier:</strong> <%= @source_account.institution %>
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <strong>Recipient Account:</strong> <%= @invest_account.account_type %> ***<%= @invest_account.mask %>
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <strong>Bank Identifier:</strong> <%= @invest_account.institution %>
+      </span>
+      <div class="_wrap">&nbsp;</div>
+      <span class="line">
+        <%= link_to 'You can make changes at', new_user_session_url, target: '_blank' %>.
+      </span>
+    </div>
+  </td>
+</tr>
