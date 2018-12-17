@@ -15,7 +15,8 @@ module Processors
 
     def process_expired_periodical_transactions!
       InvestTransaction.periodical_will_processed.find_each(batch_size: 30).each do |trx|
-        trx.update(amount: calc_amount(trx))
+        trx.amount = calc_amount(trx)
+        trx.failed! && next if trx.amount.zero?
         Processors::Dwolla::InitTransaction.new(trx: trx).process!
       end
     end

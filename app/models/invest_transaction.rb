@@ -12,7 +12,7 @@ class InvestTransaction < ApplicationRecord
   end
 
   validates :investment_type, inclusion: { in: TYPES }
-  validates :amount, numericality: { greater_than_or_equal_to: InvestSet::MIN_AMOUNT }
+  validates :amount, numericality: { greater_than_or_equal_to: InvestSet::MIN_AMOUNT }, unless: :failed?
 
   validates :invest_set_id, presence: true
 
